@@ -1,6 +1,4 @@
-
 @import 'variables_custom';
-
 // import bootstrap after 'variables' - for customizing
 @import '~bootstrap/scss/bootstrap.scss';
 
@@ -8,9 +6,10 @@
     override bootstrap classes
 -------------------------------------------------------------------------*/
 
-.btn-primary {
-  color: #fff;
-  //background-color: $orange;
+.btn-success {
+  color: $white;
+  font-size: 14px;
+  padding: 4px 18px;
 }
 
 /*------------------------------------------------------------------------

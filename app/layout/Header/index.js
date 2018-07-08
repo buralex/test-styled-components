@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import {FormattedMessage} from 'react-intl';
 
 import A from './A';
 import Img from './Img';
@@ -14,7 +14,7 @@ class Header extends React.Component {
         return (
             <div>
                 <A href="https://twitter.com/mxstbr">
-                    <Img src={Banner} alt="react-boilerplate - Logo" />
+                    <Img src={Banner} alt="react-boilerplate - Logo"/>
                 </A>
                 <NavBar>
                     <HeaderLink to="/">

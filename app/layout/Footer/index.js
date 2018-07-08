@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import {FormattedMessage} from 'react-intl';
 
 import A from 'components/A';
 import LocaleToggle from 'containers/LocaleToggle';
@@ -13,7 +13,7 @@ function Footer() {
                 <FormattedMessage {...messages.licenseMessage} />
             </section>
             <section>
-                <LocaleToggle />
+                <LocaleToggle/>
             </section>
             <section>
                 <FormattedMessage

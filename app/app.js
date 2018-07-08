@@ -11,8 +11,8 @@ import 'babel-polyfill';
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
+import {Provider} from 'react-redux';
+import {ConnectedRouter} from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
 
@@ -33,7 +33,7 @@ import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line impor
 import configureStore from './configureStore';
 
 // Import i18n messages
-import { translationMessages } from './i18n';
+import {translationMessages} from './i18n';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -55,7 +55,7 @@ const render = messages => {
         <Provider store={store}>
             <LanguageProvider messages={messages}>
                 <ConnectedRouter history={history}>
-                    <App />
+                    <App/>
                 </ConnectedRouter>
             </LanguageProvider>
         </Provider>,
@@ -80,8 +80,8 @@ if (!window.Intl) {
     })
         .then(() =>
             Promise.all([
-        import('intl/locale-data/jsonp/en.js'),
-        import('intl/locale-data/jsonp/de.js'),
+                import('intl/locale-data/jsonp/en.js'),
+                import('intl/locale-data/jsonp/de.js'),
             ]),
         )
         .then(() => render(translationMessages))

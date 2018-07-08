@@ -11,7 +11,7 @@ import {FormattedMessage} from 'react-intl';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {createStructuredSelector} from 'reselect';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, UncontrolledTooltip} from 'reactstrap';
 import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/api';
 
 import injectReducer from 'utils/injectReducer';
@@ -34,6 +34,7 @@ import {changeUsername} from './actions';
 import {makeSelectUsername} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.PureComponent {
@@ -88,16 +89,16 @@ export class HomePage extends React.PureComponent {
                         </p>
 
                         <Button
-                            color="primary" onClick={ async () => {
+                            color="success" onClick={async () => {
                             // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);
                             // const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data);
-                                const aaa = await fetchFriends({
-                                    per_page: 10,
-                                }).then(res => res.data).catch(e => e.response.data);
+                            const aaa = await fetchFriends({
+                                per_page: 10,
+                            }).then(res => res.data).catch(e => e.response.data);
 
-                                console.log(aaa);
+                            console.log(aaa);
 
-                            }}>Danger!</Button>
+                        }}>Add New Service</Button>
 
                         <Button color="danger" onClick={this.toggle}>mmmmmmm</Button>
                         <div className="col-2 text-truncate">
@@ -113,6 +114,12 @@ export class HomePage extends React.PureComponent {
                                 <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                             </ModalFooter>
                         </Modal>
+
+                        <p>Somewhere in here is a <a href="#" id="UncontrolledTooltipExample">tooltip</a>.</p>
+                        <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
+                            Hello world!
+                        </UncontrolledTooltip>
+
                     </CenteredSection>
                     <Section>
                         <H2>
