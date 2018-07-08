@@ -1,16 +1,16 @@
 {
-  "name": "react-boilerplate",
-  "version": "3.6.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
+  "name": "test",
+  "version": "1.0.0",
+  "description": "test, boilerplate - git://github.com/react-boilerplate/react-boilerplate.git",
   "repository": {
     "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
+    "url": "https://github.com/buralex/test-styled-components"
   },
   "engines": {
     "npm": ">=5",
     "node": ">=8"
   },
-  "author": "Max Stoiber",
+  "author": "Alex",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
