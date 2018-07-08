@@ -76,7 +76,7 @@ export class HomePage extends React.PureComponent {
                     <title>Home Page</title>
                     <meta
                         name="description"
-                        content="A React.js Boilerplate application homepage"
+                        content="Denteez"
                     />
                 </Helmet>
                 <div>
@@ -92,13 +92,15 @@ export class HomePage extends React.PureComponent {
                             color="success" onClick={async () => {
                             // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);
                             // const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data);
-                            const aaa = await fetchFriends({
-                                per_page: 10,
-                            }).then(res => res.data).catch(e => e.response.data);
+                                const aaa = await fetchFriends({
+                                    per_page: 10,
+                                }).then(res => res.data).catch(e => e.response.data);
 
-                            console.log(aaa);
+                                console.log(aaa);
 
-                        }}>Add New Service</Button>
+                            }}>Add New Service</Button>
+
+                        <div className="p-3 mb-3 swatch-indigo">Indigo</div>
 
                         <Button color="danger" onClick={this.toggle}>mmmmmmm</Button>
                         <div className="col-2 text-truncate">

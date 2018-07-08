@@ -35,14 +35,17 @@ import configureStore from './configureStore';
 // Import i18n messages
 import {translationMessages} from './i18n';
 
-// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
-// the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Open Sans', {});
+/* ----------------------- check loading special fonts ------------------------------------------- */
+const proximaReg = new FontFaceObserver('Proxima Nova Reg');
+const proximaLight = new FontFaceObserver('Proxima Nova Light');
 
-// When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.load().then(() => {
+Promise.all([proximaReg.load(), proximaLight.load()]).then(() => {
     document.body.classList.add('fontLoaded');
+}, () => {
+    document.body.classList.remove('fontLoaded');
+    console.error('some fonts not loaded');
 });
+/* ----------------------- check loading special fonts ------------------------------------------- */
 
 // Create redux store with history
 const initialState = {};

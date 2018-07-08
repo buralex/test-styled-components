@@ -24,17 +24,16 @@ const AppWrapper = styled.div`
   min-height: 100%;
   padding: 0 16px;
   flex-direction: column;
-  color: green;
 `;
 
 export default function App() {
     return (
         <AppWrapper>
             <Helmet
-                titleTemplate="%s - React.js Boilerplate"
-                defaultTitle="React.js Boilerplate"
+                titleTemplate="Denteez"
+                defaultTitle="Denteez"
             >
-                <meta name="description" content="A React.js Boilerplate application"/>
+                <meta name="description" content="Denteez"/>
             </Helmet>
             <Header/>
             <Switch>
