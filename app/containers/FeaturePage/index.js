@@ -13,7 +13,7 @@ import List from './List';
 import ListItem from './ListItem';
 import ListItemTitle from './ListItemTitle';
 
-import './style.css';
+import './style.scss';
 
 export default class FeaturePage extends React.Component {
   // eslint-disable-line react/prefer-stateless-function

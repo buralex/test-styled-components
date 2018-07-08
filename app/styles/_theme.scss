@@ -1,0 +1,18 @@
+
+@import 'variables_custom';
+
+// import bootstrap after 'variables' - for customizing
+@import '~bootstrap/scss/bootstrap.scss';
+
+/*------------------------------------------------------------------------
+    override bootstrap classes
+-------------------------------------------------------------------------*/
+
+.btn-primary {
+  color: #fff;
+  //background-color: $orange;
+}
+
+/*------------------------------------------------------------------------
+    / override bootstrap classes
+-------------------------------------------------------------------------*/
