@@ -17,6 +17,10 @@ const makeSelectLoading = () =>
 const makeSelectError = () =>
     createSelector(selectGlobal, globalState => globalState.get('error'));
 
+const makeSelectIsLoggedIn = () =>
+    createSelector(selectGlobal, globalState => globalState.get('isLoggedIn'));
+
+
 const makeSelectRepos = () =>
     createSelector(selectGlobal, globalState =>
         globalState.getIn(['userData', 'repositories']),
@@ -32,4 +36,5 @@ export {
     makeSelectError,
     makeSelectRepos,
     makeSelectLocation,
+    makeSelectIsLoggedIn,
 };

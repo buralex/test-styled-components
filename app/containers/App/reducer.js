@@ -16,6 +16,7 @@ import {LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR} from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
+    isLoggedIn: false,
     loading: false,
     error: false,
     currentUser: false,

@@ -14,17 +14,19 @@ class Header extends React.Component {
         return (
             <div className="header bg-success container-fluid outline-danger">
                 <div className="col-12 content outline-danger">
-                    <div className="logo">
-                        <a href="/"> <img src={Logo} alt="Denteez logo" /> </a>
-                    </div>
+                    {/*<div className="logo">*/}
+                        {/*<a href="/"> <img src={Logo} alt="Denteez logo" /> </a>*/}
+                    {/*</div>*/}
 
-                    <div className="search">
-                        <a href="/"> <img src={Logo} alt="Denteez logo" /> </a>
-                    </div>
+                    {/*<div className="search">*/}
+                        {/*<a href="/"> <img src={Logo} alt="Denteez logo" /> </a>*/}
+                    {/*</div>*/}
 
-                    <div className="notifications">
-                        <a href="/"> <img src={Logo} alt="Denteez logo" /> </a>
-                    </div>
+                    {/*<div className="notifications">*/}
+                        {/*<a href="/"> <img src={Logo} alt="Denteez logo" /> </a>*/}
+                    {/*</div>*/}
+
+                    <div>test header</div>
                 </div>
                 {/* <A href="https://twitter.com/mxstbr"> */}
                 {/* <Img src={Logo} alt="react-boilerplate - Logo"/> */}
