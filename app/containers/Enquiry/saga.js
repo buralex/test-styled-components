@@ -2,7 +2,7 @@
  * Gets the repositories of the user from Github
  */
 
-import {call, put, select, takeLatest} from 'redux-saga/effects';
+import {call, put, select, takeLatest, takeEvery} from 'redux-saga/effects';
 import {LOAD_REPOS} from 'containers/App/constants';
 import {reposLoaded, repoLoadingError} from 'containers/App/actions';
 
@@ -35,4 +35,5 @@ export default function* githubData() {
     // It returns task descriptor (just like fork) so we can continue execution
     // It will be cancelled automatically on component unmount
     yield takeLatest(LOAD_REPOS, getRepos);
+    //yield takeEvery(LOAD_REPOS, getRepos);
 }

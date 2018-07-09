@@ -35,6 +35,12 @@ import {changeUsername} from './actions';
 import {makeSelectUsername} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import showResults from "./showResults";
+import ImmutableForm from "./components/ImmutableForm";
+//import SimpleForm from "./components/SimpleForm";
+import LoginForm from "./components/LoginForm";
+
+const login = (values) => alert(`It's a map thanks to immutables with redux-form: ${values}`);
 
 
 /* eslint-disable react/prefer-stateless-function */
@@ -147,6 +153,10 @@ export class Enquiry extends React.PureComponent {
                         </Form>
                         <ReposList {...reposListProps} />
                     </Section>
+
+                    <ImmutableForm onSubmit={login} />
+                    {/*<LoginForm onSubmit={login} />*/}
+                    {/*<SimpleForm onSubmit={showResults} />*/}
                 </div>
             </article>
         );
