@@ -69,13 +69,18 @@ $btn-focus-box-shadow: none !important;
 //       Buttons
 //**************************
 
-[class*=btn-] {
-  font-size: 14px;
+[class*=btn-sm] {
   padding: 4px 18px;
 }
 
 .btn-success {
   color: $white;
+
+  &:hover {
+    background-color: lighten($turtle-green, 6);
+    border-color: lighten($turtle-green, 6);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
 }
 
 //**************************

@@ -15,6 +15,7 @@ import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, Uncontrolle
 import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/api';
 
 
+
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import {
@@ -35,13 +36,10 @@ import {changeUsername} from './actions';
 import {makeSelectUsername} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import showResults from "./showResults";
-import ImmutableForm from "./components/ImmutableForm";
-//import SimpleForm from "./components/SimpleForm";
-import LoginForm from "./components/LoginForm";
+
+import EnquiryForm from "./components/EnquiryForm";
 
 const login = (values) => alert(`It's a map thanks to immutables with redux-form: ${values}`);
-
 
 /* eslint-disable react/prefer-stateless-function */
 export class Enquiry extends React.PureComponent {
@@ -97,7 +95,7 @@ export class Enquiry extends React.PureComponent {
                             <FormattedMessage {...messages.startProjectMessage} />
                         </p>
 
-                        <Button
+                        <Button size="sm"
                             color="success" onClick={async () => {
                             // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);
                             // const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data);
@@ -154,7 +152,8 @@ export class Enquiry extends React.PureComponent {
                         <ReposList {...reposListProps} />
                     </Section>
 
-                    <ImmutableForm onSubmit={login} />
+                    <EnquiryForm onSubmit={login} />
+                    {/*<ImmutableForm onSubmit={login} />*/}
                     {/*<LoginForm onSubmit={login} />*/}
                     {/*<SimpleForm onSubmit={showResults} />*/}
                 </div>
