@@ -14,7 +14,7 @@ import {createStructuredSelector} from 'reselect';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, UncontrolledTooltip} from 'reactstrap';
 import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/api';
 import {Link} from "react-router-dom";
-import uuidv4 from "uuid/v4";
+import uuidv5 from "uuid/v5";
 import Demo from "components/componentsSignal/Demo";
 
 
@@ -25,6 +25,14 @@ import {
     makeSelectLoading,
     makeSelectError,
 } from 'containers/App/selectors';
+
+import {
+    withSignal,
+    // withSignalPropTypes,
+    SignalTypes,
+    eventHandler,
+} from 'reduxSignal'
+
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
 import AtPrefix from './AtPrefix';
@@ -39,21 +47,16 @@ import {makeSelectUsername} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-import {
-    withSignal,
-    withSignalPropTypes,
-    SignalTypes,
-    eventHandler
-} from 'reduxSignal'
 
-const KillTheWorldEvent = eventHandler()
+
+const ServerErrorEvent = eventHandler();
 
 const onYes = () => {
-    console.log('You killed everyone, you must be proud.')
+    console.log('pressed yes')
 }
 
 const onNo = () => {
-    console.log('That was close, we need more people like you.')
+    console.log('pressed no')
 }
 
 
@@ -64,14 +67,6 @@ const login = (values) => alert(`It's a map thanks to immutables with redux-form
 
 /* eslint-disable react/prefer-stateless-function */
 export class Enquiry extends React.PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {
-            modal: false,
-        };
-
-        this.toggle = this.toggle.bind(this);
-    }
 
     /**
      * when initial state username is not null, submit the form to load repos
@@ -82,24 +77,19 @@ export class Enquiry extends React.PureComponent {
         }
     }
 
-    onBtnKillClick = () => {
+    onBtnErrorClick = () => {
         console.log(this.props);
         this.props.createSignal({
             type: SignalTypes.YES_NO,
             title: 'Are you sure?',
-            message: 'You are about to kill the world, are you sure?',
+            message: 'You are about to do something, are you sure?',
             labels: {
-                yes: 'Yes, kill it!',
-                no: 'No, there is still hope'
+                yes: 'Yes!',
+                no: 'No',
             },
-            eventHandler: KillTheWorldEvent
+            eventHandler: ServerErrorEvent,
+            className: 'modal-danger',
         })
-    }
-
-    toggle() {
-        this.setState({
-            modal: !this.state.modal,
-        });
     }
 
     render() {
@@ -133,14 +123,14 @@ export class Enquiry extends React.PureComponent {
                         <Demo />
 
                         <Button
-                            primary
-                            onClick={this.onBtnKillClick}>
-                            Kill the world
+                            onClick={this.onBtnErrorClick}>
+                            show modal
                         </Button>
 
-                        <KillTheWorldEvent
+                        <ServerErrorEvent
                             onNo={onNo}
-                            onYes={onYes} />
+                            onYes={onYes}
+                        />
 
                         <Button color="primary" tag={Link} to="/login">login</Button>
 
@@ -160,26 +150,15 @@ export class Enquiry extends React.PureComponent {
 
                         <Button size="sm" color="primary" onClick={async () => {
 
-                            console.log(uuidv4());
+                            console.log(uuidv5('aaaaa', uuidv5.DNS));
 
                         }}>test uuid</Button>
 
                         <div className="p-3 mb-3 swatch-indigo">Indigo</div>
 
-                        <Button color="success" onClick={this.toggle}>mmmmmmm</Button>
                         <div className="col-2 text-truncate">
                             Praeterea iter est quasdam res quas ex communi.
                         </div>
-                        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                            <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
-                            <ModalBody>
-                                Lorem ud exercitation ullamco lab
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-                                <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-                            </ModalFooter>
-                        </Modal>
 
                         <p>Somewhere in here is a <a href="#" id="UncontrolledTooltipExample">tooltip</a>.</p>
                         <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">

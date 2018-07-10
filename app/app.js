@@ -62,11 +62,10 @@ const render = messages => {
             <LanguageProvider messages={messages}>
                 <ConnectedRouter history={history}>
                     <div>
-                        <SignalContainer store={store} />
+                        <SignalContainer />
                         {/*<SignalOverlay />*/}
                         <App/>
                     </div>
-
                 </ConnectedRouter>
             </LanguageProvider>
         </Provider>,

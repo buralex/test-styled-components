@@ -58,17 +58,3 @@ export function repoLoadingError(error) {
         error,
     };
 }
-
-/**
- * Dispatched when show modal
- *
- * @param  {object} error The error
- *
- * @return {object}       An action object with a type of OPEN_MODAL passing the obj
- */
-export function openModal(obj) {
-    return {
-        type: types.OPEN_MODAL,
-        obj,
-    }
-}
