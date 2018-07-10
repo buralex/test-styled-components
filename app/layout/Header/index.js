@@ -32,9 +32,9 @@ class Header extends React.Component {
                 {/* <Img src={Logo} alt="react-boilerplate - Logo"/> */}
                 {/* </A> */}
                 {/* <NavBar> */}
-                {/* <HeaderLink to="/"> */}
-                {/* <FormattedMessage {...messages.home} /> */}
-                {/* </HeaderLink> */}
+                 <HeaderLink to="/">
+                 <FormattedMessage {...messages.home} />
+                 </HeaderLink>
                 {/* <HeaderLink to="/features"> */}
                 {/* <FormattedMessage {...messages.features} /> */}
                 {/* </HeaderLink> */}

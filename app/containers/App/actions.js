@@ -16,6 +16,7 @@
  */
 
 import {LOAD_REPOS, LOAD_REPOS_SUCCESS, LOAD_REPOS_ERROR} from './constants';
+import * as types from './constants';
 
 /**
  * Load the repositories, this action starts the request saga
@@ -56,4 +57,18 @@ export function repoLoadingError(error) {
         type: LOAD_REPOS_ERROR,
         error,
     };
+}
+
+/**
+ * Dispatched when show modal
+ *
+ * @param  {object} error The error
+ *
+ * @return {object}       An action object with a type of OPEN_MODAL passing the obj
+ */
+export function openModal(obj) {
+    return {
+        type: types.OPEN_MODAL,
+        obj,
+    }
 }

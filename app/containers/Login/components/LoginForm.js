@@ -29,25 +29,12 @@ const validate = values => {
 
 
 
-const EnquiryForm = props => {
+const LoginForm = props => {
     const { handleSubmit, pristine, reset, submitting } = props;
     return (
         <form onSubmit={handleSubmit}>
-            <Field
-                name="enquiryText"
-                type="textarea"
-                component={InputText}
-                label="Description *"
-                maxlength={1000}
-            />
-            <Field
-                name="username"
-                type="text"
-                component={InputText}
-                label="Username *"
-            />
             <Field name="email" type="email" component={InputText} label="Email" />
-            <Field name="age" type="number" component={InputText} label="Age" />
+            <Field name="password" type="password" component={InputText} label="Password" />
             <div>
                 <button type="submit" disabled={submitting}>
                     Submit
@@ -61,6 +48,6 @@ const EnquiryForm = props => {
 }
 
 export default reduxForm({
-    form: 'EnquiryForm', // a unique identifier for this form
+    form: 'LoginForm', // a unique identifier for this form
     validate, // <--- validation function given to redux-form
-})(EnquiryForm)
+})(LoginForm)

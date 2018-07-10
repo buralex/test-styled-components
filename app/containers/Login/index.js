@@ -13,9 +13,8 @@ import {compose} from 'redux';
 import {createStructuredSelector} from 'reselect';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, UncontrolledTooltip} from 'reactstrap';
 import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/api';
-import {Link} from "react-router-dom";
-import uuidv4 from "uuid/v4";
-import Demo from "components/componentsSignal/Demo";
+import { push } from 'react-router-redux';
+import {Link} from 'react-router-dom';
 
 
 import injectReducer from 'utils/injectReducer';
@@ -39,13 +38,12 @@ import {makeSelectUsername} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-import EnquiryForm from "./components/EnquiryForm";
-
+import LoginForm from "./components/LoginForm";
 
 const login = (values) => alert(`It's a map thanks to immutables with redux-form: ${values}`);
 
 /* eslint-disable react/prefer-stateless-function */
-export class Enquiry extends React.PureComponent {
+export class Login extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -83,7 +81,7 @@ export class Enquiry extends React.PureComponent {
         return (
             <article>
                 <Helmet>
-                    <title>Enquiry Page</title>
+                    <title>Login Page</title>
                     <meta
                         name="description"
                         content="Denteez"
@@ -98,12 +96,6 @@ export class Enquiry extends React.PureComponent {
                             <FormattedMessage {...messages.startProjectMessage} />
                         </p>
 
-                        <Demo />
-
-                        <Button color="primary" tag={Link} to="/login">login</Button>
-
-                        <Link to={`/login`}>llllllll</Link>
-
                         <Button size="sm"
                             color="success" onClick={async () => {
                             // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);
@@ -116,15 +108,10 @@ export class Enquiry extends React.PureComponent {
 
                             }}>Add New Service</Button>
 
-                        <Button size="sm" color="primary" onClick={async () => {
-
-                            console.log(uuidv4());
-
-                        }}>test uuid</Button>
-
                         <div className="p-3 mb-3 swatch-indigo">Indigo</div>
 
                         <Button color="success" onClick={this.toggle}>mmmmmmm</Button>
+                        <Button color="primary" tag={Link} to="/enquiry">enquiry</Button>
                         <div className="col-2 text-truncate">
                             Praeterea iter est quasdam res quas ex communi.
                         </div>
@@ -167,17 +154,14 @@ export class Enquiry extends React.PureComponent {
                         <ReposList {...reposListProps} />
                     </Section>
 
-                    <EnquiryForm onSubmit={login} />
-                    {/*<ImmutableForm onSubmit={login} />*/}
-                    {/*<LoginForm onSubmit={login} />*/}
-                    {/*<SimpleForm onSubmit={showResults} />*/}
+                    <LoginForm onSubmit={login} />
                 </div>
             </article>
         );
     }
 }
 
-Enquiry.propTypes = {
+Login.propTypes = {
     loading: PropTypes.bool,
     error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
@@ -208,11 +192,11 @@ const withConnect = connect(
     mapDispatchToProps,
 );
 
-const withReducer = injectReducer({key: 'enquiry', reducer});
-const withSaga = injectSaga({key: 'enquiry', saga});
+const withReducer = injectReducer({key: 'login', reducer});
+const withSaga = injectSaga({key: 'login', saga});
 
 export default compose(
     withReducer,
     withSaga,
     withConnect,
-)(Enquiry);
+)(Login);
