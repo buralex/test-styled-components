@@ -7,7 +7,7 @@ import {
   createContainer,
   SignalEvents,
   SignalTypes
-} from 'redux-signal'
+} from '../reduxSignal'
 
 const SignalContainer = ({
   event,

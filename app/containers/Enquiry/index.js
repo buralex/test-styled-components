@@ -39,6 +39,24 @@ import {makeSelectUsername} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
+import {
+    withSignal,
+    withSignalPropTypes,
+    SignalTypes,
+    eventHandler
+} from 'reduxSignal'
+
+const KillTheWorldEvent = eventHandler()
+
+const onYes = () => {
+    console.log('You killed everyone, you must be proud.')
+}
+
+const onNo = () => {
+    console.log('That was close, we need more people like you.')
+}
+
+
 import EnquiryForm from "./components/EnquiryForm";
 
 
@@ -62,6 +80,20 @@ export class Enquiry extends React.PureComponent {
         if (this.props.username && this.props.username.trim().length > 0) {
             this.props.onSubmitForm();
         }
+    }
+
+    onBtnKillClick = () => {
+        console.log(this.props);
+        this.props.createSignal({
+            type: SignalTypes.YES_NO,
+            title: 'Are you sure?',
+            message: 'You are about to kill the world, are you sure?',
+            labels: {
+                yes: 'Yes, kill it!',
+                no: 'No, there is still hope'
+            },
+            eventHandler: KillTheWorldEvent
+        })
     }
 
     toggle() {
@@ -99,6 +131,16 @@ export class Enquiry extends React.PureComponent {
                         </p>
 
                         <Demo />
+
+                        <Button
+                            primary
+                            onClick={this.onBtnKillClick}>
+                            Kill the world
+                        </Button>
+
+                        <KillTheWorldEvent
+                            onNo={onNo}
+                            onYes={onYes} />
 
                         <Button color="primary" tag={Link} to="/login">login</Button>
 
@@ -215,4 +257,5 @@ export default compose(
     withReducer,
     withSaga,
     withConnect,
+    withSignal,
 )(Enquiry);

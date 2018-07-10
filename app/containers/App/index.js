@@ -49,7 +49,8 @@ const AppWrapper = styled.div`
 
 const App = (props) => {
     const {isLoggedIn} = props;
-    console.log('RENDER APP', props);
+    console.log('---------------- RENDER APP -------------------', props);
+
     return (
         <AppWrapper>
             <Helmet
@@ -106,13 +107,6 @@ const selectSignal = state => state.get('signal');
 const makeSelectSignal = () =>
     createSelector(selectSignal, signalState => signalState.get('signal'));
 
-// var getSignal = Object(reselect__WEBPACK_IMPORTED_MODULE_0__["createSelector"])(function (state) {
-//     return state.signal.get('signal');
-// }, function (signal) {
-//     return signal.get('order').map(function (id) {
-//         return signal.getIn(['data', id]);
-//     });
-// });
 
 const mapStateToProps = createStructuredSelector({
     repos: makeSelectRepos(),
@@ -120,8 +114,8 @@ const mapStateToProps = createStructuredSelector({
     loading: makeSelectLoading(),
     error: makeSelectError(),
     isLoggedIn: makeSelectIsLoggedIn(),
-    state: makeSelectState(),
-    signal: makeSelectSignal(),
+    //state: makeSelectState(),
+    //signal: makeSelectSignal(),
 });
 
 const withConnect = connect(
