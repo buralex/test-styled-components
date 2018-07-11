@@ -15,7 +15,6 @@ import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, Uncontrolle
 import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/api';
 import {Link} from "react-router-dom";
 import uuidv5 from "uuid/v5";
-import Demo from "components/componentsSignal/Demo";
 
 
 import injectReducer from 'utils/injectReducer';
@@ -119,8 +118,6 @@ export class Enquiry extends React.PureComponent {
                         <p>
                             <FormattedMessage {...messages.startProjectMessage} />
                         </p>
-
-                        <Demo />
 
                         <Button
                             onClick={this.onBtnErrorClick}>
