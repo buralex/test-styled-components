@@ -25,7 +25,10 @@ import {
     makeSelectError,
 } from 'containers/App/selectors';
 
-import {loadRepos, login} from 'containers/App/actions';
+import {
+    loadRepos,
+    //login,
+} from 'containers/App/actions';
 
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
@@ -43,7 +46,7 @@ import saga from './saga';
 
 import LoginForm from "./components/LoginForm";
 
-//const login = (values) => alert(`It's a map thanks to immutables with redux-form: ${values}`);
+const login = (values) => console.log(`It's a map thanks to immutables with redux-form: ${values}`);
 
 /* eslint-disable react/prefer-stateless-function */
 export class Login extends React.PureComponent {
@@ -139,25 +142,26 @@ export class Login extends React.PureComponent {
                         <H2>
                             <FormattedMessage {...messages.trymeHeader} />
                         </H2>
-                        {/*<Form onSubmit={this.props.onSubmitForm}>*/}
-                            {/*<label htmlFor="username">*/}
-                                {/*<FormattedMessage {...messages.trymeMessage} />*/}
-                                {/*<AtPrefix>*/}
-                                    {/*<FormattedMessage {...messages.trymeAtPrefix} />*/}
-                                {/*</AtPrefix>*/}
-                                {/*<Input*/}
-                                    {/*id="username"*/}
-                                    {/*type="text"*/}
-                                    {/*placeholder="mxstbr"*/}
-                                    {/*value={this.props.username}*/}
-                                    {/*onChange={this.props.onChangeUsername}*/}
-                                {/*/>*/}
-                            {/*</label>*/}
-                        {/*</Form>*/}
+                        <Form onSubmit={this.props.onSubmitForm}>
+                            <label htmlFor="username">
+                                <FormattedMessage {...messages.trymeMessage} />
+                                <AtPrefix>
+                                    <FormattedMessage {...messages.trymeAtPrefix} />
+                                </AtPrefix>
+                                <Input
+                                    id="username"
+                                    type="text"
+                                    placeholder="mxstbr"
+                                    value={this.props.username}
+                                    onChange={this.props.onChangeUsername}
+                                />
+                            </label>
+                        </Form>
                         <ReposList {...reposListProps} />
                     </Section>
 
-                    <LoginForm onSubmit={this.props.onSubmitForm} />
+                    {/*<LoginForm onSubmit={this.props.onSubmitForm} />*/}
+                    <LoginForm onSubmit={login} />
                 </div>
             </article>
         );
@@ -188,6 +192,7 @@ export function mapDispatchToProps(dispatch) {
     };
 }
 
+
 const mapStateToProps = createStructuredSelector({
     // repos: makeSelectRepos(),
     // username: makeSelectUsername(),
@@ -200,11 +205,12 @@ const withConnect = connect(
     mapDispatchToProps,
 );
 
-const withReducer = injectReducer({key: 'login', reducer});
+
+//const withReducer = injectReducer({key: 'login', reducer});
 //const withSaga = injectSaga({key: 'login', saga});
 
 export default compose(
-    withReducer,
+    //withReducer,
     //withSaga,
-    withConnect,
+    //withConnect,
 )(Login);

@@ -24,7 +24,6 @@ import 'styles/index.scss';
 import App from 'containers/App';
 
 import SignalContainer from 'containers/SignalContainer'
-import SignalOverlay from 'containers/SignalOverlayContainer'
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
@@ -63,7 +62,6 @@ const render = messages => {
                 <ConnectedRouter history={history}>
                     <div>
                         <SignalContainer />
-                        {/*<SignalOverlay />*/}
                         <App/>
                     </div>
                 </ConnectedRouter>

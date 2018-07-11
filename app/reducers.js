@@ -6,7 +6,7 @@ import {fromJS} from 'immutable';
 import {combineReducers} from 'redux-immutable';
 import {LOCATION_CHANGE} from 'react-router-redux';
 import { reducer as reduxFormReducer } from 'redux-form/immutable';
-import { reducer as signalReducer } from 'redux-signal';
+import { reducer as signalReducer } from 'reduxSignal';
 
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
