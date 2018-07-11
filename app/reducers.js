@@ -3,9 +3,11 @@
  */
 
 import {fromJS} from 'immutable';
-import {combineReducers} from 'redux-immutable';
+//import {combineReducers} from 'redux-immutable';
+import {combineReducers} from 'redux';
 import {LOCATION_CHANGE} from 'react-router-redux';
-import { reducer as reduxFormReducer } from 'redux-form/immutable';
+//import { reducer as reduxFormReducer } from 'redux-form/immutable';
+import { reducer as reduxFormReducer } from 'redux-form';
 import { reducer as signalReducer } from 'redux-signal';
 
 import globalReducer from 'containers/App/reducer';
@@ -19,10 +21,15 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
  *
  */
 
+// // Initial routing state
+// const routeInitialState = fromJS({
+//     location: null,
+// });
 // Initial routing state
-const routeInitialState = fromJS({
+const routeInitialState = {
     location: null,
-});
+};
+
 
 /**
  * Merge route into the global application state
@@ -30,10 +37,15 @@ const routeInitialState = fromJS({
 export function routeReducer(state = routeInitialState, action) {
     switch (action.type) {
         /* istanbul ignore next */
+        // case LOCATION_CHANGE:
+        //     return state.merge({
+        //         location: action.payload,
+        //     });
         case LOCATION_CHANGE:
-            return state.merge({
+            return {
+                ...state,
                 location: action.payload,
-            });
+            };
         default:
             return state;
     }

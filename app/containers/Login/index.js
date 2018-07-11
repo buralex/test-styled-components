@@ -92,12 +92,6 @@ export class Login extends React.PureComponent {
                 </Helmet>
                 <div>
                     <CenteredSection>
-                        <H2>
-                            <FormattedMessage {...messages.startProjectHeader} />
-                        </H2>
-                        <p>
-                            <FormattedMessage {...messages.startProjectMessage} />
-                        </p>
 
                         <Button size="sm"
                             color="success" onClick={async () => {
@@ -137,7 +131,7 @@ export class Login extends React.PureComponent {
                     </CenteredSection>
                     <Section>
                         <H2>
-                            <FormattedMessage {...messages.trymeHeader} />
+
                         </H2>
                         {/*<Form onSubmit={this.props.onSubmitForm}>*/}
                             {/*<label htmlFor="username">*/}

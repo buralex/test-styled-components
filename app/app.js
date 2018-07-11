@@ -59,15 +59,15 @@ const MOUNT_NODE = document.getElementById('app');
 const render = messages => {
     ReactDOM.render(
         <Provider store={store}>
-            <LanguageProvider messages={messages}>
+            {/*<LanguageProvider messages={messages}>*/}
                 <ConnectedRouter history={history}>
                     <div>
-                        <SignalContainer />
+                        {/*<SignalContainer />*/}
                         {/*<SignalOverlay />*/}
                         <App/>
                     </div>
                 </ConnectedRouter>
-            </LanguageProvider>
+            {/*</LanguageProvider>*/}
         </Provider>,
         MOUNT_NODE,
     );

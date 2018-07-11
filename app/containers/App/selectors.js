@@ -4,21 +4,21 @@
 
 import {createSelector} from 'reselect';
 
-const selectGlobal = state => state.get('global');
+const selectGlobal = state => state.global;
 
-const selectRoute = state => state.get('route');
+const selectRoute = state => state.route;
 
 const makeSelectCurrentUser = () =>
-    createSelector(selectGlobal, globalState => globalState.get('currentUser'));
+    createSelector(selectGlobal, globalState => globalState.currentUser);
 
 const makeSelectLoading = () =>
-    createSelector(selectGlobal, globalState => globalState.get('loading'));
+    createSelector(selectGlobal, globalState => globalState.loading);
 
 const makeSelectError = () =>
-    createSelector(selectGlobal, globalState => globalState.get('error'));
+    createSelector(selectGlobal, globalState => globalState.error);
 
 const makeSelectIsLoggedIn = () =>
-    createSelector(selectGlobal, globalState => globalState.get('isLoggedIn'));
+    createSelector(selectGlobal, globalState => globalState.isLoggedIn);
 
 
 const makeSelectRepos = () =>

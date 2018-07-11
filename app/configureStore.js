@@ -26,9 +26,10 @@ export default function configureStore(initialState = {}, history) {
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     /* eslint-enable */
 
+    // fromJS(initialState),
     const store = createStore(
         createReducer(),
-        fromJS(initialState),
+        initialState,
         composeEnhancers(...enhancers),
     );
 

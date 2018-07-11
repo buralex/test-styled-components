@@ -50,5 +50,5 @@ const LoginForm = props => {
 
 export default reduxForm({
     form: 'LoginForm', // a unique identifier for this form
-    validate, // <--- validation function given to redux-form
+    //validate, // <--- validation function given to redux-form
 })(LoginForm)
