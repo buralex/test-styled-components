@@ -51,7 +51,8 @@ Promise.all([proximaReg.load(), proximaLight.load()]).then(() => {
 
 // Create redux store with history
 const initialState = {};
-const history = createHistory();
+export const history = createHistory();
+
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 

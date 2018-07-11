@@ -27,7 +27,7 @@ import {
 
 import {
     loadRepos,
-    //login,
+    login,
 } from 'containers/App/actions';
 
 import H2 from 'components/H2';
@@ -46,7 +46,7 @@ import saga from './saga';
 
 import LoginForm from "./components/LoginForm";
 
-const login = (values) => console.log(`It's a map thanks to immutables with redux-form: ${values}`);
+//const login = (values) => console.log(`It's a map thanks to immutables with redux-form: ${values}`);
 
 /* eslint-disable react/prefer-stateless-function */
 export class Login extends React.PureComponent {
@@ -95,13 +95,6 @@ export class Login extends React.PureComponent {
                 </Helmet>
                 <div>
                     <CenteredSection>
-                        <H2>
-                            <FormattedMessage {...messages.startProjectHeader} />
-                        </H2>
-                        <p>
-                            <FormattedMessage {...messages.startProjectMessage} />
-                        </p>
-
                         <Button size="sm"
                             color="success" onClick={async () => {
                             // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);
@@ -121,16 +114,6 @@ export class Login extends React.PureComponent {
                         <div className="col-2 text-truncate">
                             Praeterea iter est quasdam res quas ex communi.
                         </div>
-                        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                            <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
-                            <ModalBody>
-                                Lorem ud exercitation ullamco lab
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-                                <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-                            </ModalFooter>
-                        </Modal>
 
                         <p>Somewhere in here is a <a href="#" id="UncontrolledTooltipExample">tooltip</a>.</p>
                         <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
@@ -138,30 +121,9 @@ export class Login extends React.PureComponent {
                         </UncontrolledTooltip>
 
                     </CenteredSection>
-                    <Section>
-                        <H2>
-                            <FormattedMessage {...messages.trymeHeader} />
-                        </H2>
-                        <Form onSubmit={this.props.onSubmitForm}>
-                            <label htmlFor="username">
-                                <FormattedMessage {...messages.trymeMessage} />
-                                <AtPrefix>
-                                    <FormattedMessage {...messages.trymeAtPrefix} />
-                                </AtPrefix>
-                                <Input
-                                    id="username"
-                                    type="text"
-                                    placeholder="mxstbr"
-                                    value={this.props.username}
-                                    onChange={this.props.onChangeUsername}
-                                />
-                            </label>
-                        </Form>
-                        <ReposList {...reposListProps} />
-                    </Section>
 
-                    {/*<LoginForm onSubmit={this.props.onSubmitForm} />*/}
-                    <LoginForm onSubmit={login} />
+                    <LoginForm onSubmit={this.props.onSubmitForm} />
+
                 </div>
             </article>
         );
@@ -179,14 +141,9 @@ Login.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
     return {
-        onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
-        // onSubmitForm: evt => {
-        //     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-        //     dispatch(loadRepos());
-        // },
         onSubmitForm: evt => {
             if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-            console.log('onsubmitform');
+            console.log('onsubmitform prop');
             dispatch(login());
         },
     };
@@ -206,11 +163,11 @@ const withConnect = connect(
 );
 
 
-//const withReducer = injectReducer({key: 'login', reducer});
-//const withSaga = injectSaga({key: 'login', saga});
+const withReducer = injectReducer({key: 'login', reducer});
+// const withSaga = injectSaga({key: 'login', saga});
 
 export default compose(
-    //withReducer,
-    //withSaga,
-    //withConnect,
+    withReducer,
+    // withSaga,
+    withConnect,
 )(Login);

@@ -23,6 +23,7 @@ const initialState = fromJS({
     currentUser: false,
     userData: {
         repositories: false,
+        authKey: '',
     },
 });
 
@@ -45,7 +46,9 @@ function appReducer(state = initialState, action) {
                 .setIn(['userData', 'repositories'], false);
 
         case types.LOGIN_SUCCESS:
-            return state.set('isLoggedIn', true);
+            return state
+                .setIn(['userData', 'authKey'], action.data.data.token)
+                .set('isLoggedIn', true);
 
 
 

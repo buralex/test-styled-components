@@ -45,5 +45,8 @@ export default function configureStore(initialState = {}, history) {
         });
     }
 
+    // eslint-disable-next-line
+    window.__appStore__ = store;
+
     return store;
 }
