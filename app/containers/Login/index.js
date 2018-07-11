@@ -24,6 +24,9 @@ import {
     makeSelectLoading,
     makeSelectError,
 } from 'containers/App/selectors';
+
+import {loadRepos, login} from 'containers/App/actions';
+
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
 import AtPrefix from './AtPrefix';
@@ -32,7 +35,7 @@ import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
-import {loadRepos} from '../App/actions';
+
 import {changeUsername} from './actions';
 import {makeSelectUsername} from './selectors';
 import reducer from './reducer';
@@ -40,7 +43,7 @@ import saga from './saga';
 
 import LoginForm from "./components/LoginForm";
 
-const login = (values) => alert(`It's a map thanks to immutables with redux-form: ${values}`);
+//const login = (values) => alert(`It's a map thanks to immutables with redux-form: ${values}`);
 
 /* eslint-disable react/prefer-stateless-function */
 export class Login extends React.PureComponent {
@@ -58,7 +61,7 @@ export class Login extends React.PureComponent {
      */
     componentDidMount() {
         if (this.props.username && this.props.username.trim().length > 0) {
-            this.props.onSubmitForm();
+            //this.props.onSubmitForm();
         }
     }
 
@@ -76,7 +79,7 @@ export class Login extends React.PureComponent {
             repos,
         };
 
-        console.log(this.props);
+        console.log('RENDER LOGIN PAGE',this.props);
 
         return (
             <article>
@@ -136,25 +139,25 @@ export class Login extends React.PureComponent {
                         <H2>
                             <FormattedMessage {...messages.trymeHeader} />
                         </H2>
-                        <Form onSubmit={this.props.onSubmitForm}>
-                            <label htmlFor="username">
-                                <FormattedMessage {...messages.trymeMessage} />
-                                <AtPrefix>
-                                    <FormattedMessage {...messages.trymeAtPrefix} />
-                                </AtPrefix>
-                                <Input
-                                    id="username"
-                                    type="text"
-                                    placeholder="mxstbr"
-                                    value={this.props.username}
-                                    onChange={this.props.onChangeUsername}
-                                />
-                            </label>
-                        </Form>
+                        {/*<Form onSubmit={this.props.onSubmitForm}>*/}
+                            {/*<label htmlFor="username">*/}
+                                {/*<FormattedMessage {...messages.trymeMessage} />*/}
+                                {/*<AtPrefix>*/}
+                                    {/*<FormattedMessage {...messages.trymeAtPrefix} />*/}
+                                {/*</AtPrefix>*/}
+                                {/*<Input*/}
+                                    {/*id="username"*/}
+                                    {/*type="text"*/}
+                                    {/*placeholder="mxstbr"*/}
+                                    {/*value={this.props.username}*/}
+                                    {/*onChange={this.props.onChangeUsername}*/}
+                                {/*/>*/}
+                            {/*</label>*/}
+                        {/*</Form>*/}
                         <ReposList {...reposListProps} />
                     </Section>
 
-                    <LoginForm onSubmit={login} />
+                    <LoginForm onSubmit={this.props.onSubmitForm} />
                 </div>
             </article>
         );
@@ -173,18 +176,23 @@ Login.propTypes = {
 export function mapDispatchToProps(dispatch) {
     return {
         onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
+        // onSubmitForm: evt => {
+        //     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+        //     dispatch(loadRepos());
+        // },
         onSubmitForm: evt => {
             if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-            dispatch(loadRepos());
+            console.log('onsubmitform');
+            dispatch(login());
         },
     };
 }
 
 const mapStateToProps = createStructuredSelector({
-    repos: makeSelectRepos(),
-    username: makeSelectUsername(),
-    loading: makeSelectLoading(),
-    error: makeSelectError(),
+    // repos: makeSelectRepos(),
+    // username: makeSelectUsername(),
+    // loading: makeSelectLoading(),
+    // error: makeSelectError(),
 });
 
 const withConnect = connect(
@@ -193,10 +201,10 @@ const withConnect = connect(
 );
 
 const withReducer = injectReducer({key: 'login', reducer});
-const withSaga = injectSaga({key: 'login', saga});
+//const withSaga = injectSaga({key: 'login', saga});
 
 export default compose(
     withReducer,
-    withSaga,
+    //withSaga,
     withConnect,
 )(Login);

@@ -13,6 +13,7 @@
 import {fromJS} from 'immutable';
 
 import {LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR} from './constants';
+import * as types from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -27,6 +28,27 @@ const initialState = fromJS({
 
 function appReducer(state = initialState, action) {
     switch (action.type) {
+        case types.SHOW_LOADER:
+            return state.set('loading', true);
+
+        case types.HIDE_LOADER:
+            return state.set('loading', false);
+
+        case types.SERVER_ERROR:
+            return state.set('error', action.error).set('loading', false);
+
+        case types.LOGIN:
+            console.log('reducer LOGIN');
+            return state
+                .set('loading', true)
+                .set('error', false)
+                .setIn(['userData', 'repositories'], false);
+
+        case types.LOGIN_SUCCESS:
+            return state.set('isLoggedIn', true);
+
+
+
         case LOAD_REPOS:
             return state
                 .set('loading', true)

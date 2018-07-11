@@ -31,6 +31,7 @@ const validate = values => {
 
 const LoginForm = props => {
     const { handleSubmit, pristine, reset, submitting } = props;
+    console.log('render login form!!!!!!!!!!1');
     return (
         <form onSubmit={handleSubmit}>
             <Field name="email" type="email" component={InputText} label="Email" />

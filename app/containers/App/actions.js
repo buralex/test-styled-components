@@ -58,3 +58,51 @@ export function repoLoadingError(error) {
         error,
     };
 }
+
+/**
+ * Loader show
+ */
+export function showLoader() {
+    return {
+        type: types.SHOW_LOADER,
+    };
+}
+
+/**
+ * Loader hide
+ */
+export function hideLoader() {
+    return {
+        type: types.HIDE_LOADER,
+    };
+}
+
+/**
+ * Login request
+ */
+export function login() {
+    console.log('log actions');
+    return {
+        type: types.LOGIN,
+    };
+}
+
+/**
+ * Login success
+ */
+export function loginSuccess(data) {
+    return {
+        type: types.LOGIN_SUCCESS,
+        data,
+    };
+}
+
+/**
+ * Server error
+ */
+export function serverError(error) {
+    return {
+        type: types.SERVER_ERROR,
+        error,
+    };
+}
