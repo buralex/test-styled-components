@@ -91,7 +91,6 @@ export function login() {
  * Login success
  */
 export function loginSuccess(data) {
-    console.log('0000000000000000000000000000000000000-------------------------------');
     return {
         type: types.LOGIN_SUCCESS,
         data,
@@ -107,3 +106,13 @@ export function serverError(error) {
         error,
     };
 }
+
+/**
+ * Clear server error
+ */
+export function clearServerError() {
+    return {
+        type: types.CLEAR_SERVER_ERROR,
+    };
+}
+/*-----------------------------------------*/

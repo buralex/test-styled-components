@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form/immutable'
-import InputText from 'components/Form/InputText';
+import TextInput from 'components/Form/TextInput';
 
 const validate = values => {
     const errors = {}
@@ -38,8 +38,8 @@ class LoginFormClass extends React.PureComponent {
         const { handleSubmit, pristine, reset, submitting } = this.props;
         return (
             <form onSubmit={handleSubmit}>
-                <Field name="email" type="email" component={InputText} label="Email" />
-                <Field name="password" type="password" component={InputText} label="Password" />
+                <Field name="email" type="email" component={TextInput} label="Email" />
+                <Field name="password" type="password" component={TextInput} label="Password" />
                 <div>
                     <button type="submit" disabled={submitting}>
                         Submit

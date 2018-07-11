@@ -82,7 +82,7 @@ function getFooter(modal, onModalEvent) {
                     reject
                     onClick={() => onModalEvent(SignalEvents.BTN_YES)}>
                     {getModalLabel(modal, 'yes', 'Yep')}
-                </Button>
+                </Button>,
             ]
 
         case SignalTypes.OK_CANCEL:
@@ -97,13 +97,14 @@ function getFooter(modal, onModalEvent) {
                     primary
                     onClick={() => onModalEvent(SignalEvents.BTN_OK)}>
                     {getModalLabel(modal, 'ok', 'Ok')}
-                </Button>
+                </Button>,
             ]
         case SignalTypes.OK:
             return (
                 <Button
-                    primary
-                    onClick={() => onModalEvent(SignalEvents.BTN_OK)}>
+                    color="primary"
+                    onClick={() => onModalEvent(SignalEvents.BTN_OK)}
+                >
                     {getModalLabel(modal, 'ok', 'Ok')}
                 </Button>
             )

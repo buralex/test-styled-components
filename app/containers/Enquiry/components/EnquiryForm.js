@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form/immutable'
-import InputText from 'components/Form/InputText';
+import TextInput from 'components/Form/TextInput';
+import TextArea from 'components/Form/TextArea';
 
 const validate = values => {
     const errors = {}
@@ -35,19 +36,17 @@ const EnquiryForm = props => {
         <form onSubmit={handleSubmit}>
             <Field
                 name="enquiryText"
-                type="textarea"
-                component={InputText}
+                component={TextArea}
                 label="Description *"
                 maxlength={1000}
             />
             <Field
                 name="username"
-                type="text"
-                component={InputText}
+                component={TextInput}
                 label="Username *"
             />
-            <Field name="email" type="email" component={InputText} label="Email" />
-            <Field name="age" type="number" component={InputText} label="Age" />
+            <Field name="email" type="email" component={TextInput} label="Email" />
+            <Field name="age" type="number" component={TextInput}  label="Age" />
             <div>
                 <button type="submit" disabled={submitting}>
                     Submit

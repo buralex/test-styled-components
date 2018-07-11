@@ -15,6 +15,7 @@ import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, Uncontrolle
 import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/api';
 import {Link} from "react-router-dom";
 import uuidv5 from "uuid/v5";
+import withData from "hocs/withData";
 
 
 import injectReducer from 'utils/injectReducer';
@@ -33,7 +34,7 @@ import {
 } from 'reduxSignal'
 
 import H2 from 'components/H2';
-import ReposList from 'components/ReposList';
+
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
@@ -182,7 +183,7 @@ export class Enquiry extends React.PureComponent {
                                 />
                             </label>
                         </Form>
-                        <ReposList {...reposListProps} />
+
                     </Section>
 
                     <EnquiryForm onSubmit={login} />
@@ -211,6 +212,13 @@ export function mapDispatchToProps(dispatch) {
             if (evt !== undefined && evt.preventDefault) evt.preventDefault();
             dispatch(loadRepos());
         },
+        /* -------------------- withData hoc ---------------------------------- */
+        getData: () => {
+            //dispatch(actions.fetchClient(clientID));
+            //dispatch(appActions.fetchAllUsers());
+        },
+        //clearState: () => dispatch(actions.clearClientState()),
+        /* -------------------- withData hoc ---------------------------------- */
     };
 }
 
@@ -234,4 +242,5 @@ export default compose(
     withSaga,
     withConnect,
     withSignal,
+    withData,
 )(Enquiry);

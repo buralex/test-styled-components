@@ -21,10 +21,8 @@ const initialState = fromJS({
     loading: false,
     error: false,
     currentUser: false,
-    userData: {
-        repositories: false,
-        authKey: '',
-    },
+    authKey: '',
+    userData: {},
 });
 
 function appReducer(state = initialState, action) {
@@ -38,19 +36,21 @@ function appReducer(state = initialState, action) {
         case types.SERVER_ERROR:
             return state.set('error', action.error).set('loading', false);
 
+        case types.CLEAR_SERVER_ERROR:
+            return state.set('error', false);
+
         case types.LOGIN:
-            console.log('reducer LOGIN');
+            return state.set('loading', true);
+
+        case types.LOGIN_SUCCESS: {
+            const {token, user} = action.data.data || {};
+
             return state
-                .set('loading', true)
-                .set('error', false)
-                .setIn(['userData', 'repositories'], false);
-
-        case types.LOGIN_SUCCESS:
-            return state
-                .setIn(['userData', 'authKey'], action.data.data.token)
-                .set('isLoggedIn', true);
-
-
+                .set('userData', user)
+                .set('authKey', token)
+                .set('isLoggedIn', true)
+                .set('loading', false);
+        }
 
         case LOAD_REPOS:
             return state

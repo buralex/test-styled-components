@@ -25,14 +25,8 @@ import {
     makeSelectError,
 } from 'containers/App/selectors';
 
-import {
-    loadRepos,
-    login,
-} from 'containers/App/actions';
+import * as appActions from 'containers/App/actions';
 
-import H2 from 'components/H2';
-import ReposList from 'components/ReposList';
-import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
 import Input from './Input';
@@ -136,15 +130,13 @@ Login.propTypes = {
     repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
     onSubmitForm: PropTypes.func,
     username: PropTypes.string,
-    onChangeUsername: PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
     return {
-        onSubmitForm: evt => {
-            if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-            console.log('onsubmitform prop');
-            dispatch(login());
+        onSubmitForm: values => {
+            console.log(values.toJS());
+            dispatch(appActions.login(values));
         },
     };
 }

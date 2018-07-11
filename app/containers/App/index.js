@@ -27,13 +27,19 @@ import {
     makeSelectIsLoggedIn,
     selectGlobal
 } from "containers/App/selectors";
-import {changeUsername} from "containers/Enquiry/actions";
+import * as actions from "./actions";
 import injectSaga from "utils/injectSaga";
 import {createSelector, createStructuredSelector} from "reselect";
 
 import {makeSelectUsername} from "containers/Enquiry/selectors";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {
+    withSignal,
+    // withSignalPropTypes,
+    SignalTypes,
+    eventHandler,
+} from 'reduxSignal'
 
 import saga from './saga';
 
@@ -47,55 +53,74 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-const App = (props) => {
-    const {isLoggedIn} = props;
-    console.log('---------------- RENDER APP -------------------', props);
+class App extends React.PureComponent {
 
-    return (
-        <AppWrapper>
-            <Helmet
-                titleTemplate="Denteez"
-                defaultTitle="Denteez"
-            >
-                <meta name="description" content="Denteez"/>
-            </Helmet>
 
-            {isLoggedIn && <Header/>}
+    componentDidUpdate() {
+        const {error} = this.props;
 
-            <Switch>
-                <Route exact path="/" component={Enquiry}/>
-                <Route exact path="/enquiry" component={Enquiry}/>
-                {/*<Route exact path="/service-categories" component={ServiceCategories}/>*/}
-                <Route exact path="/login" component={Login}/>
-                <Route exact path="/home" component={HomePage}/>
-                <Route path="/features" component={FeaturePage}/>
-                <Route path="" component={NotFoundPage}/>
-            </Switch>
+        if (error) {
+            this.showErrorModal(error);
+            this.props.clearServerError();
+        }
+    }
 
-            {isLoggedIn && <Footer/>}
+    showErrorModal = (error) => {
+        console.error('EEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRRRRROOOOOOOOOOOOOOOOORRRRRRRRRRR');
+        console.error(error.message);
 
-        </AppWrapper>
-    );
+        this.props.createSignal({
+            type: SignalTypes.OK,
+            title: `Error`,
+            message: error.description || 'Sorry, try later.',
+            className: 'modal-danger',
+        })
+    };
+
+    render() {
+        const {isLoggedIn} = this.props;
+        console.log('---------------- RENDER APP -------------------', this.props);
+        return (
+            <AppWrapper>
+                <Helmet
+                    titleTemplate="Denteez"
+                    defaultTitle="Denteez"
+                >
+                    <meta name="description" content="Denteez"/>
+                </Helmet>
+
+                {isLoggedIn && <Header/>}
+
+                <Switch>
+                    <Route exact path="/" component={Enquiry}/>
+                    <Route exact path="/enquiry" component={Enquiry}/>
+                    {/*<Route exact path="/service-categories" component={ServiceCategories}/>*/}
+                    <Route exact path="/login" component={Login}/>
+                    <Route exact path="/home" component={HomePage}/>
+                    <Route path="/features" component={FeaturePage}/>
+                    <Route path="" component={NotFoundPage}/>
+                </Switch>
+
+                {isLoggedIn && <Footer/>}
+
+            </AppWrapper>
+        );
+    }
 }
 
 App.propTypes = {
-    // loading: PropTypes.bool,
-    // error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+    loading: PropTypes.bool,
+    error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     // repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
     // onSubmitForm: PropTypes.func,
     // username: PropTypes.string,
     // onChangeUsername: PropTypes.func,
     isLoggedIn: PropTypes.bool,
 };
-//export default App;
 
 export function mapDispatchToProps(dispatch) {
     return {
-        onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
-        onSubmitForm: evt => {
-            if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-            dispatch(loadRepos());
-        },
+        clearServerError: () => dispatch(actions.clearServerError()),
     };
 }
 
@@ -129,4 +154,5 @@ export default compose(
     withSaga,
     withRouter,
     withConnect,
+    withSignal,
 )(App);

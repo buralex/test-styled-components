@@ -7,7 +7,7 @@ const restApi = axios.create({
 
 restApi.interceptors.request.use((config) => {
     // eslint-disable-next-line
-    const authKey = window.__appStore__.getState().getIn(['global', 'userData']).get('authKey');
+    const authKey = window.__appStore__.getState().getIn(['global', 'authKey']);
     // eslint-disable-next-line
     config.headers.Authorization = `${authKey}` || `963be28b713448ddd1660b5f8eed91b45ffcfe48`;
     return config;
