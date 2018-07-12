@@ -1,4 +1,3 @@
-
 export const LOAD_ENQUIRY_TYPES = 'test/Enquiry/LOAD_ENQUIRY_TYPES';
 export const LOAD_ENQUIRY_TYPES_SUCCESS = 'test/Enquiry/LOAD_ENQUIRY_TYPES_SUCCESS';
 

@@ -57,12 +57,6 @@ const onNo = () => {
 }
 
 
-
-
-
-const login = (values) => alert(`It's a map thanks to immutables with redux-form: ${values}`);
-
-
 export class Enquiry extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -92,12 +86,29 @@ export class Enquiry extends React.PureComponent {
         })
     }
 
+    onSubmit(data) {
+        var body = new FormData();
+        Object.keys(data).forEach(( key ) => {
+            body.append(key, data[ key ]);
+        });
+
+        console.info('POST', body, data);
+        console.info('This is expected to fail:');
+        fetch(`http://example.com/send/`, {
+            method: 'POST',
+            body: body,
+        })
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(err => console.error(err));
+    }
+
     render() {
         const {enquiryTypes, isEnqTypeOther} = this.props;
 
 
         console.log(enquiryTypes);
-        //console.log(currentEnqType.toJS());
+
         console.log(this.props);
 
         return (
@@ -109,7 +120,8 @@ export class Enquiry extends React.PureComponent {
                 <div>
                     <EnquiryForm
                         initialValues={this.initValues}
-                        onSubmit={this.props.onSubmitForm}
+                        //onSubmit={this.props.onSubmitForm}
+                        onSubmit={this.onSubmit}
                         enquiryTypes={enquiryTypes}
                         isEnqTypeOther={isEnqTypeOther}
                     />
@@ -129,7 +141,9 @@ Enquiry.propTypes = {
 
 
 export const mapDispatchToProps = (dispatch) => ({
-    onSubmitForm: (values) => dispatch(actions.postEnquiry(values)),
+    onSubmitForm: (values) => {
+        //dispatch(actions.postEnquiry(values));
+    },
 
     /* -------------------- withData hoc ---------------------------------- */
     getData: () => {

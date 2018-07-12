@@ -84,6 +84,11 @@ class App extends React.PureComponent {
     render() {
         const {isLoggedIn, loading} = this.props;
         console.log('---------------- RENDER APP -------------------', this.props);
+
+
+        if (window.__appStore__) {
+            console.log(window.__appStore__.getState().get('global').get('userData'));
+        }
         return (
             <AppWrapper>
                 <Helmet

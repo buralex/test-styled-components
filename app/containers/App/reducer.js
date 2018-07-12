@@ -1,7 +1,7 @@
 
 import {fromJS} from 'immutable';
 
-import * as types from './constants';
+import * as types from './constants/types';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -34,7 +34,7 @@ function appReducer(state = initialState, action) {
             const {token, user} = action.payload.data || {};
 
             return state
-                .set('userData', user)
+                .set('userData', fromJS(user))
                 .set('authKey', token)
                 .set('isLoggedIn', true)
                 .set('loading', false);

@@ -15,7 +15,7 @@ const TextArea = ({
         <FormGroup>
             <Label for={idStr}> {label} </Label>
             {maxlength &&
-                <span className="textarea-max-length float-right">{`(0/${maxlength - input.value.length})`}</span>
+                <span className="textarea-max-length float-right">{`(${input.value.length}/${maxlength})`}</span>
             }
             <Input
                 id={idStr}

@@ -4,14 +4,15 @@ import {loginRequest} from "services/api";
 import { history } from 'app';
 
 
-import * as types from './constants';
+import * as types from './constants/types';
 
 import * as actions from './actions';
 
 
 export function* login() {
     yield takeLatest(types.LOGIN, function* (action) {
-        const {email, password} = action.payload.toJS();
+        const email = action.payload.get('email');
+        const password = action.payload.get('password');
 
         try {
             const data = yield loginRequest({ email, password }).then(res => res.data);

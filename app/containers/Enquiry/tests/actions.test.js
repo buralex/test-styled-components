@@ -1,4 +1,4 @@
-import {CHANGE_USERNAME} from '../constants';
+import {CHANGE_USERNAME} from '../constants/constants';
 
 import {changeUsername} from '../actions';
 

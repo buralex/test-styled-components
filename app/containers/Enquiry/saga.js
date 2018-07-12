@@ -8,7 +8,8 @@ import { history } from 'app';
 import {createSelector} from "reselect";
 import * as appActions from 'containers/App/actions';
 
-import * as types from './constants';
+import * as types from './constants/types';
+import {FIELDS as db} from './constants/fields';
 
 
 export function* loadEnquiryTypes() {
@@ -34,21 +35,23 @@ export function* loadEnquiryTypes() {
 
 export function* postEnquiry() {
     yield takeLatest(types.POST_ENQUIRY, function* (action) {
-        const values = action.payload;
-        if (values.get('enquiry_type') === 'Other') {
-            const other = values.get('other_enquiry_type');
-            console.log(other);
-            values.set('enquiry_type', other)
-            console.log('ssssssssssssssssssssssssssssssssssssssssssssssssssssss');
+        let values = action.payload;
+
+        // if (values.get(db.enquiry_type) === 'Other' && values.get(db.other_enquiry_type)) {
+        //     fieldValues = values.set(db.enquiry_type, values.get(db.other_enquiry_type));
+        // } else {
+        //     fieldValues = values;
+        // }
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', values.toJS());
+        if (values.get(db.other_enquiry_type)) {
+            values = values.set(db.enquiry_type, values.get(db.other_enquiry_type))
+                .delete(db.other_enquiry_type);
         }
-        console.log(action.payload.toJS());
-        console.log(values.toJS());
+
         try {
             yield put(appActions.showLoader());
 
             const data = yield postToSupport(values.toJS()).then(res => res.data);
-
-            console.log(data);
 
             yield put({
                 type: types.POST_ENQUIRY_SUCCESS,
