@@ -26,6 +26,10 @@ export const fetchCategories = (params) => restApi(`/services/categories`, {para
 export const fetchFriends = (params) => restApi(`/suggestions/friends`, {params});
 
 
+export const fetchEnquiryTypes = (params) => restApi(`/directories/enquiry-types`, {params});
+export const postToSupport = (params) => restApi.post(`/support`, {...params});
+
+
 export const loginRequest = (params) => restApi.post(`/account/login`, {...params});
 
 export default restApi;

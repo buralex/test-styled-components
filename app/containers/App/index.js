@@ -18,7 +18,9 @@ import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'layout/Header';
 import Footer from 'layout/Footer';
-import {loadRepos} from "containers/App/actions";
+
+import LoadingIndicator from 'components/LoadingIndicator';
+
 import {compose} from "redux";
 import {
     makeSelectError,
@@ -31,7 +33,7 @@ import * as actions from "./actions";
 import injectSaga from "utils/injectSaga";
 import {createSelector, createStructuredSelector} from "reselect";
 
-import {makeSelectUsername} from "containers/Enquiry/selectors";
+
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -42,6 +44,7 @@ import {
 } from 'reduxSignal'
 
 import saga from './saga';
+import * as appActions from "containers/App/actions";
 
 
 const AppWrapper = styled.div`
@@ -66,19 +69,20 @@ class App extends React.PureComponent {
     }
 
     showErrorModal = (error) => {
-        console.error('EEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRRRRROOOOOOOOOOOOOOOOORRRRRRRRRRR');
+        console.error('ERROR APP CONTANER >>>');
+        console.error(error);
         console.error(error.message);
 
         this.props.createSignal({
             type: SignalTypes.OK,
-            title: `Error`,
+            title: `Error: ${error.message || ''}`,
             message: error.description || 'Sorry, try later.',
             className: 'modal-danger',
         })
     };
 
     render() {
-        const {isLoggedIn} = this.props;
+        const {isLoggedIn, loading} = this.props;
         console.log('---------------- RENDER APP -------------------', this.props);
         return (
             <AppWrapper>
@@ -103,6 +107,7 @@ class App extends React.PureComponent {
 
                 {isLoggedIn && <Footer/>}
 
+                {loading && <LoadingIndicator />}
             </AppWrapper>
         );
     }
@@ -118,11 +123,9 @@ App.propTypes = {
     isLoggedIn: PropTypes.bool,
 };
 
-export function mapDispatchToProps(dispatch) {
-    return {
-        clearServerError: () => dispatch(actions.clearServerError()),
-    };
-}
+export const mapDispatchToProps = (dispatch) => ({
+    clearServerError: () => dispatch(actions.clearServerError()),
+});
 
 const selectState = state => state;
 const makeSelectState = () =>
@@ -134,8 +137,6 @@ const makeSelectSignal = () =>
 
 
 const mapStateToProps = createStructuredSelector({
-    repos: makeSelectRepos(),
-    username: makeSelectUsername(),
     loading: makeSelectLoading(),
     error: makeSelectError(),
     isLoggedIn: makeSelectIsLoggedIn(),

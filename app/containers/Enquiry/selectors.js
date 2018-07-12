@@ -1,13 +1,14 @@
-/**
- * Homepage selectors
- */
 
 import {createSelector} from 'reselect';
 import {initialState} from './reducer';
 
-const selectEnquiry = state => state.get('enquiry', initialState);
+export const selectEnquiry = state => state.get('enquiry', initialState);
+export const selectForm = state => state.get('form', initialState);
 
-const makeSelectUsername = () =>
-    createSelector(selectEnquiry, enquiryState => enquiryState.get('username'));
 
-export {selectEnquiry, makeSelectUsername};
+export const makeSelectCurrentEnqType = () =>
+    createSelector(selectForm, form => form.getIn(['EnquiryForm', 'values', 'enquiry_type']) === 'Other');
+
+export const makeSelectEnquiryTypes = () =>
+    createSelector(selectEnquiry, enquiry => enquiry.get('enquiryTypes'));
+

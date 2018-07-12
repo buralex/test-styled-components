@@ -2,38 +2,74 @@
  * Gets the repositories of the user from Github
  */
 
-import {call, put, select, takeLatest, takeEvery} from 'redux-saga/effects';
-import {LOAD_REPOS} from 'containers/App/constants';
-import {reposLoaded, repoLoadingError} from 'containers/App/actions';
+import {call, put, select, all, takeLatest} from 'redux-saga/effects';
+import {fetchEnquiryTypes, postToSupport, fetchDirectories} from "services/api";
+import { history } from 'app';
+import {createSelector} from "reselect";
+import * as appActions from 'containers/App/actions';
 
-import request from 'utils/request';
-import {makeSelectUsername} from 'containers/Enquiry/selectors';
+import * as types from './constants';
 
-/**
- * Github repos request/response handler
- */
-export function* getRepos() {
-    // Select username from store
-    const username = yield select(makeSelectUsername());
-    const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
 
-    try {
-        // Call our request helper (see 'utils/request')
-        const repos = yield call(request, requestURL);
-        yield put(reposLoaded(repos, username));
-    } catch (err) {
-        yield put(repoLoadingError(err));
-    }
+export function* loadEnquiryTypes() {
+    yield takeLatest(types.LOAD_ENQUIRY_TYPES, function* (action) {
+        try {
+            yield put(appActions.showLoader());
+
+            const data = yield fetchEnquiryTypes().then(res => res.data);
+
+            yield put({
+                type: types.LOAD_ENQUIRY_TYPES_SUCCESS,
+                payload: data,
+            });
+
+            yield put(appActions.hideLoader());
+
+        } catch (e) {
+            yield put(appActions.serverError(e));
+        }
+    });
 }
 
+
+export function* postEnquiry() {
+    yield takeLatest(types.POST_ENQUIRY, function* (action) {
+        const values = action.payload;
+        if (values.get('enquiry_type') === 'Other') {
+            const other = values.get('other_enquiry_type');
+            console.log(other);
+            values.set('enquiry_type', other)
+            console.log('ssssssssssssssssssssssssssssssssssssssssssssssssssssss');
+        }
+        console.log(action.payload.toJS());
+        console.log(values.toJS());
+        try {
+            yield put(appActions.showLoader());
+
+            const data = yield postToSupport(values.toJS()).then(res => res.data);
+
+            console.log(data);
+
+            yield put({
+                type: types.POST_ENQUIRY_SUCCESS,
+                payload: data,
+            });
+
+            yield put(appActions.hideLoader());
+
+        } catch (e) {
+            yield put(appActions.serverError(e));
+        }
+    });
+}
+
+
 /**
- * Root saga manages watcher lifecycle
+ * Watcher
  */
-export default function* githubData() {
-    // Watches for LOAD_REPOS actions and calls getRepos when one comes in.
-    // By using `takeLatest` only the result of the latest API call is applied.
-    // It returns task descriptor (just like fork) so we can continue execution
-    // It will be cancelled automatically on component unmount
-    yield takeLatest(LOAD_REPOS, getRepos);
-    //yield takeEvery(LOAD_REPOS, getRepos);
+export default function* rootSaga() {
+    yield all([
+        loadEnquiryTypes(),
+        postEnquiry(),
+    ])
 }

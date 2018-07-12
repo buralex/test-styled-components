@@ -19,7 +19,7 @@ const SignalContainer = ({ event, destroy, close, modal }) => {
 
     return (
         <div>
-            <Modal isOpen={modal.isVisible} toggle={destroy} className={modal.className}>
+            <Modal isOpen={modal.isVisible} toggle={destroy} className={modal.className} backdrop="static">
                 <ModalHeader toggle={destroy}>{modal.title}</ModalHeader>
                 <ModalBody>
                     {modal.message}

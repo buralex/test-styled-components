@@ -34,6 +34,8 @@ import {changeUsername} from './actions';
 import {makeSelectUsername} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import uuidv5 from "uuid/v5";
+import {Link} from "react-router-dom";
 
 
 /* eslint-disable react/prefer-stateless-function */
@@ -121,6 +123,58 @@ export class HomePage extends React.PureComponent {
                         <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
                             Hello world!
                         </UncontrolledTooltip>
+                        <CenteredSection>
+                            <H2>
+                                <FormattedMessage {...messages.startProjectHeader} />
+                            </H2>
+                            <p>
+                                <FormattedMessage {...messages.startProjectMessage} />
+                            </p>
+
+                            <Button
+                                onClick={this.onBtnErrorClick}>
+                                show modal
+                            </Button>
+
+                            <ServerErrorEvent
+                                onNo={onNo}
+                                onYes={onYes}
+                            />
+
+                            <Button color="primary" tag={Link} to="/login">login</Button>
+
+                            <Link to={`/login`}>llllllll</Link>
+
+                            <Button size="sm"
+                                    color="success" onClick={async () => {
+                                // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);
+                                // const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data);
+                                const aaa = await fetchFriends({
+                                    per_page: 10,
+                                }).then(res => res.data).catch(e => e.response.data);
+
+                                console.log(aaa);
+
+                            }}>Add New Service</Button>
+
+                            <Button size="sm" color="primary" onClick={async () => {
+
+                                console.log(uuidv5('aaaaa', uuidv5.DNS));
+
+                            }}>test uuid</Button>
+
+                            <div className="p-3 mb-3 swatch-indigo">Indigo</div>
+
+                            <div className="col-2 text-truncate">
+                                Praeterea iter est quasdam res quas ex communi.
+                            </div>
+
+                            <p>Somewhere in here is a <a href="#" id="UncontrolledTooltipExample">tooltip</a>.</p>
+                            <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
+                                Hello world!
+                            </UncontrolledTooltip>
+
+                        </CenteredSection>
 
                     </CenteredSection>
                     <Section>

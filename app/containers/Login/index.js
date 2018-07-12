@@ -40,41 +40,12 @@ import saga from './saga';
 
 import LoginForm from "./components/LoginForm";
 
-//const login = (values) => console.log(`It's a map thanks to immutables with redux-form: ${values}`);
 
 /* eslint-disable react/prefer-stateless-function */
 export class Login extends React.PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {
-            modal: false,
-        };
-
-        this.toggle = this.toggle.bind(this);
-    }
-
-    /**
-     * when initial state username is not null, submit the form to load repos
-     */
-    componentDidMount() {
-        if (this.props.username && this.props.username.trim().length > 0) {
-            //this.props.onSubmitForm();
-        }
-    }
-
-    toggle() {
-        this.setState({
-            modal: !this.state.modal,
-        });
-    }
 
     render() {
-        const {loading, error, repos} = this.props;
-        const reposListProps = {
-            loading,
-            error,
-            repos,
-        };
+        //const {loading, error, repos} = this.props;
 
         console.log('RENDER LOGIN PAGE',this.props);
 
@@ -101,9 +72,6 @@ export class Login extends React.PureComponent {
 
                             }}>Add New Service</Button>
 
-                        <div className="p-3 mb-3 swatch-indigo">Indigo</div>
-
-                        <Button color="success" onClick={this.toggle}>mmmmmmm</Button>
                         <Button color="primary" tag={Link} to="/enquiry">enquiry</Button>
                         <div className="col-2 text-truncate">
                             Praeterea iter est quasdam res quas ex communi.
@@ -125,21 +93,12 @@ export class Login extends React.PureComponent {
 }
 
 Login.propTypes = {
-    loading: PropTypes.bool,
-    error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-    repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
     onSubmitForm: PropTypes.func,
-    username: PropTypes.string,
 };
 
-export function mapDispatchToProps(dispatch) {
-    return {
-        onSubmitForm: values => {
-            console.log(values.toJS());
-            dispatch(appActions.login(values));
-        },
-    };
-}
+export const mapDispatchToProps = (dispatch) => ({
+    onSubmitForm: (values) => dispatch(appActions.login(values)),
+});
 
 
 const mapStateToProps = createStructuredSelector({
