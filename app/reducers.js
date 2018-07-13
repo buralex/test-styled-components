@@ -49,9 +49,9 @@ export function routeReducer(state = routeInitialState, action) {
 export default function createReducer(injectedReducers) {
     return combineReducers({
         route: routeReducer,
-        global: globalReducer,
-        // global: persistReducer({key: 'global', storage}, globalReducer),
-        // userSettings: persistReducer({key: 'userSettings', storage}, userSettingsReducer),
+        //global: globalReducer,
+        global: persistReducer({key: 'global', storage}, globalReducer),
+        userSettings: persistReducer({key: 'userSettings', storage}, userSettingsReducer),
         language: languageProviderReducer,
         form: reduxFormReducer,
         signal: signalReducer,

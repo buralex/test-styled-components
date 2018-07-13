@@ -27,11 +27,11 @@ const NotFoundPage = NotFoundPageComponent;
 
 const Router = () => (
     <Switch>
-        <Route exact path="/" component={Enquiry}/>
-        <Route exact path="/enquiry" component={Enquiry}/>
+        {/*<Route exact path="/" component={Enquiry}/>*/}
+        {/*<Route exact path="/enquiry" component={Enquiry}/>*/}
         {/*<Route exact path="/service-categories" component={ServiceCategories}/>*/}
         <Route exact path="/login" component={Login}/>
-        <Route path="" component={NotFoundPage}/>
+        {/*<Route path="" component={NotFoundPage}/>*/}
     </Switch>
 );
 

@@ -36,6 +36,7 @@ import configureStore from './configureStore';
 
 // Import i18n messages
 import {translationMessages} from './i18n';
+import appSaga from "containers/App/saga.js";
 
 /* ----------------------- check loading special fonts ------------------------------------------- */
 const proximaReg = new FontFaceObserver('Proxima Nova Reg');
@@ -57,15 +58,21 @@ const {store, persistor} = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
 console.log(persistor.getState());
+
+
+store.runSaga(appSaga);
+
 const render = messages => {
     ReactDOM.render(
         <Provider store={store}>
                     <PersistGate loading={null} persistor={persistor}>
-                    <ConnectedRouter history={history}>
                         <LanguageProvider messages={messages}>
+                    <ConnectedRouter history={history}>
+
                         <App/>
-                        </LanguageProvider>
+
                     </ConnectedRouter>
+                        </LanguageProvider>
                     </PersistGate>
         </Provider>,
         MOUNT_NODE,

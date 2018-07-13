@@ -114,11 +114,11 @@ const withConnect = connect(
 );
 
 
-const withReducer = injectReducer({key: 'login', reducer});
+//const withReducer = injectReducer({key: 'login', reducer});
 // const withSaga = injectSaga({key: 'login', saga});
 
 export default compose(
-    withReducer,
+    //withReducer,
     // withSaga,
     withConnect,
 )(Login);

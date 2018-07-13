@@ -144,7 +144,7 @@ const withConnect = connect(
 const withSaga = injectSaga({key: 'global', saga});
 
 export default compose(
-    withSaga,
+    //withSaga,
     withRouter,
     withConnect,
     withSignal,
