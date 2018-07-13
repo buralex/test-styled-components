@@ -8,9 +8,10 @@ const initialState = fromJS({
     isLoggedIn: false,
     loading: false,
     error: false,
-    currentUser: false,
-    authKey: '',
-    userData: {},
+    userData: {
+        authKey: null,
+        user: {},
+    },
 });
 
 function appReducer(state = initialState, action) {
@@ -34,8 +35,8 @@ function appReducer(state = initialState, action) {
             const {token, user} = action.payload.data || {};
 
             return state
-                .set('userData', fromJS(user))
-                .set('authKey', token)
+                .setIn(['userData', 'user'], fromJS(user))
+                .setIn(['userData', 'authKey'], token)
                 .set('isLoggedIn', true)
                 .set('loading', false);
         }

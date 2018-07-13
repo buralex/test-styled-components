@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-//import Button from 'components/componentsSignal/Button/Button'
-//import Modal from 'components/componentsSignal/Modal/Modal'
 
 import {
     Button,
-    Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, UncontrolledTooltip} from 'reactstrap';
+    Modal, ModalHeader, ModalBody, ModalFooter,
+    Tooltip, UncontrolledTooltip
+} from 'reactstrap';
 
 import {
     createContainer,
@@ -19,8 +19,8 @@ const SignalContainer = ({ event, destroy, close, modal }) => {
 
     return (
         <div>
-            <Modal isOpen={modal.isVisible} toggle={destroy} className={modal.className} backdrop="static">
-                <ModalHeader toggle={destroy}>{modal.title}</ModalHeader>
+            <Modal isOpen={modal.isVisible} toggle={close} className={modal.className} backdrop="static">
+                <ModalHeader toggle={close}>{modal.title}</ModalHeader>
                 <ModalBody>
                     {modal.message}
                 </ModalBody>

@@ -7,15 +7,12 @@
  */
 
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
 import styled from 'styled-components';
-import {Switch, Route, withRouter} from 'react-router-dom';
 
-import Login from 'containers/Login/Loadable';
-import HomePage from 'containers/HomePage/Loadable';
-import Enquiry from 'containers/Enquiry/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
+
+
 import Header from 'layout/Header';
 import Footer from 'layout/Footer';
 
@@ -31,6 +28,7 @@ import {
 } from "containers/App/selectors";
 import * as actions from "./actions";
 import injectSaga from "utils/injectSaga";
+import Router from "router";
 import {createSelector, createStructuredSelector} from "reselect";
 
 
@@ -86,9 +84,7 @@ class App extends React.PureComponent {
         console.log('---------------- RENDER APP -------------------', this.props);
 
 
-        if (window.__appStore__) {
-            console.log(window.__appStore__.getState().get('global').get('userData'));
-        }
+
         return (
             <AppWrapper>
                 <Helmet
@@ -100,15 +96,7 @@ class App extends React.PureComponent {
 
                 {isLoggedIn && <Header/>}
 
-                <Switch>
-                    <Route exact path="/" component={Enquiry}/>
-                    <Route exact path="/enquiry" component={Enquiry}/>
-                    {/*<Route exact path="/service-categories" component={ServiceCategories}/>*/}
-                    <Route exact path="/login" component={Login}/>
-                    <Route exact path="/home" component={HomePage}/>
-                    <Route path="/features" component={FeaturePage}/>
-                    <Route path="" component={NotFoundPage}/>
-                </Switch>
+                <Router />
 
                 {isLoggedIn && <Footer/>}
 
