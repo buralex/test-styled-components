@@ -163,13 +163,12 @@ export function mapDispatchToProps(dispatch) {
         onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
         onSubmitForm: evt => {
             if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-            dispatch(loadRepos());
+            //dispatch(loadRepos());
         },
     };
 }
 
 const mapStateToProps = createStructuredSelector({
-    repos: makeSelectRepos(),
     username: makeSelectUsername(),
     loading: makeSelectLoading(),
     error: makeSelectError(),

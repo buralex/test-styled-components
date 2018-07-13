@@ -2,27 +2,29 @@
  * Combine all reducers in this file and export the combined reducers.
  */
 
-import {fromJS} from 'immutable';
-import {combineReducers} from 'redux-immutable';
+import {combineReducers} from 'redux';
 import {LOCATION_CHANGE} from 'react-router-redux';
-import { reducer as reduxFormReducer } from 'redux-form/immutable';
-import { reducer as signalReducer } from 'reduxSignal';
+import { reducer as reduxFormReducer } from 'redux-form';
+import { reducer as signalReducer } from 'redux-signal';
+import storage from 'redux-persist/lib/storage'
 
 import globalReducer from 'containers/App/reducer';
+import userSettingsReducer from 'containers/App/userSettingsReducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import {persistReducer} from "redux-persist";
 
 /*
  * routeReducer
  *
- * The reducer merges route location changes into our immutable state.
+ * The reducer merges route location changes into state.
  * The change is necessitated by moving to react-router-redux@5
  *
  */
 
 // Initial routing state
-const routeInitialState = fromJS({
+const routeInitialState = {
     location: null,
-});
+};
 
 /**
  * Merge route into the global application state
@@ -31,9 +33,11 @@ export function routeReducer(state = routeInitialState, action) {
     switch (action.type) {
         /* istanbul ignore next */
         case LOCATION_CHANGE:
-            return state.merge({
+            return {
+                ...state,
                 location: action.payload,
-            });
+            };
+
         default:
             return state;
     }
@@ -46,6 +50,8 @@ export default function createReducer(injectedReducers) {
     return combineReducers({
         route: routeReducer,
         global: globalReducer,
+        // global: persistReducer({key: 'global', storage}, globalReducer),
+        // userSettings: persistReducer({key: 'userSettings', storage}, userSettingsReducer),
         language: languageProviderReducer,
         form: reduxFormReducer,
         signal: signalReducer,

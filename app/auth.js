@@ -7,14 +7,13 @@ import LoadingIndicator from 'components/LoadingIndicator';
 
 const locationHelper = locationHelperBuilder({});
 
-if (window.__appStore__) {
-    console.log(window.__appStore__.getState().get('global').get('userData'));
-    console.log(window.__appStore__.getState().getIn(['global', 'userData', 'authKey']));
+if (window.__app_store__) {
+    console.log(window.__app_store__.getState().global.userData.authKey);
 }
 
 const userIsAuthenticatedDefaults = {
-    authenticatedSelector: state => state.getIn(['global', 'userData', 'authKey']) !== null,
-    authenticatingSelector: state => state.getIn(['global', 'loading']),
+    authenticatedSelector: state => state.global.userData.authKey !== null,
+    authenticatingSelector: state => state.global.loading,
     wrapperDisplayName: 'UserIsAuthenticated',
 }
 
@@ -29,16 +28,16 @@ export const userIsAuthenticatedRedir = connectedRouterRedirect({
 export const userIsAdminRedir = connectedRouterRedirect({
     redirectPath: '/',
     allowRedirectBack: false,
-    authenticatedSelector: state => state.getIn(['global', 'userData', 'authKey']) !== null
-    && state.getIn(['global', 'userData', 'isAdmin']),
+    authenticatedSelector: state => state.global.userData.authKey !== null
+    && state.global.userData.isAdmin,
     predicate: user => user.get('isAdmin'),
     wrapperDisplayName: 'UserIsAdmin',
 })
 
 const userIsNotAuthenticatedDefaults = {
     // Want to redirect the user when they are done loading and authenticated
-    authenticatedSelector: state => state.getIn(['global', 'userData', 'authKey']) === null
-        && state.getIn(['global', 'loading']) === false,
+    authenticatedSelector: state => state.global.userData.authKey === null
+        && state.global.loading === false,
     wrapperDisplayName: 'UserIsNotAuthenticated',
 }
 

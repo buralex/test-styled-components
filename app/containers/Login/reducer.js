@@ -1,11 +1,9 @@
 
-import {fromJS} from 'immutable';
-
 // import * as types from './constants/types';
 
-export const initialState = fromJS({
+export const initialState = {
 
-});
+};
 
 function loginReducer(state = initialState, action) {
     switch (action.type) {

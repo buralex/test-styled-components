@@ -3,12 +3,16 @@
  */
 
 import {createStore, applyMiddleware, compose} from 'redux';
-import {fromJS} from 'immutable';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
 import {routerMiddleware} from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 
+
 const sagaMiddleware = createSagaMiddleware();
+
 
 export default function configureStore(initialState = {}, history) {
     // Create the store with two middlewares
@@ -26,9 +30,19 @@ export default function configureStore(initialState = {}, history) {
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     /* eslint-enable */
 
+    const persistConfig = {
+        key: 'root',
+        storage,
+    }
+
+    const aaa = createReducer();
+
+    const persistedReducer = persistReducer(persistConfig, aaa)
+
     const store = createStore(
-        createReducer(),
-        fromJS(initialState),
+        //createReducer(),
+        persistedReducer,
+        initialState,
         composeEnhancers(...enhancers),
     );
 
@@ -46,7 +60,9 @@ export default function configureStore(initialState = {}, history) {
     }
 
     // eslint-disable-next-line
-    window.__appStore__ = store;
+    window.__app_store__ = store;
 
-    return store;
+    const persistor = persistStore(store);
+
+    return {persistor, store};
 }

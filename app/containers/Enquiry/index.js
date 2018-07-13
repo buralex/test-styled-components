@@ -27,7 +27,7 @@ import {
     // withSignalPropTypes,
     SignalTypes,
     eventHandler,
-} from 'reduxSignal'
+} from 'redux-signal'
 
 import H2 from 'components/H2';
 
@@ -106,7 +106,7 @@ export class Enquiry extends React.PureComponent {
     render() {
         const {enquiryTypes, isEnqTypeOther} = this.props;
 
-
+        console.log('RENDER ENQUIRY >>>');
         console.log(enquiryTypes);
 
         console.log(this.props);

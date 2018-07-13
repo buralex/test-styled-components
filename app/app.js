@@ -15,6 +15,7 @@ import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
+import { PersistGate } from 'redux-persist/integration/react'
 
 // Import CSS reset and Global Styles
 import 'sanitize.css/sanitize.css';
@@ -23,7 +24,6 @@ import 'styles/index.scss';
 // Import root app
 import App from 'containers/App';
 
-import SignalContainer from 'containers/SignalContainer'
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
@@ -53,20 +53,20 @@ Promise.all([proximaReg.load(), proximaLight.load()]).then(() => {
 const initialState = {};
 export const history = createHistory();
 
-const store = configureStore(initialState, history);
+const {store, persistor} = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
-
+console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+console.log(persistor.getState());
 const render = messages => {
     ReactDOM.render(
         <Provider store={store}>
-            <LanguageProvider messages={messages}>
-                <ConnectedRouter history={history}>
-                    <div>
-                        <SignalContainer />
+                    <PersistGate loading={null} persistor={persistor}>
+                    <ConnectedRouter history={history}>
+                        <LanguageProvider messages={messages}>
                         <App/>
-                    </div>
-                </ConnectedRouter>
-            </LanguageProvider>
+                        </LanguageProvider>
+                    </ConnectedRouter>
+                    </PersistGate>
         </Provider>,
         MOUNT_NODE,
     );

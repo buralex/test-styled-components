@@ -11,10 +11,11 @@ import * as actions from './actions';
 
 export function* login() {
     yield takeLatest(types.LOGIN, function* (action) {
-        const email = action.payload.get('email');
-        const password = action.payload.get('password');
+        const {email, password} = action.payload;
 
         try {
+            yield put(actions.showLoader());
+
             const data = yield loginRequest({ email, password }).then(res => res.data);
 
             yield put({
@@ -22,6 +23,7 @@ export function* login() {
                 payload: data,
             });
 
+            yield put(actions.hideLoader());
             yield call(history.push, '/service-categories');
 
         } catch (e) {

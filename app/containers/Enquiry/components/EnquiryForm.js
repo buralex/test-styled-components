@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form/immutable'
+import { Field, reduxForm } from 'redux-form'
 import Dropzone from 'react-dropzone';
 
 import TextInput from 'components/Form/TextInput';
@@ -12,30 +12,30 @@ import {FIELDS as db} from '../constants/fields';
 const validate = values => {
     const errors = {}
 
-    if (!values.get(db.enquiry_type)) {
-        errors.enquiry_type = 'Required'
+    if (!values[db.enquiry_type]) {
+        errors[db.enquiry_type] = 'Required'
     }
 
-    if (!values.get(db.description)) {
-        errors.description = 'Required'
+    if (!values[db.description]) {
+        errors[db.description] = 'Required'
     }
 
-    if (!values.get(db.subject)) {
-        errors.subject = 'Required'
+    if (!values[db.subject]) {
+        errors[db.subject] = 'Required'
     }
 
-    if (!values.get(db.user_name)) {
-        errors.user_name = 'Required'
-    } else if (values.get(db.user_name) && /[^a-zA-Z0-9 ]/i.test(values.get(db.user_name))) {
-        errors.user_name = 'Only alphanumeric characters'
-    } else if (values.get(db.user_name).length > 15) {
-        errors.user_name = 'Must be 15 characters or less'
+    if (!values[db.user_name]) {
+        errors[db.user_name] = 'Required'
+    } else if (values[db.user_name] && /[^a-zA-Z0-9 ]/i.test(values[db.user_name])) {
+        errors[db.user_name] = 'Only alphanumeric characters'
+    } else if (values[db.user_name].length > 15) {
+        errors[db.user_name] = 'Must be 15 characters or less'
     }
 
-    if (!values.get(db.email)) {
-        errors.email = 'Required'
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/i.test(values.get(db.email))) {
-        errors.email = 'Invalid email address'
+    if (!values[db.email]) {
+        errors[db.email] = 'Required'
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/i.test(values[db.email])) {
+        errors[db.email] = 'Invalid email address'
     }
 
     return errors;
@@ -78,7 +78,7 @@ const EnquiryForm = props => {
             <Field
                 name={db.enquiry_type}
                 component={Select}
-                options={enquiryTypes.map((elem) => ({label: elem.get('name'), value: elem.get('name')}))}
+                options={enquiryTypes.map((elem) => ({label: elem.name, value: elem.name}))}
                 label="Enquiry type *"
                 onChange={(event, value) => {
                     change(db.other_enquiry_type, '');

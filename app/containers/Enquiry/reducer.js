@@ -1,11 +1,9 @@
 
-import {fromJS} from 'immutable';
-
 import * as types from './constants/types';
 
-export const initialState = fromJS({
+export const initialState = {
     enquiryTypes: [],
-});
+};
 
 function enquiryReducer(state = initialState, action) {
     switch (action.type) {
@@ -13,7 +11,10 @@ function enquiryReducer(state = initialState, action) {
         case types.LOAD_ENQUIRY_TYPES_SUCCESS: {
             const enqTypes = action.payload.data || [];
 
-            return state.set('enquiryTypes', fromJS(enqTypes));
+            return {
+                ...state,
+                enquiryTypes: enqTypes,
+            };
         }
 
         // case types.POST_ENQUIRY: {

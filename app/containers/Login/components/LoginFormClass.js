@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form/immutable'
+import { Field, reduxForm } from 'redux-form'
 import TextInput from 'components/Form/TextInput';
 
 const validate = values => {

@@ -1,16 +1,16 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form/immutable'
+import { Field, reduxForm } from 'redux-form'
 import TextInput from 'components/Form/TextInput';
 
 const validate = values => {
     const errors = {}
 
-    if (!values.get('email')) {
+    if (!values.email) {
         errors.email = 'Required'
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/i.test(values.get('email'))) {
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/i.test(values.email)) {
         errors.email = 'Invalid email address'
     }
-    if (!values.get('password')) {
+    if (!values.password) {
         errors.password = 'Required'
     }
     return errors

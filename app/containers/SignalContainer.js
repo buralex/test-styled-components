@@ -11,7 +11,7 @@ import {
     createContainer,
     SignalEvents,
     SignalTypes,
-} from '../reduxSignal'
+} from 'redux-signal'
 
 const SignalContainer = ({ event, destroy, close, modal }) => {
     // modal contains all the properties you submit when calling `createSignal`, so you have all the freedom

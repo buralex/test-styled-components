@@ -1,44 +1,58 @@
 
-import {fromJS} from 'immutable';
-
 import * as types from './constants/types';
 
 // The initial state of the App
-const initialState = fromJS({
+const initialState = {
     isLoggedIn: false,
     loading: false,
     error: false,
     userData: {
         authKey: null,
+        isAdmin: true,
         user: {},
     },
-});
+};
 
 function appReducer(state = initialState, action) {
     switch (action.type) {
         case types.SHOW_LOADER:
-            return state.set('loading', true);
+            return {
+                ...state,
+                loading: true,
+            };
 
         case types.HIDE_LOADER:
-            return state.set('loading', false);
+            return {
+                ...state,
+                loading: false,
+            };
 
         case types.SERVER_ERROR:
-            return state.set('error', action.payload).set('loading', false);
+            return {
+                ...state,
+                error: action.payload,
+                loading: false,
+            };
 
         case types.CLEAR_SERVER_ERROR:
-            return state.set('error', false);
-
-        case types.LOGIN:
-            return state.set('loading', true);
+            return {
+                ...state,
+                error: false,
+                loading: false,
+            };
 
         case types.LOGIN_SUCCESS: {
             const {token, user} = action.payload.data || {};
 
-            return state
-                .setIn(['userData', 'user'], fromJS(user))
-                .setIn(['userData', 'authKey'], token)
-                .set('isLoggedIn', true)
-                .set('loading', false);
+            return {
+                ...state,
+                userData: {
+                    authKey: token,
+                    user,
+                },
+                isLoggedIn: true,
+                loading: false,
+            };
         }
 
         default:

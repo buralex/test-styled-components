@@ -18,6 +18,8 @@ import Footer from 'layout/Footer';
 
 import LoadingIndicator from 'components/LoadingIndicator';
 
+import SignalContainer from 'containers/SignalContainer'
+
 import {compose} from "redux";
 import {
     makeSelectError,
@@ -39,7 +41,7 @@ import {
     // withSignalPropTypes,
     SignalTypes,
     eventHandler,
-} from 'reduxSignal'
+} from 'redux-signal'
 
 import saga from './saga';
 import * as appActions from "containers/App/actions";
@@ -101,6 +103,8 @@ class App extends React.PureComponent {
                 {isLoggedIn && <Footer/>}
 
                 {loading && <LoadingIndicator />}
+
+                {/*<SignalContainer />*/}
             </AppWrapper>
         );
     }
@@ -124,17 +128,12 @@ const selectState = state => state;
 const makeSelectState = () =>
     createSelector(selectState, state => state);
 
-const selectSignal = state => state.get('signal');
-const makeSelectSignal = () =>
-    createSelector(selectSignal, signalState => signalState.get('signal'));
-
 
 const mapStateToProps = createStructuredSelector({
     loading: makeSelectLoading(),
     error: makeSelectError(),
     isLoggedIn: makeSelectIsLoggedIn(),
     //state: makeSelectState(),
-    //signal: makeSelectSignal(),
 });
 
 const withConnect = connect(

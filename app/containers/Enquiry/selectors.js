@@ -2,13 +2,13 @@
 import {createSelector} from 'reselect';
 import {initialState} from './reducer';
 
-export const selectEnquiry = state => state.get('enquiry', initialState);
-export const selectForm = state => state.get('form', initialState);
+export const selectEnquiry = state => state.enquiry || initialState;
+export const selectForm = state => state.form || initialState;
 
 
 export const makeSelectCurrentEnqType = () =>
-    createSelector(selectForm, form => form.getIn(['EnquiryForm', 'values', 'enquiry_type']) === 'Other');
+    createSelector(selectForm, form => form.EnquiryForm && form.EnquiryForm.values.enquiry_type === 'Other');
 
 export const makeSelectEnquiryTypes = () =>
-    createSelector(selectEnquiry, enquiry => enquiry.get('enquiryTypes'));
+    createSelector(selectEnquiry, enquiry => enquiry.enquiryTypes);
 
