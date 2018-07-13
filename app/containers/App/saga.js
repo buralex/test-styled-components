@@ -9,7 +9,7 @@ import * as types from './constants/types';
 import * as actions from './actions';
 
 
-export function* login() {
+export function* watchLogin() {
     yield takeLatest(types.LOGIN, function* (action) {
         const {email, password} = action.payload;
 
@@ -36,8 +36,8 @@ export function* login() {
 /**
  * Watcher
  */
-export default function* rootSaga() {
+export default function* appSaga() {
     yield all([
-        login(),
+        watchLogin(),
     ])
 }
