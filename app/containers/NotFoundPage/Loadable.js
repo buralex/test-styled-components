@@ -1,11 +1,10 @@
 /**
- * Asynchronously loads the component for NotFoundPage
+ * Asynchronously loads component
  */
 import Loadable from 'react-loadable';
-
-import LoadingIndicator from 'components/LoadingIndicator';
+import LoadingForComponent from 'components/LoadingBeat';
 
 export default Loadable({
     loader: () => import('./index'),
-    loading: LoadingIndicator,
+    loading: LoadingForComponent,
 });

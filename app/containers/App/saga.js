@@ -25,7 +25,7 @@ export function* login(action) {
         });
 
         yield put(actions.hideLoader());
-        yield call(history.push, '/service-categories');
+        yield call(history.push, '/services');
 
     } catch (e) {
         yield put(actions.serverError(e));

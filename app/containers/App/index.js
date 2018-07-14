@@ -16,7 +16,7 @@ import styled from 'styled-components';
 import Header from 'layout/Header';
 import Footer from 'layout/Footer';
 
-import LoadingIndicator from 'components/LoadingIndicator';
+
 
 import SignalContainer from 'containers/SignalContainer'
 
@@ -26,7 +26,7 @@ import {
     makeSelectLoading,
     makeSelectRepos,
     makeSelectIsLoggedIn,
-    selectGlobal
+    selectApp
 } from "containers/App/selectors";
 import * as actions from "./actions";
 import injectSaga from "utils/injectSaga";
@@ -102,9 +102,7 @@ class App extends React.PureComponent {
 
                 {isLoggedIn && <Footer/>}
 
-                {loading && <LoadingIndicator />}
-
-                {/*<SignalContainer />*/}
+                <SignalContainer />
             </AppWrapper>
         );
     }

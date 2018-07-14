@@ -15,7 +15,7 @@ const routeInitialState = {
 };
 
 /**
- * Merge route into the global application state
+ * Merge route into the application state
  */
 export function routeReducer(state = routeInitialState, action) {
     switch (action.type) {

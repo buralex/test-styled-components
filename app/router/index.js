@@ -6,13 +6,13 @@ import { userIsAuthenticatedRedir, userIsNotAuthenticatedRedir,
     userIsAuthenticated, userIsNotAuthenticated,
 } from 'auth'
 
-import LoginComponent from 'containers/Login/Loadable';
+import LoginComponent from 'containers/Login';
 import EnquiryComponent from 'containers/Enquiry/Loadable';
-import ServicesComponent from 'containers/Services';
-import NotFoundPageComponent from 'containers/NotFoundPage/Loadable';
+import ServicesComponent from 'containers/Services/Loadable';
+import NotFoundPageComponent from 'containers/NotFoundPage';
 
 // const Login = userIsNotAuthenticatedRedir(LoginComponent);
-// const Enquiry = userIsAuthenticatedRedir(EnquiryComponent);
+// const Enquiry = userIsNotAuthenticatedRedir(EnquiryComponent);
 // const Services = userIsAuthenticatedRedir(ServicesComponent);
 // const NotFoundPage = userIsAuthenticatedRedir(NotFoundPageComponent);
 
@@ -29,7 +29,7 @@ const Router = () => (
     <Switch>
         <Route exact path="/" component={Enquiry}/>
         <Route exact path="/enquiry" component={Enquiry}/>
-        <Route exact path="/service-categories" component={Services}/>
+        <Route exact path="/services" component={Services}/>
         <Route exact path="/login" component={Login}/>
         <Route path="" component={NotFoundPage}/>
     </Switch>

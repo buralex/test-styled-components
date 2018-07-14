@@ -68,7 +68,7 @@ export class Enquiry extends React.PureComponent {
     }
 
     componentDidMount() {
-        history.push('/enquiry');
+        //history.push('/enquiry');
     }
 
     onBtnErrorClick = () => {
@@ -105,6 +105,10 @@ export class Enquiry extends React.PureComponent {
 
     render() {
         const {enquiryTypes, currentEnqType} = this.props;
+        //
+        // if (!enquiryTypes.length) {
+        //     return null;
+        // }
 
         console.log('RENDER ENQUIRY >>>');
         console.log(enquiryTypes);

@@ -16,16 +16,12 @@ import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/ap
 import { push } from 'react-router-redux';
 import {Link} from 'react-router-dom';
 
-
-import injectReducer from 'utils/injectReducer';
-import injectSaga from 'utils/injectSaga';
-import {
-    makeSelectRepos,
-    makeSelectLoading,
-    makeSelectError,
-} from 'containers/App/selectors';
+import { makeSelectLoading } from 'containers/App/selectors';
 
 import * as appActions from 'containers/App/actions';
+import {difference} from 'utils/functions.js';
+
+import LoadingBeat from 'components/LoadingBeat';
 
 import CenteredSection from './CenteredSection';
 import Form from './Form';
@@ -44,10 +40,23 @@ import LoginForm from "./components/LoginForm";
 /* eslint-disable react/prefer-stateless-function */
 export class Login extends React.PureComponent {
 
-    render() {
-        //const {loading, error, repos} = this.props;
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.match !== prevProps.match) {
+            console.log(this.props.match);
+            console.log(prevProps.match);
+            const aaa = {aa: 1}
+            const bbb = {bb: 2}
+            console.log(difference(prevProps.match, this.props.match));
+            console.log(difference(aaa, bbb));
+            console.log('dodddddddddddddddddddddddddddddd');
+        }
+    }
 
-        console.log('RENDER LOGIN PAGE',this.props);
+    render() {
+        const {loading} = this.props;
+
+        console.log('RENDER LOGIN PAGE ...',this.props);
 
         return (
             <article>
@@ -60,6 +69,7 @@ export class Login extends React.PureComponent {
                 </Helmet>
                 <div>
                     <CenteredSection>
+
                         <Button size="sm"
                             color="success" onClick={async () => {
                             // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);
@@ -84,7 +94,22 @@ export class Login extends React.PureComponent {
 
                     </CenteredSection>
 
-                    <LoginForm onSubmit={this.props.onSubmitForm} />
+                    <LoadingBeat loading={loading} />
+
+                    <Button size="sm" color="success" onClick={async () => {
+                        //this.props.aaa();
+                        this.props.dispatch(appActions.showLoader)
+                        console.log('showl');
+
+                    }}>show loading</Button>
+                    <Button size="sm" color="success" onClick={async () => {
+                        //this.props.aaa();
+                        this.props.dispatch(appActions.hideLoader)
+                        console.log('hide');
+
+                    }}>hide loading</Button>
+
+                    <LoginForm loading={loading} onSubmit={this.props.onSubmitForm} />
 
                 </div>
             </article>
@@ -96,29 +121,46 @@ Login.propTypes = {
     onSubmitForm: PropTypes.func,
 };
 
-export const mapDispatchToProps = (dispatch) => ({
-    onSubmitForm: (values) => dispatch(appActions.login(values)),
-});
+// export const mapDispatchToProps = (dispatch) => ({
+//     // onSubmitForm: (values) => dispatch(appActions.login(values)),
+//     // aaa: (values) => dispatch(appActions.showLoader()),
+// });
+//
+//
+// const mapStateToProps = createStructuredSelector({
+//     //loading: makeSelectLoading(),
+// });
+//
+// const withConnect = connect(
+//     mapStateToProps,
+//     mapDispatchToProps,
+// );
+//
+//
+// //const withReducer = injectReducer({key: 'login', reducer});
+// // const withSaga = injectSaga({key: 'login', saga});
+//
+// export default compose(
+//     //withReducer,
+//     // withSaga,
+//     withConnect,
+// )(Login);
 
-
-const mapStateToProps = createStructuredSelector({
-    // repos: makeSelectRepos(),
-    // username: makeSelectUsername(),
-    // loading: makeSelectLoading(),
-    // error: makeSelectError(),
-});
-
-const withConnect = connect(
-    mapStateToProps,
-    mapDispatchToProps,
-);
-
-
-//const withReducer = injectReducer({key: 'login', reducer});
-// const withSaga = injectSaga({key: 'login', saga});
-
-export default compose(
-    //withReducer,
-    // withSaga,
-    withConnect,
+export default connect(
+    (state, ownProps) => ({
+        // action: ownProps.match.params.action,
+        // carrierID: ownProps.match.params.id,
+        // carrier: state.carriers.current.current,
+        // history: ownProps.history,
+        // match: ownProps.match,
+    }),
+    dispatch => ({
+        // showConfirm: (params) => dispatch(appActions.showConfirm(params)),
+        //
+        // handleCarrierDelete: () => dispatch(listActions.deleteCarrier()),
+        // handleCarrierRestore: () => dispatch(listActions.restoreCarrier()),
+        //
+        // toggleSendEmail: (params) => dispatch(appActions.toggleSendEmail(params)),
+        dispatch: (a) => dispatch(a()),
+    }),
 )(Login);

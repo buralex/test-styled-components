@@ -29,7 +29,29 @@ export const fetchCategories = (params) => restApi(`/services/categories`, {para
 export const fetchFriends = (params) => restApi(`/suggestions/friends`, {params});
 
 
-export const fetchEnquiryTypes = (params) => restApi(`/directories/enquiry-types`, {params});
+//export const fetchEnquiryTypes = (params) => restApi(`/directories/enquiry-types`, {params});
+
+export function delay(t) {
+    return new Promise(((resolve) => {
+        setTimeout(resolve, t);
+    }));
+}
+
+export const fetchEnquiryTypes = (params) => {
+     //delay(3000);
+    return new Promise(resolve => {
+
+        window.setTimeout(() => {
+            const fakeNumber = 1234567890;
+            // dispatch({
+            //     type: actionTypes.LOAD_NUMBER_RESERVED,
+            //     payload: fakeNumber,
+            // });
+            resolve({data: fakeNumber});
+        }, 3000);
+    });
+    //restApi(`/directories/1`, {params})
+};
 export const postToSupport = (params) => restApi.post(`/support`, {...params});
 
 

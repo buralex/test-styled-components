@@ -7,7 +7,7 @@ import { reducer as reduxFormReducer } from 'redux-form';
 import { reducer as signalReducer } from 'redux-signal';
 import storage from 'redux-persist/lib/storage'
 
-import globalReducer from 'containers/App/reducers/global';
+import appReducer from 'containers/App/reducers/app';
 import routeReducer from 'containers/App/reducers/route';
 import userDataReducer from 'containers/App/reducers/userDataReducer';
 import userSettingsReducer from 'containers/App/reducers/userSettingsReducer';
@@ -20,7 +20,7 @@ import {persistReducer} from "redux-persist";
 
 export default combineReducers({
     route: routeReducer,
-    global: globalReducer,
+    app: appReducer,
     userData: persistReducer({key: 'userData', storage}, userDataReducer),
     userSettings: persistReducer({key: 'userSettings', storage}, userSettingsReducer),
     language: languageProviderReducer,

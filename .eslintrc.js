@@ -21,6 +21,7 @@ module.exports = {
   },
   rules: {
     //'prettier/prettier': ['error', prettierOptions],
+    'react/prop-types': 1,
     'arrow-body-style': [2, 'as-needed'],
     'class-methods-use-this': 0,
     'comma-dangle': [2, 'always-multiline'],

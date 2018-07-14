@@ -19,6 +19,8 @@ export function* loadEnquiryTypes() {
         yield put(appActions.showLoader());
 
         const data = yield fetchEnquiryTypes().then(res => res.data);
+        console.log(data);
+        //yield () => setTimeout(function(){ alert("Hello"); }, 3000);
 
         yield put({
             type: types.LOAD_ENQUIRY_TYPES_SUCCESS,

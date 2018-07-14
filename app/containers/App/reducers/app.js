@@ -7,7 +7,7 @@ const initialState = {
     error: false,
 };
 
-function globalReducer(state = initialState, action) {
+function appReducer(state = initialState, action) {
     switch (action.type) {
         case types.SHOW_LOADER:
             return {
@@ -40,4 +40,4 @@ function globalReducer(state = initialState, action) {
     }
 }
 
-export default globalReducer;
+export default appReducer;
