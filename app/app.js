@@ -57,24 +57,22 @@ export const history = createHistory();
 
 const {store, persistor} = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
-console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-console.log(persistor.getState());
 
+// eslint-disable-next-line
+window.__app_store__ = store;
 
 store.runSaga(rootSaga);
 
 const render = messages => {
     ReactDOM.render(
         <Provider store={store}>
-                    <PersistGate loading={null} persistor={persistor}>
-                        <LanguageProvider messages={messages}>
+            <PersistGate loading={null} persistor={persistor}>
+                <LanguageProvider messages={messages}>
                     <ConnectedRouter history={history}>
-
                         <App/>
-
                     </ConnectedRouter>
-                        </LanguageProvider>
-                    </PersistGate>
+                </LanguageProvider>
+            </PersistGate>
         </Provider>,
         MOUNT_NODE,
     );

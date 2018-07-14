@@ -104,7 +104,7 @@ export class Enquiry extends React.PureComponent {
     }
 
     render() {
-        const {enquiryTypes, isEnqTypeOther} = this.props;
+        const {enquiryTypes, currentEnqType} = this.props;
 
         console.log('RENDER ENQUIRY >>>');
         console.log(enquiryTypes);
@@ -123,7 +123,7 @@ export class Enquiry extends React.PureComponent {
                         //onSubmit={this.props.onSubmitForm}
                         onSubmit={this.onSubmit}
                         enquiryTypes={enquiryTypes}
-                        isEnqTypeOther={isEnqTypeOther}
+                        isEnqTypeOther={currentEnqType === 'Other'}
                     />
                 </div>
             </article>
@@ -156,7 +156,7 @@ export const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = createStructuredSelector({
     enquiryTypes: makeSelectEnquiryTypes(),
-    isEnqTypeOther: makeSelectCurrentEnqType(),
+    currentEnqType: makeSelectCurrentEnqType(),
 });
 
 const withConnect = connect(
@@ -164,12 +164,7 @@ const withConnect = connect(
     mapDispatchToProps,
 );
 
-const withReducer = injectReducer({key: 'enquiry', reducer});
-const withSaga = injectSaga({key: 'enquiry', saga});
-
 export default compose(
-    withReducer,
-    withSaga,
     withConnect,
     withSignal,
     withData,

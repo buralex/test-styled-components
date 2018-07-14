@@ -141,10 +141,7 @@ const withConnect = connect(
     mapDispatchToProps,
 );
 
-const withSaga = injectSaga({key: 'global', saga});
-
 export default compose(
-    //withSaga,
     withRouter,
     withConnect,
     withSignal,

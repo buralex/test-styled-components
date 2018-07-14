@@ -3,10 +3,10 @@ import {CHANGE_USERNAME} from './constants';
 
 // The initial state of the App
 export const initialState = {
-    username: '',
+    categories: [],
 };
 
-function homeReducer(state = initialState, action) {
+function servicesReducer(state = initialState, action) {
     switch (action.type) {
         case CHANGE_USERNAME:
             return state;
@@ -15,4 +15,4 @@ function homeReducer(state = initialState, action) {
     }
 }
 
-export default homeReducer;
+export default servicesReducer;

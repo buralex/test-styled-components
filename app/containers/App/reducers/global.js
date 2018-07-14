@@ -1,19 +1,13 @@
 
-import * as types from './constants/types';
+import * as types from '../constants/types';
 
 // The initial state of the App
 const initialState = {
-    isLoggedIn: false,
     loading: false,
     error: false,
-    userData: {
-        authKey: null,
-        isAdmin: true,
-        user: {},
-    },
 };
 
-function appReducer(state = initialState, action) {
+function globalReducer(state = initialState, action) {
     switch (action.type) {
         case types.SHOW_LOADER:
             return {
@@ -41,23 +35,9 @@ function appReducer(state = initialState, action) {
                 loading: false,
             };
 
-        case types.LOGIN_SUCCESS: {
-            const {token, user} = action.payload.data || {};
-
-            return {
-                ...state,
-                userData: {
-                    authKey: token,
-                    user,
-                },
-                isLoggedIn: true,
-                loading: false,
-            };
-        }
-
         default:
             return state;
     }
 }
 
-export default appReducer;
+export default globalReducer;

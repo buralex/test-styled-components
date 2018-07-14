@@ -8,35 +8,38 @@ import * as types from './constants/types';
 
 import * as actions from './actions';
 
+/**
+ * Login
+ */
+export function* login(action) {
+    const {email, password} = action.payload;
 
+    try {
+        yield put(actions.showLoader());
+
+        const data = yield loginRequest({ email, password }).then(res => res.data);
+
+        yield put({
+            type: types.LOGIN_SUCCESS,
+            payload: data,
+        });
+
+        yield put(actions.hideLoader());
+        yield call(history.push, '/service-categories');
+
+    } catch (e) {
+        yield put(actions.serverError(e));
+    }
+}
 export function* watchLogin() {
-    yield takeLatest(types.LOGIN, function* (action) {
-        const {email, password} = action.payload;
-
-        try {
-            yield put(actions.showLoader());
-
-            const data = yield loginRequest({ email, password }).then(res => res.data);
-
-            yield put({
-                type: types.LOGIN_SUCCESS,
-                payload: data,
-            });
-
-            yield put(actions.hideLoader());
-            yield call(history.push, '/service-categories');
-
-        } catch (e) {
-            yield put(actions.serverError(e));
-        }
-    });
+    yield takeLatest(types.LOGIN, login);
 }
 
 
 /**
  * Watcher
  */
-export default function* appSaga() {
+export default function* saga() {
     yield all([
         watchLogin(),
     ])

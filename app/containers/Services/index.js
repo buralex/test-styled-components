@@ -1,8 +1,3 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -169,7 +164,6 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-    username: makeSelectUsername(),
     loading: makeSelectLoading(),
     error: makeSelectError(),
 });
@@ -179,11 +173,6 @@ const withConnect = connect(
     mapDispatchToProps,
 );
 
-const withReducer = injectReducer({key: 'home', reducer});
-const withSaga = injectSaga({key: 'home', saga});
-
 export default compose(
-    withReducer,
-    withSaga,
     withConnect,
 )(HomePage);

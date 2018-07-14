@@ -5,8 +5,8 @@
 import {createSelector} from 'reselect';
 
 const selectGlobal = state => state.global;
-
 const selectRoute = state => state.route;
+const selectUserData = state => state.userData;
 
 const makeSelectCurrentUser = () =>
     createSelector(selectGlobal, globalState => globalState.userData.user);
@@ -18,7 +18,7 @@ const makeSelectError = () =>
     createSelector(selectGlobal, globalState => globalState.error);
 
 const makeSelectIsLoggedIn = () =>
-    createSelector(selectGlobal, globalState => globalState.isLoggedIn);
+    createSelector(selectUserData, userData => userData.authKey !== null);
 
 const makeSelectLocation = () =>
     createSelector(selectRoute, routeState => routeState.location);

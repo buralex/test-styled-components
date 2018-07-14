@@ -7,7 +7,7 @@ const restApi = axios.create({
 
 restApi.interceptors.request.use((config) => {
     // eslint-disable-next-line
-    const authKey = window.__app_store__.getState().global.userData.authKey;
+    const authKey = window.__app_store__.getState().userData.authKey;
     // eslint-disable-next-line
     config.headers.Authorization = `${authKey}` || `963be28b713448ddd1660b5f8eed91b45ffcfe48`;
     return config;
@@ -21,6 +21,9 @@ restApi.interceptors.request.use((config) => {
 //     return Promise.reject(error);
 // });
 
+/*------------------------------------
+          api common functions
+---------------------------------------*/
 export const fetchCategory = (id, params) => restApi(`/services/categories/${id}`, {params});
 export const fetchCategories = (params) => restApi(`/services/categories`, {params});
 export const fetchFriends = (params) => restApi(`/suggestions/friends`, {params});
@@ -31,5 +34,8 @@ export const postToSupport = (params) => restApi.post(`/support`, {...params});
 
 
 export const loginRequest = (params) => restApi.post(`/account/login`, {...params});
+/*------------------------------------
+          / api common functions
+---------------------------------------*/
 
 export default restApi;

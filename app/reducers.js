@@ -3,58 +3,30 @@
  */
 
 import {combineReducers} from 'redux';
-import {LOCATION_CHANGE} from 'react-router-redux';
 import { reducer as reduxFormReducer } from 'redux-form';
 import { reducer as signalReducer } from 'redux-signal';
 import storage from 'redux-persist/lib/storage'
 
-import globalReducer from 'containers/App/reducer';
-import userSettingsReducer from 'containers/App/userSettingsReducer';
+import globalReducer from 'containers/App/reducers/global';
+import routeReducer from 'containers/App/reducers/route';
+import userDataReducer from 'containers/App/reducers/userDataReducer';
+import userSettingsReducer from 'containers/App/reducers/userSettingsReducer';
+
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import enquiryReducer from 'containers/Enquiry/reducer';
+import servicesReducer from 'containers/Services/reducer';
 import {persistReducer} from "redux-persist";
 
-/*
- * routeReducer
- *
- * The reducer merges route location changes into state.
- * The change is necessitated by moving to react-router-redux@5
- *
- */
 
-// Initial routing state
-const routeInitialState = {
-    location: null,
-};
+export default combineReducers({
+    route: routeReducer,
+    global: globalReducer,
+    userData: persistReducer({key: 'userData', storage}, userDataReducer),
+    userSettings: persistReducer({key: 'userSettings', storage}, userSettingsReducer),
+    language: languageProviderReducer,
+    enquiry: enquiryReducer,
+    services: servicesReducer,
 
-/**
- * Merge route into the global application state
- */
-export function routeReducer(state = routeInitialState, action) {
-    switch (action.type) {
-        /* istanbul ignore next */
-        case LOCATION_CHANGE:
-            return {
-                ...state,
-                location: action.payload,
-            };
-
-        default:
-            return state;
-    }
-}
-
-/**
- * Creates the main reducer with the dynamically injected ones
- */
-export default function createReducer(injectedReducers) {
-    return combineReducers({
-        route: routeReducer,
-        //global: globalReducer,
-        global: persistReducer({key: 'global', storage}, globalReducer),
-        userSettings: persistReducer({key: 'userSettings', storage}, userSettingsReducer),
-        language: languageProviderReducer,
-        form: reduxFormReducer,
-        signal: signalReducer,
-        ...injectedReducers,
-    });
-}
+    form: reduxFormReducer,
+    signal: signalReducer,
+});

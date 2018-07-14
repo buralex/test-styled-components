@@ -1,5 +1,5 @@
 
-import * as types from './constants/types';
+import * as types from '../constants/types';
 
 const initialState = {
     test: '',
