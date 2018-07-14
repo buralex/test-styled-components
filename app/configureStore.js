@@ -46,11 +46,12 @@ export default function configureStore(initialState = {}, history) {
     store.injectedReducers = {}; // Reducer registry
     store.injectedSagas = {}; // Saga registry
 
+    // save to local storage
     store.subscribe(throttle(() => {
         saveState({
-            todos: store.getState().todos
-        })
-    }, 1000))
+            userSettings: store.getState()
+        });
+    }, 1000));
 
     // Make reducers hot reloadable, see http://mxs.is/googmo
     /* istanbul ignore next */
