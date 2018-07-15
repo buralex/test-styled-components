@@ -16,6 +16,7 @@ import { history } from 'app';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
+
 import {
     makeSelectRepos,
     makeSelectLoading,
@@ -58,7 +59,7 @@ const onNo = () => {
 }
 
 
-export class Enquiry extends React.PureComponent {
+class Enquiry extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -69,7 +70,7 @@ export class Enquiry extends React.PureComponent {
     }
 
     componentDidMount() {
-        //history.push('/enquiry');
+        history.push('/enquiry');
     }
 
     onBtnErrorClick = () => {
@@ -85,23 +86,6 @@ export class Enquiry extends React.PureComponent {
             eventHandler: ServerErrorEvent,
             className: 'modal-danger',
         })
-    }
-
-    onSubmit(data) {
-        var body = new FormData();
-        Object.keys(data).forEach(( key ) => {
-            body.append(key, data[ key ]);
-        });
-
-        console.info('POST', body, data);
-        console.info('This is expected to fail:');
-        fetch(`http://example.com/send/`, {
-            method: 'POST',
-            body: body,
-        })
-            .then(res => res.json())
-            .then(res => console.log(res))
-            .catch(err => console.error(err));
     }
 
     render() {
@@ -123,22 +107,9 @@ export class Enquiry extends React.PureComponent {
                     <meta name="description" content="Denteez" />
                 </Helmet>
                 <div>
-                    <Button size="sm" color="success" onClick={async () => {
-                        this.props.aaa();
-
-                        console.log('showl');
-
-                    }}>show loading</Button>
-                    <Button size="sm" color="success" onClick={async () => {
-                        //this.props.aaa();
-                        this.props.bbb()
-                        console.log('hide');
-
-                    }}>hide loading</Button>
                     <EnquiryForm
                         initialValues={this.initValues}
-                        //onSubmit={this.props.onSubmitForm}
-                        onSubmit={this.onSubmit}
+                        onSubmit={this.props.onSubmitForm}
                         enquiryTypes={enquiryTypes}
                         isEnqTypeOther={currentEnqType === 'Other'}
                     />
@@ -159,10 +130,8 @@ Enquiry.propTypes = {
 
 export const mapDispatchToProps = (dispatch) => ({
     onSubmitForm: (values) => {
-        //dispatch(actions.postEnquiry(values));
+        dispatch(actions.postEnquiry(values));
     },
-    aaa: (values) => dispatch(appActions.showLoader()),
-    bbb: (values) => dispatch(appActions.hideLoader()),
 
     /* -------------------- withData hoc ---------------------------------- */
     getData: () => {
@@ -183,8 +152,12 @@ const withConnect = connect(
     mapDispatchToProps,
 );
 
+const withReducer = injectReducer({key: 'enquiry', reducer});
+const withSaga = injectSaga({key: 'enquiry', saga});
+
 export default compose(
-    withConnect,
+    withReducer,
+    withSaga,
     withSignal,
-    withData,
-)(Enquiry);
+    withConnect,
+)(withData(Enquiry));

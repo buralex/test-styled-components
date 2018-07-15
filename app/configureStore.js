@@ -56,6 +56,6 @@ export default function configureStore(initialState = {}, history) {
             store.replaceReducer(createReducer(store.injectedReducers));
         });
     }
-
+    console.log(store.getState());
     return store;
 }

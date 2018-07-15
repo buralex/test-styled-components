@@ -25,7 +25,7 @@ export default ({ key, saga, mode }) => WrappedComponent => {
       WrappedComponent.name ||
       'Component'})`;
 
-    componentWillMount() {
+    componentDidMount() {
       const { injectSaga } = this.injectors;
 
       injectSaga(key, { saga, mode }, this.props);

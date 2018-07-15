@@ -37,7 +37,7 @@ import LoginForm from "./components/LoginForm";
 
 
 /* eslint-disable react/prefer-stateless-function */
-export class Login extends React.PureComponent {
+class Login extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         // Typical usage (don't forget to compare props):
