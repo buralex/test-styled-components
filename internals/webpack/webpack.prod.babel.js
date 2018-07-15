@@ -70,15 +70,15 @@ module.exports = require('./webpack.base.babel')({
     }),
 
     new WebpackPwaManifest({
-      name: 'React Boilerplate',
-      short_name: 'React BP',
-      description: 'My React Boilerplate-based project!',
+      name: 'test denteez',
+      short_name: 'test denteez',
+      description: 'test denteez',
       background_color: '#fafafa',
-      theme_color: '#b1624d',
+      theme_color: '#87b448',
       icons: [
         {
-          src: path.resolve('app/images/icon-512x512.png'),
-          sizes: [72, 96, 120, 128, 144, 152, 167, 180, 192, 384, 512],
+          src: path.resolve('app/images/icon-48x48.png'),
+          sizes: [48],
         },
       ],
     }),

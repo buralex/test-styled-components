@@ -3,13 +3,12 @@
  */
 
 import {createStore, applyMiddleware, compose} from 'redux';
-import {fromJS} from 'immutable';
+
 import {routerMiddleware} from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
-import throttle from 'lodash/throttle'
+import persistState from 'redux-localstorage'
 
 import createReducer from './reducers';
-import {loadState, saveState} from './localStorage'
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -19,7 +18,11 @@ export default function configureStore(initialState = {}, history) {
     // 2. routerMiddleware: Syncs the location/URL path to the state
     const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
-    const enhancers = [applyMiddleware(...middlewares)];
+    const enhancers = [
+        applyMiddleware(...middlewares),
+        // save state to localstorage
+        persistState(['userData', 'userSettings']),
+    ];
 
     // If Redux DevTools Extension is installed use it, otherwise use Redux compose
     /* eslint-disable no-underscore-dangle, indent */
@@ -37,7 +40,7 @@ export default function configureStore(initialState = {}, history) {
 
     const store = createStore(
         createReducer(),
-        fromJS(initialState),
+        initialState,
         composeEnhancers(...enhancers),
     );
 
@@ -45,13 +48,6 @@ export default function configureStore(initialState = {}, history) {
     store.runSaga = sagaMiddleware.run;
     store.injectedReducers = {}; // Reducer registry
     store.injectedSagas = {}; // Saga registry
-
-    // save to local storage
-    store.subscribe(throttle(() => {
-        saveState({
-            userSettings: store.getState()
-        });
-    }, 1000));
 
     // Make reducers hot reloadable, see http://mxs.is/googmo
     /* istanbul ignore next */

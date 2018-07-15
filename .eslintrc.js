@@ -20,8 +20,9 @@ module.exports = {
     },
   },
   rules: {
-    'prettier/prettier': ['error', prettierOptions],
+    //'prettier/prettier': ['error', prettierOptions],
     'arrow-body-style': [2, 'as-needed'],
+    'react/prop-types': 1,
     'class-methods-use-this': 0,
     'comma-dangle': [2, 'always-multiline'],
     'import/imports-first': 0,

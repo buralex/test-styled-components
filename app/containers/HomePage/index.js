@@ -32,6 +32,7 @@ import {changeUsername} from './actions';
 import {makeSelectUsername} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import * as appActions from "../App/actions";
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.PureComponent {
@@ -52,6 +53,8 @@ export class HomePage extends React.PureComponent {
             repos,
         };
 
+        console.log('render homepage HHHHHHHHHHHHHHHHHHHHHHHHH>>>');
+
         return (
             <article>
                 <Helmet>
@@ -70,6 +73,18 @@ export class HomePage extends React.PureComponent {
                             <FormattedMessage {...messages.startProjectMessage} />
                         </p>
                     </CenteredSection>
+                    <button size="sm" color="success" onClick={async () => {
+                        this.props.aaa();
+
+                        console.log('showl');
+
+                    }}>show loading</button>
+                    <button size="sm" color="success" onClick={async () => {
+                        //this.props.aaa();
+                        this.props.bbb()
+                        console.log('hide');
+
+                    }}>hide loading</button>
                     <Section>
                         <H2>
                             <FormattedMessage {...messages.trymeHeader} />
@@ -89,7 +104,7 @@ export class HomePage extends React.PureComponent {
                                 />
                             </label>
                         </Form>
-                        <ReposList {...reposListProps} />
+                        {/*<ReposList {...reposListProps} />*/}
                     </Section>
                 </div>
             </article>
@@ -113,13 +128,15 @@ export function mapDispatchToProps(dispatch) {
             if (evt !== undefined && evt.preventDefault) evt.preventDefault();
             dispatch(loadRepos());
         },
+        aaa: (values) => dispatch(appActions.showLoader()),
+        bbb: (values) => dispatch(appActions.hideLoader()),
     };
 }
 
 const mapStateToProps = createStructuredSelector({
     repos: makeSelectRepos(),
     username: makeSelectUsername(),
-    loading: makeSelectLoading(),
+    //loading: makeSelectLoading(),
     error: makeSelectError(),
 });
 

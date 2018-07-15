@@ -15,13 +15,17 @@ import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
-import 'sanitize.css/sanitize.css';
+
 
 // Import root app
 import App from 'containers/App';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
+
+// Import CSS reset and Global Styles
+import 'sanitize.css/sanitize.css';
+import 'styles/index.scss';
 
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
@@ -32,23 +36,27 @@ import configureStore from './configureStore';
 // Import i18n messages
 import {translationMessages} from './i18n';
 
-// Import CSS reset and Global Styles
-import './global-styles';
 
-// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
-// the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Open Sans', {});
+/* ----------------------- check loading special fonts ------------------------------------------- */
+const proximaReg = new FontFaceObserver('Proxima Nova Reg');
+const proximaLight = new FontFaceObserver('Proxima Nova Light');
 
-// When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.load().then(() => {
+Promise.all([proximaReg.load(), proximaLight.load()]).then(() => {
     document.body.classList.add('fontLoaded');
+}, () => {
+    document.body.classList.remove('fontLoaded');
+    console.error('some fonts not loaded');
 });
+/* ----------------------- check loading special fonts ------------------------------------------- */
 
 // Create redux store with history
 const initialState = {};
-const history = createHistory();
+export const history = createHistory();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
+
+// eslint-disable-next-line
+window.__global_store__ = store;
 
 const render = messages => {
     ReactDOM.render(
