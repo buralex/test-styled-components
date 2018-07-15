@@ -42,7 +42,7 @@ export function* postEnquiry(action) {
     let values = action.payload;
 
     if (values[db.other_enquiry_type]) {
-        // replace 'enquiry_type' with 'other_enquiry_type' and delete 'other_enquiry_type' prop
+        // replace enquiry with other and delete other prop
         values = omit(
             {...values, [db.enquiry_type]: values[db.other_enquiry_type]},
             [db.other_enquiry_type]
@@ -54,12 +54,13 @@ export function* postEnquiry(action) {
 
         const data = yield postToSupport(values).then(res => res.data);
 
-        yield put({
-            type: types.POST_ENQUIRY_SUCCESS,
-            payload: data,
-        });
+        // yield put({
+        //     type: types.POST_ENQUIRY_SUCCESS,
+        //     payload: data,
+        // });
 
-        yield put(appActions.hideLoader());
+        //yield put(appActions.hideLoader());
+        yield put(appActions.serverSuccess(data));
 
     } catch (e) {
         yield put(appActions.serverError(e));

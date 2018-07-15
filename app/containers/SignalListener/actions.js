@@ -31,7 +31,6 @@ export function login(values) {
 }
 
 
-/* ------------------------------- server events --------------------------------- */
 /**
  * Server error
  */
@@ -41,6 +40,7 @@ export function serverError(error) {
         payload: (error.response && error.response.data.error) || error,
     };
 }
+
 /**
  * Clear server error
  */
@@ -49,22 +49,3 @@ export function clearServerError() {
         type: types.CLEAR_SERVER_ERROR,
     };
 }
-
-/**
- * Server success
- */
-export function serverSuccess(data) {
-    return {
-        type: types.SERVER_SUCCESS,
-        payload: data.data || data,
-    };
-}
-/**
- * Clear success
- */
-export function clearServerSuccess() {
-    return {
-        type: types.CLEAR_SERVER_SUCCESS,
-    };
-}
-/* ------------------------------- / server events --------------------------------- */

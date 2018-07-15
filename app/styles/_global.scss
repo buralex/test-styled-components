@@ -35,8 +35,28 @@ body.fontLoaded {
   color: $danger;
 }
 
+.modal-success {
+  color: $success;
+}
+
 //**************************
 //       / Modals
+//**************************
+
+
+//**************************
+//       Forms
+//**************************
+
+.form-content-small {
+  max-width: 760px;
+  margin: auto;
+  background: $white;
+  padding: 20px;
+}
+
+//**************************
+//       / Forms
 //**************************
 
 

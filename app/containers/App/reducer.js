@@ -6,6 +6,7 @@ import * as types from './constants/types';
 const initialState = {
     loading: false,
     error: false,
+    success: false,
 };
 
 function appReducer(state = initialState, action) {
@@ -33,6 +34,20 @@ function appReducer(state = initialState, action) {
             return {
                 ...state,
                 error: false,
+                loading: false,
+            };
+
+        case types.SERVER_SUCCESS:
+            return {
+                ...state,
+                success: action.payload,
+                loading: false,
+            };
+
+        case types.CLEAR_SERVER_SUCCESS:
+            return {
+                ...state,
+                success: false,
                 loading: false,
             };
 

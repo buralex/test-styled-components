@@ -9,16 +9,13 @@ export const selectRoute = state => state.route;
 export const selectUserData = state => state.userData;
 
 export const makeSelectCurrentUser = () =>
-    createSelector(selectApp, app => app.userData.user);
+    createSelector(selectApp, globalState => globalState.userData.user);
 
 export const makeSelectLoading = () =>
-    createSelector(selectApp, app => app.loading);
+    createSelector(selectApp, globalState => globalState.loading);
 
 export const makeSelectError = () =>
-    createSelector(selectApp, app => app.error);
-
-export const makeSelectSuccess = () =>
-    createSelector(selectApp, app => app.success);
+    createSelector(selectApp, globalState => globalState.error);
 
 export const makeSelectIsLoggedIn = () =>
     createSelector(selectUserData, userData => userData.authKey !== null);

@@ -38,46 +38,18 @@ import Header from 'layout/Header';
 import Footer from 'layout/Footer';
 
 
+import SignalListener from 'containers/SignalListener';
+
+
 import SignalContainer from 'containers/SignalContainer';
 import Router from "router";
 
 import saga from './saga';
 import * as actions from "./actions";
 
-const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
-  display: flex;
-  min-height: 100%;
-  padding: 0 16px;
-  flex-direction: column;
-`;
 
 
 class App extends React.PureComponent {
-
-
-    componentDidUpdate() {
-        const {error} = this.props;
-
-        if (error) {
-            this.showErrorModal(error);
-            this.props.clearServerError();
-        }
-    }
-
-    showErrorModal = (error) => {
-        console.error('ERROR APP CONTANER >>>');
-        console.error(error);
-        console.error(error.message);
-
-        this.props.createSignal({
-            type: SignalTypes.OK,
-            title: `Error: ${error.message || ''}`,
-            message: error.description || 'Sorry, try later.',
-            className: 'modal-danger',
-        })
-    };
 
     render() {
         const {isLoggedIn, loading} = this.props;
@@ -86,7 +58,7 @@ class App extends React.PureComponent {
 
         console.log(loading);
         return (
-            <AppWrapper>
+            <div>
                 <Helmet
                     titleTemplate="Denteez"
                     defaultTitle="Denteez"
@@ -96,12 +68,17 @@ class App extends React.PureComponent {
 
                 {isLoggedIn && <Header/>}
 
-                <Router />
+                <div className="container-fluid">
+                    <div className="row">
+                        <Router />
+                    </div>
+                </div>
 
                 {isLoggedIn && <Footer/>}
 
+                <SignalListener />
                 <SignalContainer />
-            </AppWrapper>
+            </div>
         );
     }
 }
@@ -122,7 +99,7 @@ export const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = createStructuredSelector({
     // loading: makeSelectLoading(),
-    error: makeSelectError(),
+    // error: makeSelectError(),
 });
 
 const withConnect = connect(
@@ -135,6 +112,5 @@ const withSaga = injectSaga({key: 'app', saga});
 export default compose(
     withRouter,
     withSaga,
-    withSignal,
     withConnect,
 )(App);

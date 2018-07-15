@@ -13,21 +13,40 @@ import {
     SignalTypes,
 } from 'redux-signal'
 
+
+const ParseError = ({ data: {description, details}}) => (
+    <div>
+        <h5>{description}</h5>
+
+        {details.length &&
+            <div>
+                Details:
+                <ul>
+                    {details.map((elem, i) => <div key={`err_ell_${i+1}`}>{elem.description}</div>)}
+                </ul>
+            </div>
+        }
+    </div>
+)
+
 const SignalContainer = ({ event, destroy, close, modal }) => {
     // modal contains all the properties you submit when calling `createSignal`, so you have all the freedom
     // to do whatever you want (title, message, isRequired) only isFirst and isVisible are required.
-
+    console.log(modal);
     return (
         <div>
             <Modal isOpen={modal.isVisible} toggle={destroy} className={modal.className} backdrop="static">
                 <ModalHeader toggle={destroy}>{modal.title}</ModalHeader>
                 <ModalBody>
-                    {modal.message}
+                    {modal.modalType === 'error' &&
+                        <ParseError data={modal.modalData} />
+                    }
+                    {modal.modalType === 'success' &&
+                        modal.message
+                    }
                 </ModalBody>
                 <ModalFooter>
-
                     {getFooter(modal, eventType => event(modal, eventType))}
-
                 </ModalFooter>
             </Modal>
         </div>

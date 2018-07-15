@@ -96,12 +96,12 @@ class Enquiry extends React.PureComponent {
         // }
 
         console.log('RENDER ENQUIRY >>>');
-        console.log(enquiryTypes);
-
-        console.log(this.props);
+        // console.log(enquiryTypes);
+        //
+        // console.log(this.props);
 
         return (
-            <article>
+            <div className="enquiry-container col bg-success">
                 <Helmet>
                     <title>Enquiry Page</title>
                     <meta name="description" content="Denteez" />
@@ -114,7 +114,7 @@ class Enquiry extends React.PureComponent {
                         isEnqTypeOther={currentEnqType === 'Other'}
                     />
                 </div>
-            </article>
+            </div>
         );
     }
 }
@@ -130,6 +130,7 @@ Enquiry.propTypes = {
 
 export const mapDispatchToProps = (dispatch) => ({
     onSubmitForm: (values) => {
+        console.log(values);
         dispatch(actions.postEnquiry(values));
     },
 

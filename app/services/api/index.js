@@ -49,7 +49,7 @@ export const fetchEnquiryTypes = (params) => restApi(`/directories/enquiry-types
 
 export const postToSupport = (data) => {
     const formData = new FormData();
-
+    console.log(data);
     Object.keys(data).forEach(( key ) => {
         formData.append(key, data[ key ]);
     });
