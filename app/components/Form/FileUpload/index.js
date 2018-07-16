@@ -21,6 +21,12 @@ export default class FileUpload extends React.PureComponent {
         this.onUpdate(prevProps);
     }
 
+    componentWillUnmount() {
+        if (this.state.file) {
+            window.URL.revokeObjectURL(this.state.file.preview);
+        }
+    }
+
     onUpdate = (prevProps) => {
         // clear values
         if (!prevProps.meta.pristine && this.props.meta.pristine) {

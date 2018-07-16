@@ -107,6 +107,7 @@ class Enquiry extends React.PureComponent {
                     <meta name="description" content="Denteez" />
                 </Helmet>
                 <div>
+                    <Button color="success" tag={Link} to="/login">login</Button>
                     <EnquiryForm
                         initialValues={this.initValues}
                         onSubmit={this.props.onSubmitForm}
