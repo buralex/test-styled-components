@@ -20,7 +20,7 @@ import validate from './validation';
 
 
 
-const EnquiryForm = props => {
+const AboutForm = props => {
     const {
         handleSubmit, pristine, reset, submitting, change, form, enquiryTypes, isEnqTypeOther, loading,
     } = props;
@@ -94,6 +94,6 @@ const EnquiryForm = props => {
 }
 
 export default reduxForm({
-    form: 'EnquiryForm', // a unique identifier for this form
+    form: 'AboutForm', // a unique identifier for this form
     validate, // <--- validation function given to redux-form
-})(EnquiryForm)
+})(AboutForm)

@@ -30,6 +30,7 @@ module.exports = require('./webpack.base.babel')({
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'app/index.html',
+      chunksSortMode: 'none', // because of Error('Cyclic dependency' + nodeRep)
       minify: {
         removeComments: true,
         collapseWhitespace: true,

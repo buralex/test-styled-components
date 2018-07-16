@@ -80,12 +80,7 @@ export class HomePage extends React.PureComponent {
                 </Helmet>
                 <div>
                     <CenteredSection>
-                        <H2>
-                            <FormattedMessage {...messages.startProjectHeader} />
-                        </H2>
-                        <p>
-                            <FormattedMessage {...messages.startProjectMessage} />
-                        </p>
+
 
                         <Button
                             color="success" onClick={async () => {
@@ -99,12 +94,7 @@ export class HomePage extends React.PureComponent {
 
                             }}>Add New Service</Button>
 
-                        <Button
-                            color="success" onClick={async () => {
-                                this.props.logout()
-
-                            }}
-                        >ssssssssssssss</Button>
+                        <Button color="success" onClick={this.props.logout}>logout</Button>
 
                         <div className="p-3 mb-3 swatch-indigo">Indigo</div>
 
@@ -112,43 +102,9 @@ export class HomePage extends React.PureComponent {
                         <div className="col-2 text-truncate">
                             Praeterea iter est quasdam res quas ex communi.
                         </div>
-                        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                            <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
-                            <ModalBody>
-                                Lorem ud exercitation ullamco lab
-                            </ModalBody>
-                            <ModalFooter>
-                                <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-                                <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-                            </ModalFooter>
-                        </Modal>
-
-                        <p>Somewhere in here is a <a href="#" id="UncontrolledTooltipExample">tooltip</a>.</p>
-                        <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
-                            Hello world!
-                        </UncontrolledTooltip>
 
                     </CenteredSection>
-                    <Section>
-                        <H2>
-                            <FormattedMessage {...messages.trymeHeader} />
-                        </H2>
-                        <Form onSubmit={this.props.onSubmitForm}>
-                            <label htmlFor="username">
-                                <FormattedMessage {...messages.trymeMessage} />
-                                <AtPrefix>
-                                    <FormattedMessage {...messages.trymeAtPrefix} />
-                                </AtPrefix>
-                                <Input
-                                    id="username"
-                                    type="text"
-                                    placeholder="mxstbr"
-                                    value={this.props.username}
-                                    onChange={this.props.onChangeUsername}
-                                />
-                            </label>
-                        </Form>
-                    </Section>
+
                 </div>
             </article>
         );

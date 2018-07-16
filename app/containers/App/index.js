@@ -24,6 +24,7 @@ import {
     makeSelectLoading,
     makeSelectRepos,
     makeSelectIsLoggedIn,
+    makeSelectIsAbout,
     selectApp
 } from "containers/App/selectors";
 
@@ -52,11 +53,12 @@ import * as actions from "./actions";
 class App extends React.PureComponent {
 
     render() {
-        const {isLoggedIn, loading} = this.props;
+        const {isLoggedIn, isAbout, loading} = this.props;
         console.log('---------------- RENDER APP -------------------', this.props);
 
 
         console.log(loading);
+        console.log(isAbout);
         return (
             <div>
                 <Helmet
@@ -66,7 +68,7 @@ class App extends React.PureComponent {
                     <meta name="description" content="Denteez"/>
                 </Helmet>
 
-                {isLoggedIn && <Header/>}
+                {isLoggedIn && !isAbout && <Header/>}
 
                 <div className="container-fluid">
                     <div className="row">
@@ -74,7 +76,7 @@ class App extends React.PureComponent {
                     </div>
                 </div>
 
-                {isLoggedIn && <Footer/>}
+                {isLoggedIn && !isAbout && <Footer/>}
 
                 <SignalListener />
                 <SignalContainer />
@@ -98,8 +100,8 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-    // loading: makeSelectLoading(),
-    // error: makeSelectError(),
+    isLoggedIn: makeSelectIsLoggedIn(),
+    isAbout: makeSelectIsAbout(),
 });
 
 const withConnect = connect(

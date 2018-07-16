@@ -81,7 +81,7 @@ class Login extends React.PureComponent {
 
                             }}>Add New Service</Button>
 
-                        <Button color="primary" tag={Link} to="/enquiry">enquiry</Button>
+                        <Button color="primary" tag={Link} to="/about">enquiry</Button>
                         <div className="col-2 text-truncate">
                             Praeterea iter est quasdam res quas ex communi.
                         </div>

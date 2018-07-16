@@ -1,38 +1,76 @@
-/**
- * Gets the repositories of the user from Github
- */
-
-import {call, put, select, takeLatest} from 'redux-saga/effects';
-
-import {reposLoaded, repoLoadingError} from 'containers/App/actions';
-
-import request from 'utils/request';
-import {makeSelectUsername} from 'containers/HomePage/selectors';
-
-/**
- * Github repos request/response handler
- */
-export function* getRepos() {
-    // Select username from store
-    const username = yield select(makeSelectUsername());
-    const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
-
-    try {
-        // Call our request helper (see 'utils/request')
-        const repos = yield call(request, requestURL);
-        yield put(reposLoaded(repos, username));
-    } catch (err) {
-        yield put(repoLoadingError(err));
-    }
-}
-
-/**
- * Root saga manages watcher lifecycle
- */
-export default function* githubData() {
-    // Watches for LOAD_REPOS actions and calls getRepos when one comes in.
-    // By using `takeLatest` only the result of the latest API call is applied.
-    // It returns task descriptor (just like fork) so we can continue execution
-    // It will be cancelled automatically on component unmount
-    yield takeLatest(LOAD_REPOS, getRepos);
-}
+//
+//
+// import {call, put, select, all, takeLatest} from 'redux-saga/effects';
+// import {fetchEnquiryTypes, postToSupport, fetchDirectories} from "services/api";
+// import { history } from 'app';
+// import omit from 'lodash/omit';
+// import {createSelector} from "reselect";
+// import * as appActions from 'containers/App/actions';
+//
+// import * as types from './constants/types';
+// import {FIELDS as db} from './constants/fields';
+//
+// /**
+//  * Load enquiry types
+//  */
+// export function* loadEnquiryTypes() {
+//     try {
+//         yield put(appActions.showLoader());
+//
+//         const data = yield fetchEnquiryTypes().then(res => res.data);
+//
+//         yield put({
+//             type: types.LOAD_ENQUIRY_TYPES_SUCCESS,
+//             payload: data,
+//         });
+//
+//         yield put(appActions.hideLoader());
+//
+//     } catch (e) {
+//         yield put(appActions.serverError(e));
+//     }
+// }
+// export function* watchLoadEnquiryTypes() {
+//     yield takeLatest(types.LOAD_ENQUIRY_TYPES, loadEnquiryTypes);
+// }
+//
+//
+// /**
+//  * Post enquiry
+//  */
+// export function* postEnquiry(action) {
+//     let values = action.payload;
+//
+//     if (values[db.other_enquiry_type]) {
+//         // replace enquiry with other and delete other prop
+//         values = omit(
+//             {...values, [db.enquiry_type]: values[db.other_enquiry_type]},
+//             [db.other_enquiry_type]
+//         );
+//     }
+//
+//     try {
+//         yield put(appActions.showLoader());
+//
+//         const data = yield postToSupport(values).then(res => res.data);
+//
+//         yield put(appActions.serverSuccess(data));
+//
+//     } catch (e) {
+//         yield put(appActions.serverError(e));
+//     }
+// }
+// export function* watchPostEnquiry() {
+//     yield takeLatest(types.POST_ENQUIRY, postEnquiry);
+// }
+//
+//
+// /**
+//  * Watcher
+//  */
+// export default function* saga() {
+//     yield all([
+//         watchLoadEnquiryTypes(),
+//         watchPostEnquiry(),
+//     ])
+// }

@@ -36,11 +36,11 @@ import messages from './messages';
 
 import * as actions from './actions';
 import {makeSelectEnquiryTypes, makeSelectCurrentEnqType} from './selectors';
-import {makeSelectLoading} from 'containers/App/selectors';
+import {makeSelectIsLoggedIn, makeSelectLoading} from 'containers/App/selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-import EnquiryForm from "./components/EnquiryForm";
+import AboutForm from "./components/AboutForm";
 import * as appActions from "../App/actions";
 
 
@@ -55,7 +55,7 @@ const onNo = () => {
 }
 
 
-class Enquiry extends React.PureComponent {
+class About extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -66,7 +66,7 @@ class Enquiry extends React.PureComponent {
     }
 
     componentDidMount() {
-        history.push('/enquiry');
+        history.push('/about');
     }
 
     onBtnErrorClick = () => {
@@ -85,13 +85,13 @@ class Enquiry extends React.PureComponent {
     }
 
     render() {
-        const {enquiryTypes, currentEnqType, loading} = this.props;
+        const {enquiryTypes, currentEnqType, loading, isLoggedIn} = this.props;
         //
         // if (!enquiryTypes.length) {
         //     return null;
         // }
 
-        console.log('RENDER ENQUIRY >>>');
+        console.log('RENDER ABOUT >>>');
         // console.log(enquiryTypes);
         //
         // console.log(this.props);
@@ -103,9 +103,11 @@ class Enquiry extends React.PureComponent {
                     <meta name="description" content="Denteez" />
                 </Helmet>
                 <div>
-                    <Button color="success" tag={Link} to="/login">login</Button>
+                    {!isLoggedIn &&
+                        <Button color="success" tag={Link} to="/login">login</Button>
+                    }
 
-                    <EnquiryForm
+                    <AboutForm
                         loading={loading}
                         initialValues={this.initValues}
                         onSubmit={this.props.onSubmitForm}
@@ -118,7 +120,7 @@ class Enquiry extends React.PureComponent {
     }
 }
 
-Enquiry.propTypes = {
+About.propTypes = {
     // loading: PropTypes.bool,
     // error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     // repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
@@ -146,6 +148,7 @@ const mapStateToProps = createStructuredSelector({
     enquiryTypes: makeSelectEnquiryTypes(),
     currentEnqType: makeSelectCurrentEnqType(),
     loading: makeSelectLoading(),
+    isLoggedIn: makeSelectIsLoggedIn(),
 });
 
 const withConnect = connect(
@@ -153,12 +156,12 @@ const withConnect = connect(
     mapDispatchToProps,
 );
 
-const withReducer = injectReducer({key: 'enquiry', reducer});
-const withSaga = injectSaga({key: 'enquiry', saga});
+const withReducer = injectReducer({key: 'about', reducer});
+const withSaga = injectSaga({key: 'about', saga});
 
 export default compose(
     withReducer,
     withSaga,
     withSignal,
     withConnect,
-)(withData(Enquiry));
+)(withData(About));

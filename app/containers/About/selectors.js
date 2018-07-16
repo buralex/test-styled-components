@@ -7,7 +7,7 @@ export const selectForm = state => state.form || initialState;
 
 
 export const makeSelectCurrentEnqType = () =>
-    createSelector(selectForm, form => form.EnquiryForm && form.EnquiryForm.values.enquiry_type);
+    createSelector(selectForm, form => form.AboutForm && form.AboutForm.values.enquiry_type);
 
 export const makeSelectEnquiryTypes = () =>
     createSelector(selectEnquiry, enquiry => enquiry.enquiryTypes);

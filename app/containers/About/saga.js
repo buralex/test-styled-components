@@ -54,12 +54,6 @@ export function* postEnquiry(action) {
 
         const data = yield postToSupport(values).then(res => res.data);
 
-        // yield put({
-        //     type: types.POST_ENQUIRY_SUCCESS,
-        //     payload: data,
-        // });
-
-        //yield put(appActions.hideLoader());
         yield put(appActions.serverSuccess(data));
 
     } catch (e) {
