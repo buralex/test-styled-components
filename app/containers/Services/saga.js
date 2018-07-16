@@ -19,9 +19,6 @@ export function* loadCategories() {
 
         const data = yield fetchCategories().then(res => res.data);
 
-        console.log('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFf');
-        console.log(data);
-
         yield put({
             type: types.LOAD_CATEGORIES_SUCCESS,
             payload: data,

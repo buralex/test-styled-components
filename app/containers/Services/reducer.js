@@ -1,5 +1,5 @@
 
-import {CHANGE_USERNAME} from './constants';
+import * as types from './constants/types';
 
 // The initial state of the App
 export const initialState = {
@@ -8,8 +8,16 @@ export const initialState = {
 
 function servicesReducer(state = initialState, action) {
     switch (action.type) {
-        case CHANGE_USERNAME:
-            return state;
+        case types.LOAD_CATEGORIES_SUCCESS: {
+            const categories = action.payload.data || [];
+
+            return {
+                ...state,
+                categories,
+            };
+        }
+
+
         default:
             return state;
     }

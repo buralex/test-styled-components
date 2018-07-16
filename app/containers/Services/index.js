@@ -12,35 +12,29 @@ import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/ap
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import {
-    makeSelectRepos,
     makeSelectLoading,
     makeSelectError,
 } from 'containers/App/selectors';
-import H2 from 'components/H2';
 
 import withData from "hocs/withData";
 
-import AtPrefix from './AtPrefix';
-import CenteredSection from './CenteredSection';
-import Form from './Form';
-import Input from './Input';
-import Section from './Section';
-import messages from './messages';
-import {logout} from 'containers/App/actions';
-import {changeUsername} from './actions';
-import {makeSelectUsername} from './selectors';
+
+import * as appActions from "containers/App/actions";
+import {withSignal} from "redux-signal";
+
+
 
 import reducer from './reducer';
 import saga from './saga';
 
-import * as appActions from "containers/App/actions";
-import {withSignal} from "redux-signal";
+
+
 import * as actions from "./actions";
+import {makeSelectCategories} from './selectors';
 
 
 
-/* eslint-disable react/prefer-stateless-function */
-export class HomePage extends React.PureComponent {
+class Services extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -50,21 +44,16 @@ export class HomePage extends React.PureComponent {
      * when initial state username is not null, submit the form to load repos
      */
     componentDidMount() {
-        if (this.props.username && this.props.username.trim().length > 0) {
-            this.props.onSubmitForm();
-        }
+
     }
 
-    toggle() {
-        this.setState({
-            modal: !this.state.modal,
-        });
-    }
 
     render() {
-        const {loading, error, repos} = this.props;
+        const {loading, error, categories} = this.props;
 
+        console.log('RENDER SERVICES >>>>>>>>>>>>>>>>>');
 
+        console.log(categories);
         return (
             <article>
                 <Helmet>
@@ -75,31 +64,25 @@ export class HomePage extends React.PureComponent {
                     />
                 </Helmet>
                 <div>
-                    <CenteredSection>
+                    <Button
+                        color="success" onClick={async () => {
+                        // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);
+                        // const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data);
+                        const aaa = await fetchFriends({
+                            per_page: 10,
+                        }).then(res => res.data).catch(e => e.response.data);
 
+                        console.log(aaa);
 
-                        <Button
-                            color="success" onClick={async () => {
-                            // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);
-                            // const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data);
-                                const aaa = await fetchFriends({
-                                    per_page: 10,
-                                }).then(res => res.data).catch(e => e.response.data);
+                    }}>Add New Service</Button>
 
-                                console.log(aaa);
+                    <Button color="success" onClick={this.props.logout}>logout</Button>
 
-                            }}>Add New Service</Button>
+                    <div className="p-3 mb-3 swatch-indigo">Indigo</div>
 
-                        <Button color="success" onClick={this.props.logout}>logout</Button>
-
-                        <div className="p-3 mb-3 swatch-indigo">Indigo</div>
-
-                        <Button color="danger" onClick={this.toggle}>mmmmmmm</Button>
-                        <div className="col-2 text-truncate">
-                            Praeterea iter est quasdam res quas ex communi.
-                        </div>
-
-                    </CenteredSection>
+                    <div className="col-2 text-truncate">
+                        Praeterea iter est quasdam res quas ex communi.
+                    </div>
 
                 </div>
             </article>
@@ -107,7 +90,7 @@ export class HomePage extends React.PureComponent {
     }
 }
 
-HomePage.propTypes = {
+Services.propTypes = {
     loading: PropTypes.bool,
     error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
@@ -118,7 +101,7 @@ HomePage.propTypes = {
 
 export const mapDispatchToProps = (dispatch) => ({
     onSubmitForm: (values) => dispatch(appActions.login(values)),
-    logout: () => dispatch(logout()),
+    logout: () => dispatch(appActions.logout()),
 
     /* -------------------- withData hoc ---------------------------------- */
     getData: () => {
@@ -129,8 +112,9 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-    loading: makeSelectLoading(),
+    //loading: makeSelectLoading(),
     error: makeSelectError(),
+    categories: makeSelectCategories(),
 });
 
 const withConnect = connect(
@@ -146,4 +130,4 @@ export default compose(
     withSaga,
     withSignal,
     withConnect,
-)(withData(HomePage));
+)(withData(Services));
