@@ -128,7 +128,7 @@ export const mapDispatchToProps = (dispatch) => ({
 
 
 const mapStateToProps = createStructuredSelector({
-    //loading: makeSelectLoading(),
+    loading: makeSelectLoading(),
 });
 
 const withConnect = connect(

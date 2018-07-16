@@ -6,6 +6,7 @@ import TextInput from 'components/Form/TextInput';
 import TextArea from 'components/Form/TextArea';
 import Select from 'components/Form/Select';
 import FileUpload from 'components/Form/FileUpload';
+import LoadingBeat from 'components/LoadingBeat';
 
 import {
     Button,
@@ -20,7 +21,9 @@ import validate from './validation';
 
 
 const EnquiryForm = props => {
-    const { handleSubmit, pristine, reset, submitting, change, form, enquiryTypes, isEnqTypeOther } = props;
+    const {
+        handleSubmit, pristine, reset, submitting, change, form, enquiryTypes, isEnqTypeOther, loading,
+    } = props;
 
     return (
         <form onSubmit={handleSubmit} className="form-content-small">
@@ -81,10 +84,11 @@ const EnquiryForm = props => {
             />
 
             <div>
-                <Button color="success" size="md" type="submit" disabled={submitting} block>
+                <Button color="success" size="md" type="submit" disabled={submitting || loading} block>
                     Submit
                 </Button>
             </div>
+            <LoadingBeat loading={loading} />
         </form>
     )
 }

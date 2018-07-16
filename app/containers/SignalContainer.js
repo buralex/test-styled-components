@@ -18,7 +18,7 @@ const ParseError = ({ data: {description, details}}) => (
     <div>
         <h5>{description}</h5>
 
-        {details.length &&
+        {details && details.length &&
             <div>
                 Details:
                 <ul>

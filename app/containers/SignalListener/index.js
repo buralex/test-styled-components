@@ -21,21 +21,28 @@ import {
     eventHandler,
 } from 'redux-signal'
 
+const ErrorModalEvents = eventHandler();
+const SuccessModalEvents = eventHandler();
+
 import * as appAactions from "containers/App/actions";
 
 
 class SignalListener extends React.PureComponent {
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+        this.onUpdate(prevProps);
+    }
+
+    onUpdate = (prevProps) => {
         const {error, success} = this.props;
 
-        if (error) {
+        if (!prevProps.error && error) {
             this.showErrorModal(error);
-            this.props.clearServerError();
+            //this.props.clearServerError();
         }
-        if (success) {
+        if (!prevProps.success && success) {
             this.showSuccessModal(success);
-            this.props.clearServerSuccess();
+            //this.props.clearServerSuccess();
         }
     }
 
@@ -46,6 +53,7 @@ class SignalListener extends React.PureComponent {
 
         this.props.createSignal({
             type: SignalTypes.OK,
+            eventHandler: ErrorModalEvents,
             title: `Error: ${error.message || ''}`,
             message: error.description || 'Sorry, try later.',
             className: 'modal-danger',
@@ -58,13 +66,8 @@ class SignalListener extends React.PureComponent {
         console.info('SUCCESS LISTENER CONTANER >>>');
         console.log(data);
         this.props.createSignal({
-            // type: SignalTypes.OK,
-            // title: `Error: ${error.message || ''}`,
-            // message: error.description || 'Sorry, try later.',
-            // className: 'modal-danger',
-            // modalType: 'error',
-            // modalData: error,
             type: SignalTypes.OK,
+            eventHandler: SuccessModalEvents,
             title: `Success`,
             message: data.message || '',
             className: 'modal-success',
@@ -77,7 +80,19 @@ class SignalListener extends React.PureComponent {
         const {loading} = this.props;
         console.log('---------------- RENDER LISTENER >>>>>>>>>>>>>>>>>>>>> -------------------', this.props);
 
-        return null
+        return (
+            <div>
+                <ErrorModalEvents
+                    onOk={this.props.clearServerError}
+                    //onClose={this.props.clearServerError}
+                    onClose={() => {
+                        console.log('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc');}}
+                />
+                <SuccessModalEvents
+                    onOk={this.props.clearServerSuccess}
+                />
+            </div>
+        );
     }
 }
 

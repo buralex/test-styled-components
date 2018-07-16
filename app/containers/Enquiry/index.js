@@ -9,6 +9,7 @@ import {createStructuredSelector} from 'reselect';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, UncontrolledTooltip} from 'reactstrap';
 import restApi, {fetchCategories, fetchCategory, fetchFriends, fetchEnquiryTypes} from 'services/api';
 import {Link} from "react-router-dom";
+
 import uuidv5 from "uuid/v5";
 import withData from "hocs/withData";
 import { history } from 'app';
@@ -16,12 +17,6 @@ import { history } from 'app';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-
-import {
-    makeSelectRepos,
-    makeSelectLoading,
-    makeSelectError,
-} from 'containers/App/selectors';
 
 import {
     withSignal,
@@ -41,6 +36,7 @@ import messages from './messages';
 
 import * as actions from './actions';
 import {makeSelectEnquiryTypes, makeSelectCurrentEnqType} from './selectors';
+import {makeSelectLoading} from 'containers/App/selectors';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -89,7 +85,7 @@ class Enquiry extends React.PureComponent {
     }
 
     render() {
-        const {enquiryTypes, currentEnqType} = this.props;
+        const {enquiryTypes, currentEnqType, loading} = this.props;
         //
         // if (!enquiryTypes.length) {
         //     return null;
@@ -101,14 +97,16 @@ class Enquiry extends React.PureComponent {
         // console.log(this.props);
 
         return (
-            <div className="enquiry-container col bg-success">
+            <div className="enquiry-container col bg-silver-two">
                 <Helmet>
                     <title>Enquiry Page</title>
                     <meta name="description" content="Denteez" />
                 </Helmet>
                 <div>
                     <Button color="success" tag={Link} to="/login">login</Button>
+
                     <EnquiryForm
+                        loading={loading}
                         initialValues={this.initValues}
                         onSubmit={this.props.onSubmitForm}
                         enquiryTypes={enquiryTypes}
@@ -147,6 +145,7 @@ export const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = createStructuredSelector({
     enquiryTypes: makeSelectEnquiryTypes(),
     currentEnqType: makeSelectCurrentEnqType(),
+    loading: makeSelectLoading(),
 });
 
 const withConnect = connect(
