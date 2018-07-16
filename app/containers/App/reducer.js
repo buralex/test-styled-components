@@ -2,6 +2,7 @@
 
 import * as types from './constants/types';
 
+
 // The initial state of the App
 const initialState = {
     loading: false,
@@ -23,32 +24,38 @@ function appReducer(state = initialState, action) {
                 loading: false,
             };
 
-        case types.SERVER_ERROR:
+        case types.ERROR:
             return {
                 ...state,
-                error: action.payload,
                 loading: false,
+                error: {
+                    type: action.payload.type,
+                    data: action.payload.data,
+                },
             };
 
-        case types.CLEAR_SERVER_ERROR:
+        case types.CLEAR_ERROR:
             return {
                 ...state,
+                loading: false,
                 error: false,
-                loading: false,
             };
 
-        case types.SERVER_SUCCESS:
+        case types.SUCCESS:
             return {
                 ...state,
-                success: action.payload,
                 loading: false,
+                success: {
+                    type: action.payload.type,
+                    data: action.payload.data,
+                },
             };
 
-        case types.CLEAR_SERVER_SUCCESS:
+        case types.CLEAR_SUCCESS:
             return {
                 ...state,
+                loading: false,
                 success: false,
-                loading: false,
             };
 
         default:

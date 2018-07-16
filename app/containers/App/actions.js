@@ -1,5 +1,6 @@
 
 import * as types from './constants/types';
+import * as appEventTypes from './constants/appEventTypes';
 
 
 /**
@@ -45,19 +46,21 @@ export function logout() {
  * Server error
  */
 export function serverError(error) {
-    console.log(error);
-    console.log('eEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe');
     return {
-        type: types.SERVER_ERROR,
-        payload: (error.response && error.response.data.error) || error,
+        type: types.ERROR,
+        payload: {
+            type: appEventTypes.ERROR_SERVER,
+            data: (error.response && error.response.data.error) || error,
+        },
     };
 }
+
 /**
  * Clear server error
  */
-export function clearServerError() {
+export function clearError() {
     return {
-        type: types.CLEAR_SERVER_ERROR,
+        type: types.CLEAR_ERROR,
     };
 }
 
@@ -66,16 +69,19 @@ export function clearServerError() {
  */
 export function serverSuccess(data) {
     return {
-        type: types.SERVER_SUCCESS,
-        payload: data.data || data,
+        type: types.SUCCESS,
+        payload: {
+            type: appEventTypes.SUCCESS_SERVER,
+            data: data.data || data,
+        },
     };
 }
 /**
  * Clear success
  */
-export function clearServerSuccess() {
+export function clearSuccess() {
     return {
-        type: types.CLEAR_SERVER_SUCCESS,
+        type: types.CLEAR_SUCCESS,
     };
 }
 /* ------------------------------- / server events --------------------------------- */

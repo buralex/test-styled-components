@@ -5,8 +5,8 @@ export const LOGIN = 'test/App/LOGIN';
 export const LOGOUT = 'test/App/LOGOUT';
 export const LOGIN_SUCCESS = 'test/App/LOGIN_SUCCESS';
 
-export const SERVER_ERROR = 'test/App/SERVER_ERROR';
-export const CLEAR_SERVER_ERROR = 'test/App/CLEAR_SERVER_ERROR';
+export const ERROR = 'test/App/ERROR';
+export const CLEAR_ERROR = 'test/App/CLEAR_ERROR';
 
-export const SERVER_SUCCESS = 'test/App/SERVER_SUCCESS';
-export const CLEAR_SERVER_SUCCESS = 'test/App/CLEAR_SERVER_SUCCESS';
+export const SUCCESS = 'test/App/SUCCESS';
+export const CLEAR_SUCCESS = 'test/App/CLEAR_SUCCESS';

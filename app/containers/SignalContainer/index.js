@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
 
 import {
@@ -13,52 +13,42 @@ import {
     SignalTypes,
 } from 'redux-signal'
 
+import * as appEventTypes from 'containers/App/constants/appEventTypes'
 
-const ParseError = ({ data: {description, details}}) => (
-    <div>
-        <h5>{description}</h5>
+import {ServerError} from 'components/modals/ServerError';
+import {ServerSuccess} from 'components/modals/ServerSuccess';
 
-        {details && details.length &&
-            <div>
-                Details:
-                <ul>
-                    {details.map((elem, i) => <div key={`err_ell_${i+1}`}>{elem.description}</div>)}
-                </ul>
-            </div>
-        }
-    </div>
-)
 
-const SignalContainer = ({ event, destroy, close, modal }) => {
+const SignalContainer = (props) => {
     // modal contains all the properties you submit when calling `createSignal`, so you have all the freedom
     // to do whatever you want (title, message, isRequired) only isFirst and isVisible are required.
 
+    const {modal, modal: {appEvent} } = props;
+
+    console.log(modal);
+    console.log(appEvent);
+
+    let modalComponent;
+
+
+    switch (appEvent) {
+        case appEventTypes.SERVER_ERROR:
+            modalComponent = <ServerError signalProps={props} />;
+            break;
+
+        case appEventTypes.SERVER_SUCCESS:
+            modalComponent = <ServerSuccess signalProps={props} />;
+            break;
+
+        default:
+            modalComponent = <ServerSuccess signalProps={props} />;
+    }
+
+
     return (
-        <div>
-            <Modal isOpen={modal.isVisible} className={modal.className} backdrop="static" onClosed={destroy}>
-                <ModalHeader
-                    toggle={() => {
-                        event(modal, SignalEvents.CLOSE);
-                        close();
-                    }}
-                >
-                    {modal.title}
-                </ModalHeader>
-
-                <ModalBody>
-                    {modal.modalType === 'error' &&
-                        <ParseError data={modal.modalData} />
-                    }
-                    {modal.modalType === 'success' &&
-                        modal.message
-                    }
-                </ModalBody>
-
-                <ModalFooter>
-                    {getFooter(modal, eventType => event(modal, eventType))}
-                </ModalFooter>
-            </Modal>
-        </div>
+        <Fragment>
+            {modalComponent}
+        </Fragment>
     )
 }
 
@@ -69,11 +59,11 @@ SignalContainer.propTypes = {
     modal: PropTypes.object,
 }
 
-function getModalLabel(modal, labelType, otherwise) {
+export function getModalLabel(modal, labelType, otherwise) {
     return (modal.labels && modal.labels[labelType]) || <span>{otherwise}</span>
 }
 
-function getFooter(modal, onModalEvent) {
+export function getFooter(modal, onModalEvent) {
     switch (modal.type) {
         case SignalTypes.YES_NO:
             return [
@@ -136,9 +126,9 @@ function getFooter(modal, onModalEvent) {
                     {getModalLabel(modal, 'ok', 'Ok')}
                 </Button>
             )
+        default:
+            return null;
     }
-
-    return null
 }
 
 export default createContainer(SignalContainer)

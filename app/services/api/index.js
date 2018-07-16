@@ -17,7 +17,7 @@ restApi.interceptors.request.use((config) => {
 restApi.interceptors.response.use((response) => response, (error) => {
     // eslint-disable-next-line
     const isUserLoggedIn = window.__global_store__.getState().userData.authKey;
-    if (error.response.status === 401 && isUserLoggedIn) {
+    if (error.response && error.response.status === 401 && isUserLoggedIn) {
         console.warn('unauthorized, logging out ...');
         // eslint-disable-next-line
         window.__global_store__.dispatch(appActions.logout());

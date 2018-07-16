@@ -22,12 +22,13 @@ import {
 } from 'redux-signal'
 
 import * as appAactions from "containers/App/actions";
+import * as appEventTypes from 'containers/App/constants/appEventTypes';
 
 const ErrorModalEvents = eventHandler();
 const SuccessModalEvents = eventHandler();
 
 
-class SignalListener extends React.PureComponent {
+class ErrorSuccessListener extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.onUpdate(prevProps);
@@ -44,19 +45,20 @@ class SignalListener extends React.PureComponent {
         }
     }
 
-    showErrorModal = (error) => {
-        console.error('ERROR LISTENER CONTANER >>>');
-        console.error(error);
-        console.error(error.message);
+    showErrorModal = (data) => {
+        console.log('ERROR LISTENER CONTANER >>>');
+        console.log(data);
+        console.log(data.message);
 
         this.props.createSignal({
             type: SignalTypes.OK,
             eventHandler: ErrorModalEvents,
-            title: `Error: ${error.message || ''}`,
-            message: error.description || 'Sorry, try later.',
-            className: 'modal-danger',
-            modalType: 'error',
-            modalData: error,
+            //appEvent: data.appEvent,
+            // title: `Error: ${data.message || ''}`,
+            // message: data.description || 'Sorry, try later.',
+            // className: 'modal-danger',
+            // appEvent: data.appEvent,
+            modalData: data.data,
         })
     };
 
@@ -69,7 +71,7 @@ class SignalListener extends React.PureComponent {
             title: `Success`,
             message: data.message || '',
             className: 'modal-success',
-            modalType: 'success',
+            appEvent: data.appEvent,
             modalData: data,
         })
     };
@@ -81,27 +83,27 @@ class SignalListener extends React.PureComponent {
         return (
             <div>
                 <ErrorModalEvents
-                    onOk={this.props.clearServerError}
-                    onClose={this.props.clearServerError}
+                    onOk={this.props.clearError}
+                    onClose={this.props.clearError}
                 />
                 <SuccessModalEvents
-                    onOk={this.props.clearServerSuccess}
-                    onClose={this.props.clearServerSuccess}
+                    onOk={this.props.clearSuccess}
+                    onClose={this.props.clearSuccess}
                 />
             </div>
         );
     }
 }
 
-SignalListener.propTypes = {
+ErrorSuccessListener.propTypes = {
     // loading: PropTypes.bool,
     error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     success: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
 };
 
 export const mapDispatchToProps = (dispatch) => ({
-    clearServerError: () => dispatch(appAactions.clearServerError()),
-    clearServerSuccess: () => dispatch(appAactions.clearServerSuccess()),
+    clearError: () => dispatch(appAactions.clearError()),
+    clearSuccess: () => dispatch(appAactions.clearSuccess()),
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -117,4 +119,4 @@ const withConnect = connect(
 export default compose(
     withSignal,
     withConnect,
-)(SignalListener);
+)(ErrorSuccessListener);

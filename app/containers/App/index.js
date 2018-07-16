@@ -39,10 +39,10 @@ import Header from 'layout/Header';
 import Footer from 'layout/Footer';
 
 
-import SignalListener from 'containers/SignalListener';
+import ErrorSuccessListener from 'containers/ErrorSuccessListener';
 
 
-import SignalContainer from 'containers/SignalContainer';
+import SignalContainer from 'containers/SignalContainer/index';
 import Router from "router";
 
 import saga from './saga';
@@ -78,7 +78,7 @@ class App extends React.PureComponent {
 
                 {isLoggedIn && !isAbout && <Footer/>}
 
-                <SignalListener />
+                <ErrorSuccessListener />
                 <SignalContainer />
             </div>
         );
