@@ -45,6 +45,8 @@ export function logout() {
  * Server error
  */
 export function serverError(error) {
+    console.log(error);
+    console.log('eEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe');
     return {
         type: types.SERVER_ERROR,
         payload: (error.response && error.response.data.error) || error,

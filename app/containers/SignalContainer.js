@@ -32,10 +32,10 @@ const ParseError = ({ data: {description, details}}) => (
 const SignalContainer = ({ event, destroy, close, modal }) => {
     // modal contains all the properties you submit when calling `createSignal`, so you have all the freedom
     // to do whatever you want (title, message, isRequired) only isFirst and isVisible are required.
-    console.log(modal);
+
     return (
         <div>
-            <Modal isOpen={modal.isVisible} className={modal.className} backdrop="static">
+            <Modal isOpen={modal.isVisible} className={modal.className} backdrop="static" onClosed={destroy}>
                 <ModalHeader
                     toggle={() => {
                         event(modal, SignalEvents.CLOSE);

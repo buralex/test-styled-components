@@ -22,16 +22,9 @@ restApi.interceptors.response.use((response) => response, (error) => {
         // eslint-disable-next-line
         window.__global_store__.dispatch(appActions.logout());
     }
-    return Promise.reject(error.response);
+    return Promise.reject(error);
 });
 
-// axios.interceptors.response.use((response) => {
-//     // Do something with response data
-//     return response;
-// }, (error) => {
-//     // Do something with response error
-//     return Promise.reject(error);
-// });
 
 /*------------------------------------
           api common functions
