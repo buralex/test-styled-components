@@ -1,8 +1,3 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -35,7 +30,7 @@ import saga from './saga';
 import * as appActions from "../App/actions";
 
 /* eslint-disable react/prefer-stateless-function */
-export class HomePage extends React.PureComponent {
+class HomePage extends React.PureComponent {
     /**
      * when initial state username is not null, submit the form to load repos
      */

@@ -44,16 +44,6 @@ import AboutForm from "./components/AboutForm";
 import * as appActions from "../App/actions";
 
 
-const ServerErrorEvent = eventHandler();
-
-const onYes = () => {
-    console.log('pressed yes')
-}
-
-const onNo = () => {
-    console.log('pressed no')
-}
-
 
 class About extends React.PureComponent {
     constructor(props) {
@@ -67,21 +57,6 @@ class About extends React.PureComponent {
 
     componentDidMount() {
         history.push('/about');
-    }
-
-    onBtnErrorClick = () => {
-        console.log(this.props);
-        this.props.createSignal({
-            type: SignalTypes.YES_NO,
-            title: 'Are you sure?',
-            message: 'You are about to do something, are you sure?',
-            labels: {
-                yes: 'Yes!',
-                no: 'No',
-            },
-            eventHandler: ServerErrorEvent,
-            className: 'modal-danger',
-        })
     }
 
     render() {

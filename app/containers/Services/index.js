@@ -32,18 +32,18 @@ import {makeSelectUsername} from './selectors';
 
 import reducer from './reducer';
 import saga from './saga';
+
 import * as appActions from "containers/App/actions";
+import {withSignal} from "redux-signal";
+import * as actions from "./actions";
+
 
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            modal: false,
-        };
 
-        this.toggle = this.toggle.bind(this);
     }
 
     /**
@@ -63,11 +63,7 @@ export class HomePage extends React.PureComponent {
 
     render() {
         const {loading, error, repos} = this.props;
-        const reposListProps = {
-            loading,
-            error,
-            repos,
-        };
+
 
         return (
             <article>
@@ -117,13 +113,19 @@ HomePage.propTypes = {
     repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
     onSubmitForm: PropTypes.func,
     username: PropTypes.string,
-    onChangeUsername: PropTypes.func,
 };
 
 
 export const mapDispatchToProps = (dispatch) => ({
     onSubmitForm: (values) => dispatch(appActions.login(values)),
     logout: () => dispatch(logout()),
+
+    /* -------------------- withData hoc ---------------------------------- */
+    getData: () => {
+        dispatch(actions.loadCategories());
+    },
+    // clearState: () => dispatch(actions.clearClientState()),
+    /* -------------------- withData hoc ---------------------------------- */
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -136,6 +138,12 @@ const withConnect = connect(
     mapDispatchToProps,
 );
 
+const withReducer = injectReducer({key: 'services', reducer});
+const withSaga = injectSaga({key: 'services', saga});
+
 export default compose(
+    withReducer,
+    withSaga,
+    withSignal,
     withConnect,
-)(HomePage);
+)(withData(HomePage));
