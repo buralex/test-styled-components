@@ -21,10 +21,10 @@ import {
     eventHandler,
 } from 'redux-signal'
 
+import * as appAactions from "containers/App/actions";
+
 const ErrorModalEvents = eventHandler();
 const SuccessModalEvents = eventHandler();
-
-import * as appAactions from "containers/App/actions";
 
 
 class SignalListener extends React.PureComponent {
@@ -38,11 +38,9 @@ class SignalListener extends React.PureComponent {
 
         if (!prevProps.error && error) {
             this.showErrorModal(error);
-            //this.props.clearServerError();
         }
         if (!prevProps.success && success) {
             this.showSuccessModal(success);
-            //this.props.clearServerSuccess();
         }
     }
 
@@ -84,12 +82,11 @@ class SignalListener extends React.PureComponent {
             <div>
                 <ErrorModalEvents
                     onOk={this.props.clearServerError}
-                    //onClose={this.props.clearServerError}
-                    onClose={() => {
-                        console.log('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc');}}
+                    onClose={this.props.clearServerError}
                 />
                 <SuccessModalEvents
                     onOk={this.props.clearServerSuccess}
+                    onClose={this.props.clearServerSuccess}
                 />
             </div>
         );

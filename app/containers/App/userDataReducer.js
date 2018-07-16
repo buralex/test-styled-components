@@ -19,6 +19,10 @@ function userDataReducer(state = initialState, action) {
             };
         }
 
+        case types.LOGOUT: {
+            return initialState;
+        }
+
         default:
             return state;
     }

@@ -86,7 +86,7 @@ class Login extends React.PureComponent {
                             Praeterea iter est quasdam res quas ex communi.
                         </div>
 
-                        <p>Somewhere in here is a <a href="#" id="UncontrolledTooltipExample">tooltip</a>.</p>
+                        <p>Somewhere in here is a <a href="/jjjj" id="UncontrolledTooltipExample">tooltip</a>.</p>
                         <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
                             Hello world!
                         </UncontrolledTooltip>
@@ -94,19 +94,6 @@ class Login extends React.PureComponent {
                     </CenteredSection>
 
                     <LoadingBeat loading={loading} />
-
-                    <Button size="sm" color="success" onClick={async () => {
-                        this.props.aaa();
-
-                        console.log('showl');
-
-                    }}>show loading</Button>
-                    <Button size="sm" color="success" onClick={async () => {
-                        //this.props.aaa();
-                        this.props.bbb()
-                        console.log('hide');
-
-                    }}>hide loading</Button>
 
                     <LoginForm loading={loading} onSubmit={this.props.onSubmitForm} />
 
@@ -122,8 +109,6 @@ Login.propTypes = {
 
 export const mapDispatchToProps = (dispatch) => ({
     onSubmitForm: (values) => dispatch(appActions.login(values)),
-    aaa: (values) => dispatch(appActions.showLoader()),
-    bbb: (values) => dispatch(appActions.hideLoader()),
 });
 
 
@@ -145,22 +130,3 @@ export default compose(
     // withSaga,
     withConnect,
 )(Login);
-
-// export default connect(
-//     (state, ownProps) => ({
-//         // action: ownProps.match.params.action,
-//         // carrierID: ownProps.match.params.id,
-//         // carrier: state.carriers.current.current,
-//         // history: ownProps.history,
-//         // match: ownProps.match,
-//     }),
-//     dispatch => ({
-//         // showConfirm: (params) => dispatch(appActions.showConfirm(params)),
-//         //
-//         // handleCarrierDelete: () => dispatch(listActions.deleteCarrier()),
-//         // handleCarrierRestore: () => dispatch(listActions.restoreCarrier()),
-//         //
-//         // toggleSendEmail: (params) => dispatch(appActions.toggleSendEmail(params)),
-//         dispatch: (a) => dispatch(a()),
-//     }),
-// )(Login);

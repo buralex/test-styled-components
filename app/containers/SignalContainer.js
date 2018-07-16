@@ -35,8 +35,16 @@ const SignalContainer = ({ event, destroy, close, modal }) => {
     console.log(modal);
     return (
         <div>
-            <Modal isOpen={modal.isVisible} toggle={destroy} className={modal.className} backdrop="static">
-                <ModalHeader toggle={destroy}>{modal.title}</ModalHeader>
+            <Modal isOpen={modal.isVisible} className={modal.className} backdrop="static">
+                <ModalHeader
+                    toggle={() => {
+                        event(modal, SignalEvents.CLOSE);
+                        close();
+                    }}
+                >
+                    {modal.title}
+                </ModalHeader>
+
                 <ModalBody>
                     {modal.modalType === 'error' &&
                         <ParseError data={modal.modalData} />
@@ -45,6 +53,7 @@ const SignalContainer = ({ event, destroy, close, modal }) => {
                         modal.message
                     }
                 </ModalBody>
+
                 <ModalFooter>
                     {getFooter(modal, eventType => event(modal, eventType))}
                 </ModalFooter>

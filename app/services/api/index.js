@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import * as appActions from 'containers/App/actions';
 
 const restApi = axios.create({
     baseURL: 'http://504080.com/api/v1',
@@ -12,6 +13,17 @@ restApi.interceptors.request.use((config) => {
     config.headers.Authorization = `${authKey}` || `963be28b713448ddd1660b5f8eed91b45ffcfe48`;
     return config;
 }, (error) => Promise.reject(error));
+
+restApi.interceptors.response.use((response) => response, (error) => {
+    // eslint-disable-next-line
+    const isUserLoggedIn = window.__global_store__.getState().userData.authKey;
+    if (error.response.status === 401 && isUserLoggedIn) {
+        console.warn('unauthorized, logging out ...');
+        // eslint-disable-next-line
+        window.__global_store__.dispatch(appActions.logout());
+    }
+    return Promise.reject(error.response);
+});
 
 // axios.interceptors.response.use((response) => {
 //     // Do something with response data

@@ -30,6 +30,15 @@ export function login(values) {
     };
 }
 
+/**
+ * Logout
+ */
+export function logout() {
+    return {
+        type: types.LOGOUT,
+    };
+}
+
 
 /* ------------------------------- server events --------------------------------- */
 /**

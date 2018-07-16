@@ -18,17 +18,21 @@ import {
 } from 'containers/App/selectors';
 import H2 from 'components/H2';
 
+import withData from "hocs/withData";
+
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
-import {loadRepos} from '../App/actions';
+import {logout} from 'containers/App/actions';
 import {changeUsername} from './actions';
 import {makeSelectUsername} from './selectors';
+
 import reducer from './reducer';
 import saga from './saga';
+import * as appActions from "containers/App/actions";
 
 
 /* eslint-disable react/prefer-stateless-function */
@@ -95,6 +99,13 @@ export class HomePage extends React.PureComponent {
 
                             }}>Add New Service</Button>
 
+                        <Button
+                            color="success" onClick={async () => {
+                                this.props.logout()
+
+                            }}
+                        >ssssssssssssss</Button>
+
                         <div className="p-3 mb-3 swatch-indigo">Indigo</div>
 
                         <Button color="danger" onClick={this.toggle}>mmmmmmm</Button>
@@ -153,15 +164,11 @@ HomePage.propTypes = {
     onChangeUsername: PropTypes.func,
 };
 
-export function mapDispatchToProps(dispatch) {
-    return {
-        onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
-        onSubmitForm: evt => {
-            if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-            //dispatch(loadRepos());
-        },
-    };
-}
+
+export const mapDispatchToProps = (dispatch) => ({
+    onSubmitForm: (values) => dispatch(appActions.login(values)),
+    logout: () => dispatch(logout()),
+});
 
 const mapStateToProps = createStructuredSelector({
     loading: makeSelectLoading(),
