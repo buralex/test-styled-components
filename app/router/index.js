@@ -29,7 +29,7 @@ const Router = () => (
     <Switch>
         <Route exact path="/" component={About}/>
         <Route exact path="/about" component={About}/>
-        <Route exact path="/services" component={Services}/>
+        <Route exact path="/services/:action?/:id?" component={Services}/>
         <Route exact path="/login" component={Login}/>
         <Route path="" component={NotFoundPage}/>
     </Switch>
