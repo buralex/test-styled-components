@@ -75,7 +75,7 @@ class About extends React.PureComponent {
 
         return (
             <Greetingbackground>
-                <div className="about-container bg-silver-two">
+                <div className="col about-container">
                     {!isLoggedIn &&
                     <Button color="success" tag={Link} to="/login">login</Button>
                     }

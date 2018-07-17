@@ -28,20 +28,15 @@ const AboutForm = props => {
     return (
         <form onSubmit={handleSubmit} className="form-content-small">
 
-            <div className="row">
-                <div className="col">
-                    <Field
-                        name={db.enquiry_type}
-                        component={Select}
-                        options={enquiryTypes.map((elem) => ({label: elem.name, value: elem.name}))}
-                        label="Enquiry type *"
-                        onChange={(event, value) => {
-                            change(db.other_enquiry_type, '');
-                        }}
-                    />
-                </div>
-            </div>
-
+            <Field
+                name={db.enquiry_type}
+                component={Select}
+                options={enquiryTypes.map((elem) => ({label: elem.name, value: elem.name}))}
+                label="Enquiry type *"
+                onChange={(event, value) => {
+                    change(db.other_enquiry_type, '');
+                }}
+            />
 
             {isEnqTypeOther &&
                 <Field
@@ -83,11 +78,9 @@ const AboutForm = props => {
                 validateImgSize={{minWidth: 300, minHeight: 300}}
             />
 
-            <div>
-                <Button color="success" size="md" type="submit" disabled={submitting || loading} block>
-                    Submit
-                </Button>
-            </div>
+            <Button color="success" size="md" type="submit" disabled={submitting || loading} block>
+                Submit
+            </Button>
             <LoadingBeat loading={loading} />
         </form>
     )

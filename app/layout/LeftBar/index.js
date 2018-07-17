@@ -14,32 +14,19 @@ export default class LeftBar extends React.Component {
     render() {
         return (
             <div className="left-bar-component header bg-silver outline-danger">
-                <div className=" ">
-                    {/*<div className="logo">*/}
-                        {/*<a href="/"> <img src={Logo} alt="Denteez logo" /> </a>*/}
-                    {/*</div>*/}
-
-                    {/*<div className="search">*/}
-                        {/*<a href="/"> <img src={Logo} alt="Denteez logo" /> </a>*/}
-                    {/*</div>*/}
-
-                    {/*<div className="notifications">*/}
-                        {/*<a href="/"> <img src={Logo} alt="Denteez logo" /> </a>*/}
-                    {/*</div>*/}
-
-                    <span>leftbar</span>
-                </div>
-                {/* <A href="https://twitter.com/mxstbr"> */}
-                {/* <Img src={Logo} alt="react-boilerplate - Logo"/> */}
-                {/* </A> */}
-                {/* <NavBar> */}
-                 {/*<HeaderLink to="/">*/}
-                 {/*<FormattedMessage {...messages.home} />*/}
-                 {/*</HeaderLink>*/}
-                {/* <HeaderLink to="/features"> */}
-                {/* <FormattedMessage {...messages.features} /> */}
-                {/* </HeaderLink> */}
-                {/* </NavBar> */}
+                <nav className="navbar ">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">Link 1</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">Link 2</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">Link 3</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         );
     }

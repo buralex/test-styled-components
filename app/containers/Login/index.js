@@ -20,16 +20,13 @@ import { makeSelectLoading } from 'containers/App/selectors';
 
 import * as appActions from 'containers/App/actions';
 
-import LoadingBeat from 'components/LoadingBeat';
+
 
 import Greetingbackground from "layout/Greetingbackground";
 
 import LoginForm from "./components/LoginForm";
 
-
-/* eslint-disable react/prefer-stateless-function */
 class Login extends React.PureComponent {
-
 
     render() {
         const {loading} = this.props;
@@ -42,7 +39,6 @@ class Login extends React.PureComponent {
                     <Button color="primary" tag={Link} to="/about">about</Button>
 
                     <LoginForm loading={loading} onSubmit={this.props.onSubmitForm} />
-                    <LoadingBeat loading={loading} />
                 </div>
             </Greetingbackground>
         );

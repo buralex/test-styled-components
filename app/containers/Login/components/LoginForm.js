@@ -1,6 +1,13 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import TextInput from 'components/Form/TextInput';
+import LoadingBeat from 'components/LoadingBeat';
+
+import {
+    Button,
+    Modal, ModalHeader, ModalBody, ModalFooter,
+    Tooltip, UncontrolledTooltip
+} from 'reactstrap';
 
 const validate = values => {
     const errors = {}
@@ -24,14 +31,11 @@ const LoginForm = props => {
         <form onSubmit={handleSubmit} className="form-content-small">
             <Field name="email" type="email" component={TextInput} label="Email" />
             <Field name="password" type="password" component={TextInput} label="Password" />
-            <div>
-                <button type="submit" disabled={submitting || loading}>
-                    Submit
-                </button>
-                <button type="button" disabled={pristine || submitting} onClick={reset}>
-                    Clear Values
-                </button>
-            </div>
+
+            <Button color="success" size="md" type="submit" disabled={submitting || loading} block>
+                Submit
+            </Button>
+            <LoadingBeat loading={loading} />
         </form>
     )
 }

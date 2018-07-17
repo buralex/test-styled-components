@@ -8,37 +8,29 @@ import HeaderLink from './HeaderLink';
 import Logo from './images/logo-img.svg';
 import messages from './messages';
 
+import SearchForm from 'components/SearchForm';
+
+const aaa = (values) => {
+    console.log(values);
+}
+
 /* eslint-disable react/prefer-stateless-function */
 class Header extends React.Component {
     render() {
         return (
-            <div className="header bg-success container-fluid outline-danger">
-                <div className="col-12 content outline-danger">
-                    {/*<div className="logo">*/}
-                        {/*<a href="/"> <img src={Logo} alt="Denteez logo" /> </a>*/}
-                    {/*</div>*/}
+            <div className="header-component bg-silver outline-danger">
+                <div className="content outline-danger d-flex justify-content-between">
 
-                    {/*<div className="search">*/}
-                        {/*<a href="/"> <img src={Logo} alt="Denteez logo" /> </a>*/}
-                    {/*</div>*/}
+                    <section className="logo">
+                        <a href="/"> <img src="#" alt="Denteez logo" /> </a>
+                    </section>
 
-                    {/*<div className="notifications">*/}
-                        {/*<a href="/"> <img src={Logo} alt="Denteez logo" /> </a>*/}
-                    {/*</div>*/}
+                    <section className="outline-danger">
+                        <SearchForm form="header_search_form" onSubmit={aaa} />
+                    </section>
 
-                    <div>test header</div>
+                    <section className="outline-danger">aaaaaaaaaaaaaaaaaavvvvvvvvvvvvvvvvvvvvaaaa</section>
                 </div>
-                {/* <A href="https://twitter.com/mxstbr"> */}
-                {/* <Img src={Logo} alt="react-boilerplate - Logo"/> */}
-                {/* </A> */}
-                {/* <NavBar> */}
-                 {/*<HeaderLink to="/">*/}
-                 {/*<FormattedMessage {...messages.home} />*/}
-                 {/*</HeaderLink>*/}
-                {/* <HeaderLink to="/features"> */}
-                {/* <FormattedMessage {...messages.features} /> */}
-                {/* </HeaderLink> */}
-                {/* </NavBar> */}
             </div>
         );
     }

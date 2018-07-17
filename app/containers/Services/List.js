@@ -45,10 +45,7 @@ class List extends React.PureComponent {
 
         console.log(categories);
         return (
-            <article>
-                <Greetingbackground>
-                    aaaaaaaaaaaaaaaaaaaaaddddddddsssssss
-                </Greetingbackground>
+            <div>
                 {categories.map((cat) => {
                     console.log(cat);
 
@@ -76,7 +73,7 @@ class List extends React.PureComponent {
                     {/*</div>*/}
 
                 {/*</div>*/}
-            </article>
+            </div>
         );
     }
 }
