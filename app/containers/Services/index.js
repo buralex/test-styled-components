@@ -15,7 +15,7 @@ import injectSaga from 'utils/injectSaga';
 import { makeSelectLoading, makeSelectAction } from 'containers/App/selectors';
 
 import withData from "hocs/withData";
-
+import LoadingBeat from 'components/LoadingBeat';
 
 import * as appActions from "containers/App/actions";
 
@@ -27,6 +27,7 @@ import reducer from './reducer';
 import saga from './saga';
 
 import List from './List';
+import View from './View';
 
 import * as actions from "./actions";
 import {makeSelectCategories} from './selectors';
@@ -45,15 +46,21 @@ class Services extends React.PureComponent {
 
 
     render() {
-        const {loading, categories, action} = this.props;
+        const {loading, action} = this.props;
 
         console.log('RENDER SERVICES >>>>>>>>>>>>>>>>>', this.props);
 
         return (
-            <div>
+            <div className="outline-danger">
                 {!action &&
                     <List />
                 }
+
+                {action === routeActions.view &&
+                    <View />
+                }
+
+                {loading && <LoadingBeat />}
             </div>
         );
     }
@@ -70,8 +77,7 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-    //loading: makeSelectLoading(),
-    //categories: makeSelectCategories(),
+    loading: makeSelectLoading(),
     action: makeSelectAction(),
 });
 

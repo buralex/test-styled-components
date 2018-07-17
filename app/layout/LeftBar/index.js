@@ -8,11 +8,13 @@ import HeaderLink from './HeaderLink';
 import Logo from './images/logo-img.svg';
 import messages from './messages';
 
+import './style.scss';
+
 export default class LeftBar extends React.Component {
     render() {
         return (
-            <div className="header bg-success container-fluid outline-danger">
-                <div className="col-12 content outline-danger">
+            <div className="left-bar-component header bg-silver container-fluid outline-danger">
+                <div className="col-12 content outline-danger ">
                     {/*<div className="logo">*/}
                         {/*<a href="/"> <img src={Logo} alt="Denteez logo" /> </a>*/}
                     {/*</div>*/}

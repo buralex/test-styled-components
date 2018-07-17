@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 import debounce  from 'lodash/debounce';
 import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
-import  './style.scss';
+import './style.scss';
 
 export default class FileUpload extends React.PureComponent {
     constructor(props) {

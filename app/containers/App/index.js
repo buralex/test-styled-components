@@ -34,6 +34,8 @@ import {
 
 import Header from 'layout/Header';
 import Footer from 'layout/Footer';
+import LeftBar from 'layout/LeftBar';
+import RightBar from 'layout/RightBar';
 
 
 import SignalContainer from 'containers/SignalContainer/index';
@@ -59,10 +61,6 @@ class App extends React.PureComponent {
     }
 
     showAlertModal = (alert) => {
-        console.log('AAALLLLEEERRRT >>>');
-        console.log(alert);
-        //console.log(data.message);
-
         this.props.createSignal({
             type: SignalTypes.OK,
             eventHandler: AlertModalEvents,
@@ -71,36 +69,6 @@ class App extends React.PureComponent {
         })
     };
 
-    showErrorModal = (data) => {
-        console.log('ERROR LISTENER CONTANER >>>');
-        console.log(data);
-        console.log(data.message);
-
-        this.props.createSignal({
-            type: SignalTypes.OK,
-            eventHandler: ErrorModalEvents,
-            //appEvent: data.appEvent,
-            // title: `Error: ${data.message || ''}`,
-            // message: data.description || 'Sorry, try later.',
-            // className: 'modal-danger',
-            // appEvent: data.appEvent,
-            modalData: data.data,
-        })
-    };
-
-    showSuccessModal = (data) => {
-        console.info('SUCCESS LISTENER CONTANER >>>');
-        console.log(data);
-        this.props.createSignal({
-            type: SignalTypes.OK,
-            eventHandler: SuccessModalEvents,
-            title: `Success`,
-            message: data.message || '',
-            className: 'modal-success',
-            appEvent: data.appEvent,
-            modalData: data,
-        })
-    };
 
     render() {
         const {isLoggedIn, isAbout, loading} = this.props;
@@ -110,7 +78,7 @@ class App extends React.PureComponent {
         console.log(loading);
         console.log(isAbout);
         return (
-            <div>
+            <div className="app-wrapper">
                 <Helmet
                     titleTemplate="Denteez"
                     defaultTitle="Denteez"
@@ -120,10 +88,16 @@ class App extends React.PureComponent {
 
                 {isLoggedIn && !isAbout && <Header/>}
 
-                <div className="container-fluid">
-                    <div className="row">
-                        <Router />
+                <div className="d-flex">
+                    {isLoggedIn && !isAbout && <LeftBar/>}
+
+                    <div className="container-fluid">
+                        <div className="row">
+                            <Router />
+                        </div>
                     </div>
+
+                    {isLoggedIn && !isAbout && <RightBar/>}
                 </div>
 
                 {isLoggedIn && !isAbout && <Footer/>}
