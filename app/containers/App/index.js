@@ -20,12 +20,9 @@ import injectSaga from 'utils/injectSaga';
 
 
 import {
-    makeSelectError,
-    makeSelectLoading,
-    makeSelectRepos,
     makeSelectIsLoggedIn,
     makeSelectIsAbout,
-    selectApp
+    makeSelectAlert,
 } from "containers/App/selectors";
 
 import {
@@ -39,18 +36,71 @@ import Header from 'layout/Header';
 import Footer from 'layout/Footer';
 
 
-import ErrorSuccessListener from 'containers/ErrorSuccessListener';
-
-
 import SignalContainer from 'containers/SignalContainer/index';
 import Router from "router";
 
 import saga from './saga';
 import * as actions from "./actions";
 
-
+const AlertModalEvents = eventHandler();
 
 class App extends React.PureComponent {
+
+    componentDidUpdate(prevProps) {
+        this.onUpdate(prevProps);
+    }
+
+    onUpdate = (prevProps) => {
+        const {alert} = this.props;
+
+        if (!prevProps.alert && alert) {
+            this.showAlertModal(alert);
+        }
+    }
+
+    showAlertModal = (alert) => {
+        console.log('AAALLLLEEERRRT >>>');
+        console.log(alert);
+        //console.log(data.message);
+
+        this.props.createSignal({
+            type: SignalTypes.OK,
+            eventHandler: AlertModalEvents,
+            modalData: alert.data,
+            modalName: alert.modalName,
+        })
+    };
+
+    showErrorModal = (data) => {
+        console.log('ERROR LISTENER CONTANER >>>');
+        console.log(data);
+        console.log(data.message);
+
+        this.props.createSignal({
+            type: SignalTypes.OK,
+            eventHandler: ErrorModalEvents,
+            //appEvent: data.appEvent,
+            // title: `Error: ${data.message || ''}`,
+            // message: data.description || 'Sorry, try later.',
+            // className: 'modal-danger',
+            // appEvent: data.appEvent,
+            modalData: data.data,
+        })
+    };
+
+    showSuccessModal = (data) => {
+        console.info('SUCCESS LISTENER CONTANER >>>');
+        console.log(data);
+        this.props.createSignal({
+            type: SignalTypes.OK,
+            eventHandler: SuccessModalEvents,
+            title: `Success`,
+            message: data.message || '',
+            className: 'modal-success',
+            appEvent: data.appEvent,
+            modalData: data,
+        })
+    };
 
     render() {
         const {isLoggedIn, isAbout, loading} = this.props;
@@ -78,7 +128,10 @@ class App extends React.PureComponent {
 
                 {isLoggedIn && !isAbout && <Footer/>}
 
-                <ErrorSuccessListener />
+                <AlertModalEvents
+                    onOk={this.props.hideAlert}
+                    onClose={this.props.hideAlert}
+                />
                 <SignalContainer />
             </div>
         );
@@ -96,12 +149,13 @@ App.propTypes = {
 };
 
 export const mapDispatchToProps = (dispatch) => ({
-    clearServerError: () => dispatch(actions.clearServerError()),
+    hideAlert: () => dispatch(actions.hideAlert()),
 });
 
 const mapStateToProps = createStructuredSelector({
     isLoggedIn: makeSelectIsLoggedIn(),
     isAbout: makeSelectIsAbout(),
+    alert: makeSelectAlert(),
 });
 
 const withConnect = connect(
@@ -114,5 +168,6 @@ const withSaga = injectSaga({key: 'app', saga});
 export default compose(
     withRouter,
     withSaga,
+    withSignal,
     withConnect,
 )(App);

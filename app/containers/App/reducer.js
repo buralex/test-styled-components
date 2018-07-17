@@ -6,8 +6,9 @@ import * as types from './constants/types';
 // The initial state of the App
 const initialState = {
     loading: false,
-    error: false,
-    success: false,
+    alert: false,
+    //error: false,
+    //success: false,
 };
 
 function appReducer(state = initialState, action) {
@@ -24,39 +25,56 @@ function appReducer(state = initialState, action) {
                 loading: false,
             };
 
-        case types.ERROR:
+        case types.SHOW_ALERT:
             return {
                 ...state,
                 loading: false,
-                error: {
-                    type: action.payload.type,
+                alert: {
+                    modalName: action.payload.modalName,
                     data: action.payload.data,
                 },
             };
 
-        case types.CLEAR_ERROR:
+        case types.HIDE_ALERT:
             return {
                 ...state,
                 loading: false,
-                error: false,
+                alert: false,
             };
 
-        case types.SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                success: {
-                    type: action.payload.type,
-                    data: action.payload.data,
-                },
-            };
-
-        case types.CLEAR_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                success: false,
-            };
+        // case types.ERROR:
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         error: {
+        //             type: action.payload.type,
+        //             data: action.payload.data,
+        //         },
+        //     };
+        //
+        // case types.CLEAR_ERROR:
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         error: false,
+        //     };
+        //
+        // case types.SUCCESS:
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         success: {
+        //             type: action.payload.type,
+        //             data: action.payload.data,
+        //         },
+        //     };
+        //
+        // case types.CLEAR_SUCCESS:
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         success: false,
+        //     };
 
         default:
             return state;

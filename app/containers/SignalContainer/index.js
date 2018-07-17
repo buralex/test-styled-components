@@ -2,48 +2,63 @@ import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
 
 import {
-    Button,
-    Modal, ModalHeader, ModalBody, ModalFooter,
-    Tooltip, UncontrolledTooltip
-} from 'reactstrap';
-
-import {
     createContainer,
     SignalEvents,
     SignalTypes,
 } from 'redux-signal'
 
-import * as appEventTypes from 'containers/App/constants/appEventTypes'
+
+import * as modalNames from 'components/modals/names';
 
 import {ServerError} from 'components/modals/ServerError';
 import {ServerSuccess} from 'components/modals/ServerSuccess';
 
 
-const SignalContainer = (props) => {
+const SignalContainer = ({event, destroy, close, modal}) => {
     // modal contains all the properties you submit when calling `createSignal`, so you have all the freedom
     // to do whatever you want (title, message, isRequired) only isFirst and isVisible are required.
 
-    const {modal, modal: {appEvent} } = props;
+    const {modalName, modalData, isVisible, isFirst} = modal;
 
-    console.log(modal);
-    console.log(appEvent);
+    const onClose = () => {
+        event(modal, SignalEvents.CLOSE);
+        close();
+    };
+
+    const footerActions = getFooterActions(modal, eventType => event(modal, eventType));
 
     let modalComponent;
 
-
-    switch (appEvent) {
-        case appEventTypes.SERVER_ERROR:
-            modalComponent = <ServerError signalProps={props} />;
+    switch (modalName) {
+        case modalNames.SERVER_ERROR:
+            modalComponent = (
+                <ServerError
+                    isOpen={isVisible}
+                    isFirst={isFirst}
+                    onClose={onClose}
+                    data={modalData}
+                    destroy={destroy}
+                    footerActions={footerActions}
+                />
+            );
             break;
 
-        case appEventTypes.SERVER_SUCCESS:
-            modalComponent = <ServerSuccess signalProps={props} />;
+        case modalNames.SERVER_SUCCESS:
+            modalComponent = (
+                <ServerSuccess
+                    isOpen={isVisible}
+                    isFirst={isFirst}
+                    onClose={onClose}
+                    data={modalData}
+                    destroy={destroy}
+                    footerActions={footerActions}
+                />
+            );
             break;
 
         default:
-            modalComponent = <ServerSuccess signalProps={props} />;
+            modalComponent = <div>modal</div>;
     }
-
 
     return (
         <Fragment>
@@ -59,76 +74,35 @@ SignalContainer.propTypes = {
     modal: PropTypes.object,
 }
 
-export function getModalLabel(modal, labelType, otherwise) {
-    return (modal.labels && modal.labels[labelType]) || <span>{otherwise}</span>
-}
-
-export function getFooter(modal, onModalEvent) {
+export function getFooterActions(modal, onModalEvent) {
     switch (modal.type) {
         case SignalTypes.YES_NO:
-            return [
-                <Button
-                    key='no'
-                    color="primary"
-                    onClick={() => onModalEvent(SignalEvents.BTN_NO)}
-                >
-                    {getModalLabel(modal, 'no', 'Nope')}
-                </Button>,
-                <Button
-                    key='yes'
-                    color="secondary"
-                    onClick={() => onModalEvent(SignalEvents.BTN_YES)}
-                >
-                    {getModalLabel(modal, 'yes', 'Yep')}
-                </Button>,
-            ]
+            return {
+                [SignalEvents.BTN_YES]: () => onModalEvent(SignalEvents.BTN_YES),
+                [SignalEvents.BTN_NO]: () => onModalEvent(SignalEvents.BTN_NO),
+            };
+
         case SignalTypes.YES_NO_CANCEL:
-            return [
-                <Button
-                    key='cancel'
-                    onClick={() => onModalEvent(SignalEvents.BTN_CANCEL)}>
-                    {getModalLabel(modal, 'cancel', 'Cancel')}
-                </Button>,
-                <Button
-                    key='no'
-                    reject
-                    onClick={() => onModalEvent(SignalEvents.BTN_NO)}>
-                    {getModalLabel(modal, 'no', 'Nope')}
-                </Button>,
-                <Button
-                    key='yes'
-                    reject
-                    onClick={() => onModalEvent(SignalEvents.BTN_YES)}>
-                    {getModalLabel(modal, 'yes', 'Yep')}
-                </Button>,
-            ]
+            return {
+                [SignalEvents.BTN_YES]: () => onModalEvent(SignalEvents.BTN_YES),
+                [SignalEvents.BTN_NO]: () => onModalEvent(SignalEvents.BTN_NO),
+                [SignalEvents.BTN_CANCEL]: () => onModalEvent(SignalEvents.BTN_CANCEL),
+            };
 
         case SignalTypes.OK_CANCEL:
-            return [
-                <Button
-                    key='cancel'
-                    onClick={() => onModalEvent(SignalEvents.BTN_CANCEL)}>
-                    {getModalLabel(modal, 'cancel', 'Cancel')}
-                </Button>,
-                <Button
-                    key='ok'
-                    primary
-                    onClick={() => onModalEvent(SignalEvents.BTN_OK)}>
-                    {getModalLabel(modal, 'ok', 'Ok')}
-                </Button>,
-            ]
+            return {
+                [SignalEvents.BTN_OK]: () => onModalEvent(SignalEvents.BTN_OK),
+                [SignalEvents.BTN_CANCEL]: () => onModalEvent(SignalEvents.BTN_CANCEL),
+            };
+
         case SignalTypes.OK:
-            return (
-                <Button
-                    color="primary"
-                    onClick={() => onModalEvent(SignalEvents.BTN_OK)}
-                >
-                    {getModalLabel(modal, 'ok', 'Ok')}
-                </Button>
-            )
+            return {
+                [SignalEvents.BTN_OK]: () => onModalEvent(SignalEvents.BTN_OK),
+            };
+
         default:
             return null;
     }
 }
 
-export default createContainer(SignalContainer)
+export default createContainer(SignalContainer);

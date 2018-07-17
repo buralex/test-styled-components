@@ -12,7 +12,7 @@ export const makeSelectCurrentUser = () => createSelector(selectApp, app => app.
 
 export const makeSelectLoading = () => createSelector(selectApp, app => app.loading);
 
-export const makeSelectError = () => createSelector(selectApp, app => app.error);
+export const makeSelectAlert = () => createSelector(selectApp, app => app.alert);
 
 export const makeSelectSuccess = () => createSelector(selectApp, app => app.success);
 

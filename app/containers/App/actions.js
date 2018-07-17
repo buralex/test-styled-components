@@ -1,7 +1,6 @@
 
+import * as modalNames from 'components/modals/names';
 import * as types from './constants/types';
-import * as appEventTypes from './constants/appEventTypes';
-
 
 /**
  * Loader show
@@ -40,48 +39,42 @@ export function logout() {
     };
 }
 
+/**
+ * Show alert
+ */
+export function showAlert(modalName, data) {
+    return {
+        type: types.SHOW_ALERT,
+        payload: {
+            modalName,
+            data,
+        },
+    };
+}
+
+/**
+ * Hide alert
+ */
+export function hideAlert() {
+    return {
+        type: types.HIDE_ALERT,
+    };
+}
+
 
 /* ------------------------------- server events --------------------------------- */
 /**
  * Server error
  */
 export function serverError(error) {
-    return {
-        type: types.ERROR,
-        payload: {
-            type: appEventTypes.ERROR_SERVER,
-            data: (error.response && error.response.data.error) || error,
-        },
-    };
-}
-
-/**
- * Clear server error
- */
-export function clearError() {
-    return {
-        type: types.CLEAR_ERROR,
-    };
+    return showAlert(modalNames.SERVER_ERROR, (error.response && error.response.data.error) || error);
 }
 
 /**
  * Server success
  */
 export function serverSuccess(data) {
-    return {
-        type: types.SUCCESS,
-        payload: {
-            type: appEventTypes.SUCCESS_SERVER,
-            data: data.data || data,
-        },
-    };
+    return showAlert(modalNames.SERVER_SUCCESS, data.data || data);
 }
-/**
- * Clear success
- */
-export function clearSuccess() {
-    return {
-        type: types.CLEAR_SUCCESS,
-    };
-}
+
 /* ------------------------------- / server events --------------------------------- */

@@ -7,29 +7,15 @@ import {
     Tooltip, UncontrolledTooltip
 } from 'reactstrap';
 
-import {
-    createContainer,
-    SignalEvents,
-    SignalTypes,
-} from 'redux-signal'
 
-import appEventTypes from 'containers/App/constants/appEventTypes';
-import {getFooter} from 'containers/SignalContainer/index';
+export const ServerError = ({onClose, footerActions, data, isOpen, destroy}) => {
 
-
-export const ServerError = ({signalProps: {event, destroy, close, modal}}) => {
-
-    const {modalData: { message, description, details }} = modal;
+    const {message, description, details} = data;
 
     return (
         <Fragment>
-            <Modal isOpen={modal.isVisible} className="modal-danger" backdrop="static" onClosed={destroy}>
-                <ModalHeader
-                    toggle={() => {
-                        event(modal, SignalEvents.CLOSE);
-                        close();
-                    }}
-                >
+            <Modal isOpen={isOpen} className="modal-danger" backdrop="static" onClosed={destroy}>
+                <ModalHeader toggle={onClose}>
                     {`Error: ${message || ''}`}
                 </ModalHeader>
 
@@ -49,7 +35,13 @@ export const ServerError = ({signalProps: {event, destroy, close, modal}}) => {
                 </ModalBody>
 
                 <ModalFooter>
-                    {getFooter(modal, eventType => event(modal, eventType))}
+                    <Button
+                        key='no'
+                        color="primary"
+                        onClick={footerActions.BTN_OK}
+                    >
+                        Ok
+                    </Button>
                 </ModalFooter>
             </Modal>
         </Fragment>

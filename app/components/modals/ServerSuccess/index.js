@@ -7,52 +7,34 @@ import {
     Tooltip, UncontrolledTooltip
 } from 'reactstrap';
 
-import {
-    createContainer,
-    SignalEvents,
-    SignalTypes,
-} from 'redux-signal'
 
-import appEventTypes from 'containers/App/constants/appEventTypes';
-import {getFooter} from 'containers/SignalContainer/index';
+export const ServerSuccess = ({onClose, footerActions, data, isOpen, destroy}) => {
 
-
-export const ServerSuccess = ({signalProps: {event, destroy, close, modal}}) => {
-
-    const {modalData: {appEvent, data, data: {message, description, details}}} = modal;
+    const {message} = data;
 
     return (
         <Fragment>
-            <Modal isOpen={modal.isVisible} className="modal-danger" backdrop="static" onClosed={destroy}>
-                <ModalHeader
-                    toggle={() => {
-                        event(modal, SignalEvents.CLOSE);
-                        close();
-                    }}
-                >
-                    {`Error: ${message || ''}`}
+            <Modal isOpen={isOpen} className="modal-success" backdrop="static" onClosed={destroy}>
+                <ModalHeader toggle={onClose}>
+                    Success
                 </ModalHeader>
 
                 <ModalBody>
                     <div>
-                        <h5>{description || 'Sorry, try later.'}</h5>
-
-                        {details && details.length &&
-                        <div>
-                            Details:
-                            <ul>
-                                {details.map((elem, i) => <div key={`err_ell_${i+1}`}>{elem.description}</div>)}
-                            </ul>
-                        </div>
-                        }
+                        <h5>{message || 'Ok!'}</h5>
                     </div>
                 </ModalBody>
 
                 <ModalFooter>
-                    {getFooter(modal, eventType => event(modal, eventType))}
+                    <Button
+                        key='no'
+                        color="success"
+                        onClick={footerActions.BTN_OK}
+                    >
+                        Ok
+                    </Button>
                 </ModalFooter>
             </Modal>
         </Fragment>
     )
 }
-
