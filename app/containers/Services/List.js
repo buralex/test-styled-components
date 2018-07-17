@@ -15,6 +15,8 @@ import {
 
 import withData from "hocs/withData";
 
+import Greetingbackground from "layout/Greetingbackground";
+
 
 import * as appActions from "containers/App/actions";
 import {withSignal} from "redux-signal";
@@ -44,35 +46,36 @@ class List extends React.PureComponent {
         console.log(categories);
         return (
             <article>
-                <Helmet>
-                    <title>Home Page</title>
-                    <meta
-                        name="description"
-                        content="Denteez"
-                    />
-                </Helmet>
-                <div>
-                    <Button
-                        color="success" onClick={async () => {
-                        // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);
-                        // const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data);
-                        const aaa = await fetchFriends({
-                            per_page: 10,
-                        }).then(res => res.data).catch(e => e.response.data);
+                <Greetingbackground>
+                    aaaaaaaaaaaaaaaaaaaaaddddddddsssssss
+                </Greetingbackground>
+                {categories.map((cat) => {
+                    console.log(cat);
 
-                        console.log(aaa);
+                    return <Button color="silver-two" >{cat.title}</Button>
+                })}
+                {/*<div>*/}
+                    {/*<Button*/}
+                        {/*color="success" onClick={async () => {*/}
+                        {/*// const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);*/}
+                        {/*// const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data);*/}
+                        {/*const aaa = await fetchFriends({*/}
+                            {/*per_page: 10,*/}
+                        {/*}).then(res => res.data).catch(e => e.response.data);*/}
 
-                    }}>Add New Service</Button>
+                        {/*console.log(aaa);*/}
 
-                    <Button color="success" onClick={this.props.logout}>logout</Button>
+                    {/*}}>Add New Service</Button>*/}
 
-                    <div className="p-3 mb-3 swatch-indigo">Indigo</div>
+                    {/*<Button color="success" onClick={this.props.logout}>logout</Button>*/}
 
-                    <div className="col-2 text-truncate">
-                        Praeterea iter est quasdam res quas ex communi.
-                    </div>
+                    {/*<div className="p-3 mb-3 swatch-indigo">Indigo</div>*/}
 
-                </div>
+                    {/*<div className="col-2 text-truncate">*/}
+                        {/*Praeterea iter est quasdam res quas ex communi.*/}
+                    {/*</div>*/}
+
+                {/*</div>*/}
             </article>
         );
     }

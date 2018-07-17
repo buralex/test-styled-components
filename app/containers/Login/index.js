@@ -4,7 +4,7 @@
  * This is the first thing users see of our App, at the '/' route
  */
 
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
 import {FormattedMessage} from 'react-intl';
@@ -22,16 +22,7 @@ import * as appActions from 'containers/App/actions';
 
 import LoadingBeat from 'components/LoadingBeat';
 
-import CenteredSection from './CenteredSection';
-import Form from './Form';
-import Input from './Input';
-import Section from './Section';
-import messages from './messages';
-
-import {changeUsername} from './actions';
-import {makeSelectUsername} from './selectors';
-import reducer from './reducer';
-import saga from './saga';
+import Greetingbackground from "layout/Greetingbackground";
 
 import LoginForm from "./components/LoginForm";
 
@@ -39,18 +30,6 @@ import LoginForm from "./components/LoginForm";
 /* eslint-disable react/prefer-stateless-function */
 class Login extends React.PureComponent {
 
-    componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
-        if (this.props.match !== prevProps.match) {
-            console.log(this.props.match);
-            console.log(prevProps.match);
-            const aaa = {aa: 1}
-            const bbb = {bb: 2}
-            // console.log(difference(prevProps.match, this.props.match));
-            // console.log(difference(aaa, bbb));
-            console.log('dodddddddddddddddddddddddddddddd');
-        }
-    }
 
     render() {
         const {loading} = this.props;
@@ -58,47 +37,14 @@ class Login extends React.PureComponent {
         console.log('RENDER LOGIN PAGE ...',this.props);
 
         return (
-            <article>
-                <Helmet>
-                    <title>Login Page</title>
-                    <meta
-                        name="description"
-                        content="Denteez"
-                    />
-                </Helmet>
-                <div>
-                    <CenteredSection>
-
-                        <Button size="sm"
-                            color="success" onClick={async () => {
-                            // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);
-                            // const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data);
-                                const aaa = await fetchFriends({
-                                    per_page: 10,
-                                }).then(res => res.data).catch(e => e.response.data);
-
-                                console.log(aaa);
-
-                            }}>Add New Service</Button>
-
-                        <Button color="primary" tag={Link} to="/about">enquiry</Button>
-                        <div className="col-2 text-truncate">
-                            Praeterea iter est quasdam res quas ex communi.
-                        </div>
-
-                        <p>Somewhere in here is a <a href="/jjjj" id="UncontrolledTooltipExample">tooltip</a>.</p>
-                        <UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
-                            Hello world!
-                        </UncontrolledTooltip>
-
-                    </CenteredSection>
-
-                    <LoadingBeat loading={loading} />
+            <Greetingbackground>
+                <div className="col login-container">
+                    <Button color="primary" tag={Link} to="/about">about</Button>
 
                     <LoginForm loading={loading} onSubmit={this.props.onSubmitForm} />
-
+                    <LoadingBeat loading={loading} />
                 </div>
-            </article>
+            </Greetingbackground>
         );
     }
 }
@@ -122,11 +68,6 @@ const withConnect = connect(
 );
 
 
-// const withReducer = injectReducer({key: 'login', reducer});
-// const withSaga = injectSaga({key: 'login', saga});
-
 export default compose(
-    // withReducer,
-    // withSaga,
     withConnect,
 )(Login);

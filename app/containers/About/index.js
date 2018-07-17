@@ -27,6 +27,8 @@ import {
 
 import H2 from 'components/H2';
 
+import Greetingbackground from "layout/Greetingbackground";
+
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
@@ -72,14 +74,10 @@ class About extends React.PureComponent {
         // console.log(this.props);
 
         return (
-            <div className="enquiry-container col bg-silver-two">
-                <Helmet>
-                    <title>Enquiry Page</title>
-                    <meta name="description" content="Denteez" />
-                </Helmet>
-                <div>
+            <Greetingbackground>
+                <div className="about-container bg-silver-two">
                     {!isLoggedIn &&
-                        <Button color="success" tag={Link} to="/login">login</Button>
+                    <Button color="success" tag={Link} to="/login">login</Button>
                     }
 
                     <AboutForm
@@ -90,7 +88,7 @@ class About extends React.PureComponent {
                         isEnqTypeOther={currentEnqType === 'Other'}
                     />
                 </div>
-            </div>
+            </Greetingbackground>
         );
     }
 }

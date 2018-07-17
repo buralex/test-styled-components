@@ -21,7 +21,7 @@ const LoginForm = props => {
     const { handleSubmit, pristine, reset, submitting, loading } = props;
     console.log('render login form!!!!!!!!!!1');
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form-content-small">
             <Field name="email" type="email" component={TextInput} label="Email" />
             <Field name="password" type="password" component={TextInput} label="Password" />
             <div>

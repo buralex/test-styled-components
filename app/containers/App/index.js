@@ -88,12 +88,14 @@ class App extends React.PureComponent {
 
                 {isLoggedIn && !isAbout && <Header/>}
 
-                <div className="d-flex">
+                <div className="d-flex ">
                     {isLoggedIn && !isAbout && <LeftBar/>}
 
                     <div className="container-fluid">
                         <div className="row">
-                            <Router />
+                            <div className="col">
+                                <Router />
+                            </div>
                         </div>
                     </div>
 
