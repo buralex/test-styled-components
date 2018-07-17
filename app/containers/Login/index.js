@@ -6,14 +6,12 @@
 
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {Helmet} from 'react-helmet';
-import {FormattedMessage} from 'react-intl';
+
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {createStructuredSelector} from 'reselect';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, UncontrolledTooltip} from 'reactstrap';
-import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/api';
-import { push } from 'react-router-redux';
+import {Button} from 'reactstrap';
+
 import {Link} from 'react-router-dom';
 
 import { makeSelectLoading } from 'containers/App/selectors';
@@ -22,9 +20,10 @@ import * as appActions from 'containers/App/actions';
 
 
 
-import Greetingbackground from "layout/Greetingbackground";
-
+import AboutContent from "layout/AboutContent";
 import LoginForm from "./components/LoginForm";
+
+import './style.scss';
 
 class Login extends React.PureComponent {
 
@@ -34,13 +33,18 @@ class Login extends React.PureComponent {
         console.log('RENDER LOGIN PAGE ...',this.props);
 
         return (
-            <Greetingbackground>
-                <div className="col login-container">
-                    <Button color="primary" tag={Link} to="/about">about</Button>
+            <div className="login-container outline-danger">
 
+                <section className="land-top">
+                    <Button color="success" size="sm" tag={Link} to="/about">about</Button>
+                </section>
+
+                <section className="land-middle">
                     <LoginForm loading={loading} onSubmit={this.props.onSubmitForm} />
-                </div>
-            </Greetingbackground>
+                </section>
+
+                <AboutContent />
+            </div>
         );
     }
 }

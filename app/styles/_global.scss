@@ -10,12 +10,14 @@ body {
 
 body.fontLoaded {
   font-family: 'Proxima Nova Reg', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: $darkest-blue;
 }
 
 #app {
   background-color: $body-bg;
   min-height: 100%;
   min-width: 100%;
+  color: $darkest-blue;
 }
 
 .content {
@@ -23,9 +25,46 @@ body.fontLoaded {
   margin: auto;
 }
 
+//.container-fluid {
+//  max-width: $max-content-width;
+//
+//}
+
+.login-container,
+.about-container {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.land-top {
+  background: url(../images/land-top.png) no-repeat top center;
+  background-size: cover;
+  height: 510px;
+}
+
+.land-middle {
+  background: url(../images/land-middle.png) no-repeat top center;
+  background-size: cover;
+  height: 510px;
+}
+
+
 .outline-danger {
   outline: 1px solid $danger;
 }
+
+
+//**************************
+//       Layout
+//**************************
+
+
+//**************************
+//       / Layout
+//**************************
+
 
 //**************************
 //       Modals
@@ -48,12 +87,23 @@ body.fontLoaded {
 //       Forms
 //**************************
 
-.form-content-small {
+.form-small {
+  background: $white;
+  border-radius: 5px;
   max-width: 760px;
   margin: auto;
-  background: $white;
-  padding: 20px;
+
+  .form-body {
+    padding: 20px;
+  }
+
+  button[type=submit] {
+    position: absolute;
+    bottom: -60px;
+  }
+
 }
+
 
 //**************************
 //       / Forms

@@ -1,0 +1,22 @@
+
+@import '../../styles/colors_and_variables';
+
+.about-content-component {
+
+  padding: 90px 80px 110px;
+
+  h2 {
+    font-size: 30px;
+    margin-bottom: 36px;
+  }
+
+  p {
+    margin-left: 15px;
+    letter-spacing: -0.1px;
+
+    &.right {
+      margin-left: 25px;
+    }
+  }
+
+}

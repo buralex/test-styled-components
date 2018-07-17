@@ -86,6 +86,10 @@ $btn-focus-box-shadow: none !important;
 .btn-success {
   color: $white;
 
+  &.disabled {
+    color: $white;
+  }
+
   &:hover {
     background-color: lighten($turtle-green, 6);
     border-color: lighten($turtle-green, 6);

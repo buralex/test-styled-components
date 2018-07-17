@@ -15,8 +15,6 @@ import {
 
 import withData from "hocs/withData";
 
-import Greetingbackground from "layout/Greetingbackground";
-
 
 import * as appActions from "containers/App/actions";
 import {withSignal} from "redux-signal";

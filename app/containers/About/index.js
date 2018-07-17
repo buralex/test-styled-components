@@ -27,7 +27,6 @@ import {
 
 import H2 from 'components/H2';
 
-import Greetingbackground from "layout/Greetingbackground";
 
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
@@ -74,21 +73,19 @@ class About extends React.PureComponent {
         // console.log(this.props);
 
         return (
-            <Greetingbackground>
-                <div className="col about-container">
-                    {!isLoggedIn &&
-                    <Button color="success" tag={Link} to="/login">login</Button>
-                    }
+            <div className="col about-container">
+                {!isLoggedIn &&
+                <Button color="success" tag={Link} to="/login">login</Button>
+                }
 
-                    <AboutForm
-                        loading={loading}
-                        initialValues={this.initValues}
-                        onSubmit={this.props.onSubmitForm}
-                        enquiryTypes={enquiryTypes}
-                        isEnqTypeOther={currentEnqType === 'Other'}
-                    />
-                </div>
-            </Greetingbackground>
+                <AboutForm
+                    loading={loading}
+                    initialValues={this.initValues}
+                    onSubmit={this.props.onSubmitForm}
+                    enquiryTypes={enquiryTypes}
+                    isEnqTypeOther={currentEnqType === 'Other'}
+                />
+            </div>
         );
     }
 }
