@@ -6,13 +6,11 @@ import { userIsAuthenticatedRedir, userIsNotAuthenticatedRedir,
     userIsAuthenticated, userIsNotAuthenticated,
 } from 'auth'
 
-import LoginComponent from 'containers/Login';
-import AboutComponent from 'containers/About/Loadable';
+import LandComponent from 'containers/Land/Loadable';
 import ServicesComponent from 'containers/Services/Loadable';
 import NotFoundPageComponent from 'containers/NotFoundPage';
 
-const Login = userIsNotAuthenticatedRedir(LoginComponent);
-const About = AboutComponent;
+const Land = LandComponent;
 const Services = userIsAuthenticatedRedir(ServicesComponent);
 const NotFoundPage = userIsAuthenticatedRedir(NotFoundPageComponent);
 
@@ -27,10 +25,10 @@ const NotFoundPage = userIsAuthenticatedRedir(NotFoundPageComponent);
 
 const Router = () => (
     <Switch>
-        <Route exact path="/" component={About}/>
-        <Route exact path="/about" component={About}/>
+        <Route exact path="/" component={Land}/>
+        <Route exact path="/login" component={Land}/>
+        <Route exact path="/about" component={Land}/>
         <Route exact path="/services/:action?/:id?" component={Services}/>
-        <Route exact path="/login" component={Login}/>
         <Route path="" component={NotFoundPage}/>
     </Switch>
 );

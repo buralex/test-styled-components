@@ -35,15 +35,6 @@ import {makeSelectCategories} from './selectors';
 
 
 class Services extends React.PureComponent {
-    constructor(props) {
-        super(props);
-
-    }
-
-    componentDidMount() {
-
-    }
-
 
     render() {
         const {loading, action} = this.props;

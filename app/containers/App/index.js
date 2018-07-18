@@ -88,7 +88,7 @@ class App extends React.PureComponent {
 
                 {isLoggedIn && !isLand && <Header/>}
 
-                <div className="d-flex content">
+                <div className={isLand ? '' : 'd-flex content' }>
                     {isLoggedIn && !isLand && <LeftBar/>}
 
                     <div className="container-fluid ">

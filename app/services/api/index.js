@@ -31,7 +31,9 @@ restApi.interceptors.response.use((response) => response, (error) => {
 ---------------------------------------*/
 export const fetchCategory = (id, params) => restApi(`/services/categories/${id}`, {params});
 export const fetchCategories = (params) => restApi(`/services/categories`, {params});
-export const fetchFriends = (params) => restApi(`/suggestions/friends`, {params});
+export const fetchSuggestFriends = (params) => restApi(`/suggestions/friends`, {params});
+export const fetchSuggestCompanies = (params) => restApi(`/suggestions/companies`, {params});
+export const fetchSuggestProducts = (params) => restApi(`/suggestions/products`, {params});
 
 
 export const fetchEnquiryTypes = (params) => restApi(`/directories/enquiry-types`, {params});

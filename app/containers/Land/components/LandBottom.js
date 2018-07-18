@@ -1,10 +1,8 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
-import './style.scss';
-
-const AboutContent = () => (
-    <section className="about-content-component text-center">
-        <h2>About Denteez</h2>
+const LandBottom = () => (
+    <Fragment>
+        <h2 className="text-truncate">About Denteez</h2>
 
         <div className="container-fluid">
             <div className="row">
@@ -31,8 +29,7 @@ const AboutContent = () => (
                 </div>
             </div>
         </div>
-
-    </section>
+    </Fragment>
 )
 
-export default AboutContent;
+export default LandBottom;

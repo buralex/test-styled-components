@@ -15,6 +15,8 @@ import withData from "hocs/withData";
 import { history } from 'app';
 
 
+import {makeSelectIsLoggedIn, makeSelectLoading, makeSelectLocation} from 'containers/App/selectors';
+
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
@@ -25,28 +27,23 @@ import {
     eventHandler,
 } from 'redux-signal'
 
-import H2 from 'components/H2';
 
-
-import AtPrefix from './AtPrefix';
-import CenteredSection from './CenteredSection';
-import Form from './Form';
-import Input from './Input';
-import Section from './Section';
-import messages from './messages';
-
+import * as appActions from "containers/App/actions";
 import * as actions from './actions';
 import {makeSelectEnquiryTypes, makeSelectCurrentEnqType} from './selectors';
-import {makeSelectIsLoggedIn, makeSelectLoading} from 'containers/App/selectors';
+
 import reducer from './reducer';
 import saga from './saga';
 
 import AboutForm from "./components/AboutForm";
-import * as appActions from "../App/actions";
+import LandBottom from "./components/LandBottom";
+
+import LoginForm from "./components/LoginForm";
 
 
+import "./style.scss";
 
-class About extends React.PureComponent {
+class Land extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -54,56 +51,74 @@ class About extends React.PureComponent {
             department: 1,
             enquiry_type: 'Other',
         };
-    }
 
-    componentDidMount() {
-        history.push('/about');
+        if (!props.location.pathname.includes('login')) {
+            history.push('/about');
+        }
     }
 
     render() {
-        const {enquiryTypes, currentEnqType, loading, isLoggedIn} = this.props;
+        const {enquiryTypes, currentEnqType, loading, isLoggedIn, location: {pathname}} = this.props;
         //
         // if (!enquiryTypes.length) {
         //     return null;
         // }
 
         console.log('RENDER ABOUT >>>');
+        console.log(pathname);
         // console.log(enquiryTypes);
         //
         // console.log(this.props);
 
         return (
-            <div className="col about-container">
-                {!isLoggedIn &&
-                <Button color="success" tag={Link} to="/login">login</Button>
-                }
+            <div className="land-container outline-danger">
 
-                <AboutForm
-                    loading={loading}
-                    initialValues={this.initValues}
-                    onSubmit={this.props.onSubmitForm}
-                    enquiryTypes={enquiryTypes}
-                    isEnqTypeOther={currentEnqType === 'Other'}
-                />
+                <section className="land-top">
+                    <Button color="success" size="sm" tag={Link} to="/about">about</Button>
+                    {!isLoggedIn &&
+                    <Button color="success" tag={Link} to="/login">login</Button>
+                    }
+                </section>
+
+                <section className="land-middle">
+
+                    {pathname.includes('about') &&
+                        <AboutForm
+                            loading={loading}
+                            initialValues={this.initValues}
+                            onSubmit={this.props.postEnquiry}
+                            enquiryTypes={enquiryTypes}
+                            isEnqTypeOther={currentEnqType === 'Other'}
+                        />
+                    }
+
+                    {pathname.includes('login') &&
+                        <LoginForm loading={loading} onSubmit={this.props.login} />
+                    }
+
+                </section>
+
+                <section className="land-bottom text-center">
+                    <LandBottom />
+                </section>
+
             </div>
         );
     }
 }
 
-About.propTypes = {
+Land.propTypes = {
     // loading: PropTypes.bool,
     // error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     // repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-    onSubmitForm: PropTypes.func,
+    // onSubmitForm: PropTypes.func,
     // username: PropTypes.string,
 };
 
 
 export const mapDispatchToProps = (dispatch) => ({
-    onSubmitForm: (values) => {
-        console.log(values);
-        dispatch(actions.postEnquiry(values));
-    },
+    postEnquiry: (values) => dispatch(actions.postEnquiry(values)),
+    login: (values) => dispatch(appActions.login(values)),
 
     /* -------------------- withData hoc ---------------------------------- */
     getData: () => {
@@ -119,6 +134,7 @@ const mapStateToProps = createStructuredSelector({
     currentEnqType: makeSelectCurrentEnqType(),
     loading: makeSelectLoading(),
     isLoggedIn: makeSelectIsLoggedIn(),
+    location: makeSelectLocation(),
 });
 
 const withConnect = connect(
@@ -126,12 +142,12 @@ const withConnect = connect(
     mapDispatchToProps,
 );
 
-const withReducer = injectReducer({key: 'about', reducer});
-const withSaga = injectSaga({key: 'about', saga});
+const withReducer = injectReducer({key: 'land', reducer});
+const withSaga = injectSaga({key: 'land', saga});
 
 export default compose(
     withReducer,
     withSaga,
     withSignal,
     withConnect,
-)(withData(About));
+)(withData(Land));
