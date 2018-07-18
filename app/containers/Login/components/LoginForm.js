@@ -48,9 +48,12 @@ const LoginForm = props => {
                 </div>
             </div>
 
-            <Button color="success" size="md" type="submit" disabled={submitting || loading} block>
-                Submit
-            </Button>
+            <div className="form-footer">
+                <Button color="success" size="lg" type="submit" disabled={submitting || loading} block>
+                    Submit
+                </Button>
+            </div>
+
 
             <div className="position-absolute w-100">
                 <LoadingBeat loading={loading} />

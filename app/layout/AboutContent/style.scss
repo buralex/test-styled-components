@@ -3,19 +3,21 @@
 
 .about-content-component {
 
-  padding: 90px 80px 110px;
+  padding: 90px 15px 110px;
 
   h2 {
     font-size: 30px;
     margin-bottom: 36px;
   }
 
-  p {
-    margin-left: 15px;
+  section {
+    margin-left: 40px;
+    margin-right: 25px;
     letter-spacing: -0.1px;
 
     &.right {
       margin-left: 25px;
+      margin-right: 30px;
     }
   }
 

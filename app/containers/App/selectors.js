@@ -21,6 +21,9 @@ export const makeSelectIsLoggedIn = () => createSelector(selectUserData, userDat
 
 export const makeSelectLocation = () => createSelector(selectRoute, routeState => routeState.location);
 
-export const makeSelectIsAbout = () =>
-    createSelector(selectRoute, routeState => routeState.location.pathname.includes('about'));
+const landUrlsExpr = /about|login/;
+
+// is current url refers to landing
+export const makeSelectIsLand = () =>
+    createSelector(selectRoute, routeState => landUrlsExpr.test(routeState.location.pathname));
 

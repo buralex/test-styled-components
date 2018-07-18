@@ -21,7 +21,7 @@ import injectSaga from 'utils/injectSaga';
 
 import {
     makeSelectIsLoggedIn,
-    makeSelectIsAbout,
+    makeSelectIsLand,
     makeSelectAlert,
 } from "containers/App/selectors";
 
@@ -71,12 +71,12 @@ class App extends React.PureComponent {
 
 
     render() {
-        const {isLoggedIn, isAbout, loading} = this.props;
+        const {isLoggedIn, isLand, loading} = this.props;
         console.log('---------------- RENDER APP -------------------', this.props);
 
 
         console.log(loading);
-        console.log(isAbout);
+        console.log(isLand);
         return (
             <div className="app-wrapper">
                 <Helmet
@@ -86,19 +86,19 @@ class App extends React.PureComponent {
                     <meta name="description" content="Denteez"/>
                 </Helmet>
 
-                {isLoggedIn && !isAbout && <Header/>}
+                {isLoggedIn && !isLand && <Header/>}
 
                 <div className="d-flex content">
-                    {isLoggedIn && !isAbout && <LeftBar/>}
+                    {isLoggedIn && !isLand && <LeftBar/>}
 
                     <div className="container-fluid ">
                         <Router />
                     </div>
 
-                    {isLoggedIn && !isAbout && <RightBar/>}
+                    {isLoggedIn && !isLand && <RightBar/>}
                 </div>
 
-                {isLoggedIn && !isAbout && <Footer/>}
+                {isLand && <Footer/>}
 
                 <AlertModalEvents
                     onOk={this.props.hideAlert}
@@ -126,7 +126,7 @@ export const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = createStructuredSelector({
     isLoggedIn: makeSelectIsLoggedIn(),
-    isAbout: makeSelectIsAbout(),
+    isLand: makeSelectIsLand(),
     alert: makeSelectAlert(),
 });
 

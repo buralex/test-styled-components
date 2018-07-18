@@ -25,10 +25,6 @@ body.fontLoaded {
   margin: auto;
 }
 
-//.container-fluid {
-//  max-width: $max-content-width;
-//
-//}
 
 .login-container,
 .about-container {
@@ -47,7 +43,7 @@ body.fontLoaded {
 .land-middle {
   background: url(../images/land-middle.png) no-repeat top center;
   background-size: cover;
-  height: 510px;
+  padding-bottom: 15px;
 }
 
 
@@ -88,20 +84,19 @@ body.fontLoaded {
 //**************************
 
 .form-small {
-  background: $white;
-  border-radius: 5px;
   max-width: 760px;
   margin: auto;
 
   .form-body {
+    background: $white;
+    border: 1px solid $silver-three;
+    border-radius: 5px;
     padding: 20px;
   }
 
-  button[type=submit] {
-    position: absolute;
-    bottom: -60px;
+  .form-footer {
+    margin-top: 20px;
   }
-
 }
 
 

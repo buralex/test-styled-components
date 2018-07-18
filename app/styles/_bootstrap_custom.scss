@@ -95,6 +95,13 @@ $btn-focus-box-shadow: none !important;
     border-color: lighten($turtle-green, 6);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
+
+  &.btn-lg {
+    padding-top: 13px;
+    padding-bottom: 13px;
+
+    font-size: 16px;
+  }
 }
 
 //**************************
