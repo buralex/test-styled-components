@@ -4,25 +4,23 @@ import React, {Fragment} from 'react'
 import {
     Button,
     Modal, ModalHeader, ModalBody, ModalFooter,
-
 } from 'reactstrap';
 
 
-
-const ServerError = ({onClose, footerActions, data, isOpen, destroy}) => {
+const InfoModal = ({onClose, footerActions, data, isOpen, destroy}) => {
 
     const {message, description, details} = data;
 
     return (
         <Fragment>
-            <Modal isOpen={isOpen} className="modal-danger" backdrop="static" onClosed={destroy}>
+            <Modal isOpen={isOpen} backdrop="static" onClosed={destroy}>
                 <ModalHeader toggle={onClose}>
-                    {`Error: ${message || ''}`}
+                    {`Info: ${message}`}
                 </ModalHeader>
 
                 <ModalBody>
                     <div>
-                        <h5>{description || 'Sorry, try later.'}</h5>
+                        <h5>{description || 'Some info...'}</h5>
 
                         {details && details.length &&
                         <div>
@@ -35,18 +33,9 @@ const ServerError = ({onClose, footerActions, data, isOpen, destroy}) => {
                     </div>
                 </ModalBody>
 
-                <ModalFooter>
-                    <Button
-                        key='no'
-                        color="primary"
-                        onClick={footerActions.BTN_OK}
-                    >
-                        Ok
-                    </Button>
-                </ModalFooter>
             </Modal>
         </Fragment>
     )
 }
-export default ServerError;
+export default InfoModal;
 

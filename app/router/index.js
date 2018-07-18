@@ -6,28 +6,20 @@ import { userIsAuthenticatedRedir, userIsNotAuthenticatedRedir,
     userIsAuthenticated, userIsNotAuthenticated,
 } from 'auth'
 
-import LandComponent from 'containers/Land/Loadable';
+import LoginComponent from 'containers/Login/Loadable';
 import ServicesComponent from 'containers/Services/Loadable';
 import NotFoundPageComponent from 'containers/NotFoundPage';
 
-const Land = LandComponent;
+const Login = userIsNotAuthenticatedRedir(LoginComponent);
+
 const Services = userIsAuthenticatedRedir(ServicesComponent);
 const NotFoundPage = userIsAuthenticatedRedir(NotFoundPageComponent);
 
-// const Login = LoginComponent;
-// const About = AboutComponent;
-// const Services = ServicesComponent;
-// const NotFoundPage = NotFoundPageComponent;
-
-//const Aaa = userIsAuthenticated(({ logout }) => <a href="#" onClick={() => logout()}>Logout</a>)
-//
-// console.log(userIsAuthenticated(<div>aaaaaaaassssssddddddddd</div>));
-
 const Router = () => (
     <Switch>
-        <Route exact path="/" component={Land}/>
-        <Route exact path="/login" component={Land}/>
-        <Route exact path="/about" component={Land}/>
+        <Route exact path="/" component={Login}/>
+        <Route exact path="/login" component={Login}/>
+        <Route exact path="/login/support" component={Login}/>
         <Route exact path="/services/:action?/:id?" component={Services}/>
         <Route path="" component={NotFoundPage}/>
     </Switch>

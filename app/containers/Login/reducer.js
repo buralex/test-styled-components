@@ -5,7 +5,7 @@ export const initialState = {
     enquiryTypes: [],
 };
 
-function aboutReducer(state = initialState, action) {
+function loginReducer(state = initialState, action) {
     switch (action.type) {
 
         case types.LOAD_ENQUIRY_TYPES_SUCCESS: {
@@ -28,4 +28,4 @@ function aboutReducer(state = initialState, action) {
     }
 }
 
-export default aboutReducer;
+export default loginReducer;

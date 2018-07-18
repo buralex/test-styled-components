@@ -1,14 +1,11 @@
 import React, {Fragment} from 'react'
-import PropTypes from 'prop-types'
 
 import {
     Button,
     Modal, ModalHeader, ModalBody, ModalFooter,
-    Tooltip, UncontrolledTooltip
 } from 'reactstrap';
 
-
-export const ServerSuccess = ({onClose, footerActions, data, isOpen, destroy}) => {
+const ServerSuccess = ({onClose, footerActions, data, isOpen, destroy}) => {
 
     const {message} = data;
 
@@ -38,3 +35,4 @@ export const ServerSuccess = ({onClose, footerActions, data, isOpen, destroy}) =
         </Fragment>
     )
 }
+export default ServerSuccess;

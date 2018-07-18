@@ -21,7 +21,7 @@ import injectSaga from 'utils/injectSaga';
 
 import {
     makeSelectIsLoggedIn,
-    makeSelectIsLand,
+    makeSelectIsLogin,
     makeSelectAlert,
 } from "containers/App/selectors";
 
@@ -71,12 +71,12 @@ class App extends React.PureComponent {
 
 
     render() {
-        const {isLoggedIn, isLand, loading} = this.props;
+        const {isLoggedIn, isLoginPage, loading} = this.props;
         console.log('---------------- RENDER APP -------------------', this.props);
 
 
         console.log(loading);
-        console.log(isLand);
+        console.log(isLoginPage);
         return (
             <div className="app-wrapper">
                 <Helmet
@@ -86,19 +86,19 @@ class App extends React.PureComponent {
                     <meta name="description" content="Denteez"/>
                 </Helmet>
 
-                {isLoggedIn && !isLand && <Header/>}
+                {isLoggedIn && !isLoginPage && <Header/>}
 
-                <div className={isLand ? '' : 'd-flex content' }>
-                    {isLoggedIn && !isLand && <LeftBar/>}
+                <div className={isLoginPage ? '' : 'd-flex content' }>
+                    {isLoggedIn && !isLoginPage && <LeftBar/>}
 
                     <div className="container-fluid ">
                         <Router />
                     </div>
 
-                    {isLoggedIn && !isLand && <RightBar/>}
+                    {isLoggedIn && !isLoginPage && <RightBar/>}
                 </div>
 
-                {isLand && <Footer/>}
+                {isLoginPage && <Footer showModal={this.showAlertModal} />}
 
                 <AlertModalEvents
                     onOk={this.props.hideAlert}
@@ -126,7 +126,7 @@ export const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = createStructuredSelector({
     isLoggedIn: makeSelectIsLoggedIn(),
-    isLand: makeSelectIsLand(),
+    isLoginPage: makeSelectIsLogin(),
     alert: makeSelectAlert(),
 });
 

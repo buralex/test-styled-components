@@ -10,8 +10,9 @@ import {
 
 import * as modalNames from 'components/modals/names';
 
-import {ServerError} from 'components/modals/ServerError';
-import {ServerSuccess} from 'components/modals/ServerSuccess';
+import ServerError from 'components/modals/ServerError';
+import ServerSuccess from 'components/modals/ServerSuccess';
+import InfoModal from 'components/modals/InfoModal';
 
 
 const SignalContainer = ({event, destroy, close, modal}) => {
@@ -30,6 +31,18 @@ const SignalContainer = ({event, destroy, close, modal}) => {
     let modalComponent;
 
     switch (modalName) {
+        case modalNames.INFO_MODAL:
+            modalComponent = (
+                <InfoModal
+                    isOpen={isVisible}
+                    isFirst={isFirst}
+                    onClose={onClose}
+                    data={modalData}
+                    destroy={destroy}
+                    footerActions={footerActions}
+                />
+            );
+            break;
         case modalNames.SERVER_ERROR:
             modalComponent = (
                 <ServerError

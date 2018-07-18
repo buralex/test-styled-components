@@ -35,7 +35,7 @@ import {makeSelectEnquiryTypes, makeSelectCurrentEnqType} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-import AboutForm from "./components/AboutForm";
+import SupportForm from "./components/SupportForm";
 import LandBottom from "./components/LandBottom";
 
 import LoginForm from "./components/LoginForm";
@@ -43,7 +43,7 @@ import LoginForm from "./components/LoginForm";
 
 import "./style.scss";
 
-class Land extends React.PureComponent {
+class Login extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -52,8 +52,8 @@ class Land extends React.PureComponent {
             enquiry_type: 'Other',
         };
 
-        if (!props.location.pathname.includes('login')) {
-            history.push('/about');
+        if (props.location.pathname === '/') {
+            history.push('/login');
         }
     }
 
@@ -64,7 +64,7 @@ class Land extends React.PureComponent {
         //     return null;
         // }
 
-        console.log('RENDER ABOUT >>>');
+        console.log('RENDER ABccccccccccccOUT >>>');
         console.log(pathname);
         // console.log(enquiryTypes);
         //
@@ -74,7 +74,7 @@ class Land extends React.PureComponent {
             <div className="land-container outline-danger">
 
                 <section className="land-top">
-                    <Button color="success" size="sm" tag={Link} to="/about">about</Button>
+                    <Button color="success" size="sm" tag={Link} to="/login/support">support</Button>
                     {!isLoggedIn &&
                     <Button color="success" tag={Link} to="/login">login</Button>
                     }
@@ -82,8 +82,8 @@ class Land extends React.PureComponent {
 
                 <section className="land-middle">
 
-                    {pathname.includes('about') &&
-                        <AboutForm
+                    {pathname.includes('support') &&
+                        <SupportForm
                             loading={loading}
                             initialValues={this.initValues}
                             onSubmit={this.props.postEnquiry}
@@ -92,7 +92,7 @@ class Land extends React.PureComponent {
                         />
                     }
 
-                    {pathname.includes('login') &&
+                    {!pathname.includes('support') &&
                         <LoginForm loading={loading} onSubmit={this.props.login} />
                     }
 
@@ -107,7 +107,7 @@ class Land extends React.PureComponent {
     }
 }
 
-Land.propTypes = {
+Login.propTypes = {
     // loading: PropTypes.bool,
     // error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     // repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
@@ -142,12 +142,12 @@ const withConnect = connect(
     mapDispatchToProps,
 );
 
-const withReducer = injectReducer({key: 'land', reducer});
-const withSaga = injectSaga({key: 'land', saga});
+const withReducer = injectReducer({key: 'login', reducer});
+const withSaga = injectSaga({key: 'login', saga});
 
 export default compose(
     withReducer,
     withSaga,
     withSignal,
     withConnect,
-)(withData(Land));
+)(withData(Login));
