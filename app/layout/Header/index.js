@@ -1,12 +1,5 @@
 import React from 'react';
-import {FormattedMessage} from 'react-intl';
 
-import A from './A';
-import Img from './Img';
-import NavBar from './NavBar';
-import HeaderLink from './HeaderLink';
-import Logo from './images/logo-img.svg';
-import messages from './messages';
 
 import SearchForm from 'components/SearchForm';
 
@@ -22,11 +15,11 @@ class Header extends React.Component {
                 <div className="content outline-danger d-flex justify-content-between">
 
                     <section className="logo">
-                        <a href="/"> <img src="#" alt="Denteez logo" /> </a>
+                        <a href="/"> <img src="#" alt="Denteez logo"/> </a>
                     </section>
 
                     <section className="outline-danger">
-                        <SearchForm form="header_search_form" onSubmit={aaa} />
+                        <SearchForm form="header_search_form" onSubmit={aaa}/>
                     </section>
 
                     <section className="outline-danger">aaaaaaaaaaaaaaaaaavvvvvvvvvvvvvvvvvvvvaaaa</section>

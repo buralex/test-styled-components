@@ -24,7 +24,7 @@ export const userIsAdminRedir = connectedRouterRedirect({
     redirectPath: '/',
     allowRedirectBack: false,
     authenticatedSelector: state => state.userData.authKey !== null
-    && state.userData.isAdmin,
+        && state.userData.isAdmin,
     predicate: user => user.get('isAdmin'),
     wrapperDisplayName: 'UserIsAdmin',
 })

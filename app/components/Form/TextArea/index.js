@@ -1,11 +1,10 @@
-
 import React from 'react'
 import PropTypes from "prop-types";
-import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import {FormGroup, Label, Input, FormFeedback} from 'reactstrap';
 
 const TextArea = ({
-    input, placeholder, label, type, meta: {touched, error}, meta, maxlength, showValid, validText,
-}) => {
+                      input, placeholder, label, type, meta: {touched, error}, meta, maxlength, showValid, validText,
+                  }) => {
 
     const isInvalid = Boolean(touched && error);
     const isValid = Boolean(touched && !error);
@@ -15,7 +14,7 @@ const TextArea = ({
         <FormGroup>
             <Label for={idStr}> {label} </Label>
             {maxlength &&
-                <span className="textarea-max-length float-right">{`(${input.value.length}/${maxlength})`}</span>
+            <span className="textarea-max-length float-right">{`(${input.value.length}/${maxlength})`}</span>
             }
             <Input
                 id={idStr}

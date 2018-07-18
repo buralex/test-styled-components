@@ -18,7 +18,6 @@ import {connect} from "react-redux";
 import injectSaga from 'utils/injectSaga';
 
 
-
 import {
     makeSelectIsLoggedIn,
     makeSelectIsAbout,
@@ -88,14 +87,20 @@ class App extends React.PureComponent {
 
                 {isLoggedIn && !isAbout && <Header/>}
 
-                <div className="d-flex content">
-                    {isLoggedIn && !isAbout && <LeftBar/>}
+                <div className="content">
+                    <div className="d-flex ">
+                        {isLoggedIn && !isAbout && <LeftBar/>}
 
-                    <div className="container-fluid ">
-                        <Router />
+                        <div className="container-fluid ">
+                            <div className="row">
+                                <div className="col">
+                                    <Router/>
+                                </div>
+                            </div>
+                        </div>
+
+                        {isLoggedIn && !isAbout && <RightBar/>}
                     </div>
-
-                    {isLoggedIn && !isAbout && <RightBar/>}
                 </div>
 
                 {isLoggedIn && !isAbout && <Footer/>}
@@ -104,7 +109,7 @@ class App extends React.PureComponent {
                     onOk={this.props.hideAlert}
                     onClose={this.props.hideAlert}
                 />
-                <SignalContainer />
+                <SignalContainer/>
             </div>
         );
     }

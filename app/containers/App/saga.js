@@ -1,7 +1,6 @@
-
 import {call, put, select, all, takeLatest} from 'redux-saga/effects';
 import {loginRequest} from "services/api";
-import { history } from 'app';
+import {history} from 'app';
 
 
 import * as types from './constants/types';
@@ -17,7 +16,7 @@ export function* login(action) {
     try {
         yield put(actions.showLoader());
 
-        const data = yield loginRequest({ email, password }).then(res => res.data);
+        const data = yield loginRequest({email, password}).then(res => res.data);
 
         yield put({
             type: types.LOGIN_SUCCESS,
@@ -31,6 +30,7 @@ export function* login(action) {
         yield put(actions.serverError(e));
     }
 }
+
 export function* watchLogin() {
     yield takeLatest(types.LOGIN, login);
 }

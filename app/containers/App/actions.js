@@ -1,4 +1,3 @@
-
 import * as modalNames from 'components/modals/names';
 import * as types from './constants/types';
 

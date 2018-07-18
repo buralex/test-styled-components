@@ -1,13 +1,12 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
-import {FormattedMessage} from 'react-intl';
+
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {createStructuredSelector} from 'reselect';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, UncontrolledTooltip} from 'reactstrap';
-import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/api';
+import {Button} from 'reactstrap';
+
 
 import {
     makeSelectLoading,
@@ -24,24 +23,15 @@ import * as actions from "./actions";
 import {makeSelectCategories} from './selectors';
 
 
-
 class View extends React.PureComponent {
-    constructor(props) {
-        super(props);
-
-    }
-
-    componentDidUpdate(prevProps) {
-
-    }
-
 
     render() {
-        const {loading, categories} = this.props;
+        const {categories, loading} = this.props;
 
         console.log('<<<<<<<<<<<<<<<<<  RENDER VIEW >>>>>>>>>>>>>>>>>', this.props);
 
         console.log(categories);
+        console.log(loading);
         return (
             <article>
                 <Helmet>
@@ -52,17 +42,6 @@ class View extends React.PureComponent {
                     />
                 </Helmet>
                 <div>
-                    <Button
-                        color="success" onClick={async () => {
-                        // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);
-                        // const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data);
-                        const aaa = await fetchFriends({
-                            per_page: 10,
-                        }).then(res => res.data).catch(e => e.response.data);
-
-                        console.log(aaa);
-
-                    }}>Add New Service</Button>
 
                     <Button color="success" onClick={this.props.logout}>logout</Button>
 

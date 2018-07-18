@@ -1,5 +1,3 @@
-
-
 import * as types from './constants/types';
 
 
@@ -7,8 +5,8 @@ import * as types from './constants/types';
 const initialState = {
     loading: false,
     alert: false,
-    //error: false,
-    //success: false,
+    // error: false,
+    // success: false,
 };
 
 function appReducer(state = initialState, action) {

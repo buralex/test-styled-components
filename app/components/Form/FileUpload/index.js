@@ -1,9 +1,8 @@
-
 import React from 'react'
 import PropTypes from "prop-types";
 import Dropzone from 'react-dropzone';
-import debounce  from 'lodash/debounce';
-import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import debounce from 'lodash/debounce';
+import {FormGroup, Label, Input, FormFeedback} from 'reactstrap';
 
 import './style.scss';
 
@@ -52,7 +51,7 @@ export default class FileUpload extends React.PureComponent {
         if (this.props.validateImgSize) {
             const {minWidth, minHeight} = this.props.validateImgSize;
 
-            if ( width < minWidth || height < minHeight ) {
+            if (width < minWidth || height < minHeight) {
                 this.setState({
                     error: `Image is too small, minimum 300x300 px! (your image is ${width}x${height} px)`,
                 });
@@ -85,19 +84,19 @@ export default class FileUpload extends React.PureComponent {
                     >
                         <div className="img-container">
                             {!this.state.file &&
-                                <div>
-                                    <h6>{placeholder.header}</h6>
-                                    <p>{placeholder.text}</p>
-                                </div>
+                            <div>
+                                <h6>{placeholder.header}</h6>
+                                <p>{placeholder.text}</p>
+                            </div>
                             }
 
                             {this.state.file &&
-                                <img
-                                    onLoad={this.onPreviewLoad}
-                                    className="img-thumbnail"
-                                    alt="preview"
-                                    src={this.state.file.preview}
-                                />
+                            <img
+                                onLoad={this.onPreviewLoad}
+                                className="img-thumbnail"
+                                alt="preview"
+                                src={this.state.file.preview}
+                            />
                             }
                         </div>
                     </Dropzone>

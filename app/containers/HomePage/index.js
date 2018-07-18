@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
@@ -68,18 +67,22 @@ class HomePage extends React.PureComponent {
                             <FormattedMessage {...messages.startProjectMessage} />
                         </p>
                     </CenteredSection>
-                    <button size="sm" color="success" onClick={async () => {
-                        this.props.aaa();
+                    <button
+                        size="sm" color="success" onClick={async () => {
+                            this.props.aaa();
 
-                        console.log('showl');
+                            console.log('showl');
 
-                    }}>show loading</button>
-                    <button size="sm" color="success" onClick={async () => {
-                        //this.props.aaa();
-                        this.props.bbb()
-                        console.log('hide');
+                        }}>show loading
+                    </button>
+                    <button
+                        size="sm" color="success" onClick={async () => {
+                        // this.props.aaa();
+                            this.props.bbb()
+                            console.log('hide');
 
-                    }}>hide loading</button>
+                        }}>hide loading
+                    </button>
                     <Section>
                         <H2>
                             <FormattedMessage {...messages.trymeHeader} />
@@ -99,7 +102,7 @@ class HomePage extends React.PureComponent {
                                 />
                             </label>
                         </Form>
-                        {/*<ReposList {...reposListProps} />*/}
+                        {/* <ReposList {...reposListProps} /> */}
                     </Section>
                 </div>
             </article>
@@ -131,7 +134,7 @@ export function mapDispatchToProps(dispatch) {
 const mapStateToProps = createStructuredSelector({
     repos: makeSelectRepos(),
     username: makeSelectUsername(),
-    //loading: makeSelectLoading(),
+    // loading: makeSelectLoading(),
     error: makeSelectError(),
 });
 

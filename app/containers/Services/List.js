@@ -1,13 +1,11 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Helmet} from 'react-helmet';
-import {FormattedMessage} from 'react-intl';
+
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {createStructuredSelector} from 'reselect';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, UncontrolledTooltip} from 'reactstrap';
-import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/api';
+import {Button} from 'reactstrap';
+
 
 import {
     makeSelectLoading,
@@ -24,17 +22,7 @@ import * as actions from "./actions";
 import {makeSelectCategories} from './selectors';
 
 
-
 class List extends React.PureComponent {
-    constructor(props) {
-        super(props);
-
-    }
-
-    componentDidUpdate(prevProps) {
-
-    }
-
 
     render() {
         const {loading, categories} = this.props;
@@ -42,35 +30,36 @@ class List extends React.PureComponent {
         console.log('<<<<<<<<<<<<<<<<<  RENDER LIST >>>>>>>>>>>>>>>>>', this.props);
 
         console.log(categories);
+        console.log(loading);
         return (
             <div>
                 {categories.map((cat) => {
                     console.log(cat);
 
-                    return <Button color="silver-two" >{cat.title}</Button>
+                    return <Button color="silver-two">{cat.title}</Button>
                 })}
-                {/*<div>*/}
-                    {/*<Button*/}
-                        {/*color="success" onClick={async () => {*/}
-                        {/*// const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);*/}
-                        {/*// const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data);*/}
-                        {/*const aaa = await fetchFriends({*/}
-                            {/*per_page: 10,*/}
-                        {/*}).then(res => res.data).catch(e => e.response.data);*/}
+                {/* <div> */}
+                {/* <Button */}
+                {/* color="success" onClick={async () => { */}
+                {/* // const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data); */}
+                {/* // const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data); */}
+                {/* const aaa = await fetchFriends({ */}
+                {/* per_page: 10, */}
+                {/* }).then(res => res.data).catch(e => e.response.data); */}
 
-                        {/*console.log(aaa);*/}
+                {/* console.log(aaa); */}
 
-                    {/*}}>Add New Service</Button>*/}
+                {/* }}>Add New Service</Button> */}
 
-                    {/*<Button color="success" onClick={this.props.logout}>logout</Button>*/}
+                {/* <Button color="success" onClick={this.props.logout}>logout</Button> */}
 
-                    {/*<div className="p-3 mb-3 swatch-indigo">Indigo</div>*/}
+                {/* <div className="p-3 mb-3 swatch-indigo">Indigo</div> */}
 
-                    {/*<div className="col-2 text-truncate">*/}
-                        {/*Praeterea iter est quasdam res quas ex communi.*/}
-                    {/*</div>*/}
+                {/* <div className="col-2 text-truncate"> */}
+                {/* Praeterea iter est quasdam res quas ex communi. */}
+                {/* </div> */}
 
-                {/*</div>*/}
+                {/* </div> */}
             </div>
         );
     }

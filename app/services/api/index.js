@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import * as appActions from 'containers/App/actions';
 
@@ -55,8 +54,8 @@ export const fetchEnquiryTypes = (params) => restApi(`/directories/enquiry-types
 export const postToSupport = (data) => {
     const formData = new FormData();
 
-    Object.keys(data).forEach(( key ) => {
-        formData.append(key, data[ key ]);
+    Object.keys(data).forEach((key) => {
+        formData.append(key, data[key]);
     });
 
     return restApi.post(`/support`, formData, {headers: {'Content-Type': 'multipart/form-data'}});

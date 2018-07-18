@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 
 const withData = Container => class ContainerWrapper extends Component {
     static defaultProps = {
-        getData: () => {},
-        clearState: () => {},
+        getData: () => {
+        },
+        clearState: () => {
+        },
     };
 
     static propTypes = {

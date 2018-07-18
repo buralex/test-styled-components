@@ -42,8 +42,9 @@ describe('<HomePage />', () => {
         const submitSpy = jest.fn();
         mount(
             <IntlProvider locale="en">
-                <HomePage onChangeUsername={() => {
-                }} onSubmitForm={submitSpy}/>
+                <HomePage
+                    onChangeUsername={() => {
+                    }} onSubmitForm={submitSpy}/>
             </IntlProvider>,
         );
         expect(submitSpy).not.toHaveBeenCalled();

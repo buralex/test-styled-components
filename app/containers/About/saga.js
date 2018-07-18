@@ -1,8 +1,6 @@
-
-
 import {call, put, select, all, takeLatest} from 'redux-saga/effects';
 import {fetchEnquiryTypes, postToSupport, fetchDirectories} from "services/api";
-import { history } from 'app';
+import {history} from 'app';
 import omit from 'lodash/omit';
 import {createSelector} from "reselect";
 import * as appActions from 'containers/App/actions';
@@ -30,6 +28,7 @@ export function* loadEnquiryTypes() {
         yield put(appActions.serverError(e));
     }
 }
+
 export function* watchLoadEnquiryTypes() {
     yield takeLatest(types.LOAD_ENQUIRY_TYPES, loadEnquiryTypes);
 }
@@ -60,6 +59,7 @@ export function* postEnquiry(action) {
         yield put(appActions.serverError(e));
     }
 }
+
 export function* watchPostEnquiry() {
     yield takeLatest(types.POST_ENQUIRY, postEnquiry);
 }

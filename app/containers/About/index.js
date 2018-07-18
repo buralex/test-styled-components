@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Helmet} from 'react-helmet';
@@ -12,7 +11,7 @@ import {Link} from "react-router-dom";
 
 import uuidv5 from "uuid/v5";
 import withData from "hocs/withData";
-import { history } from 'app';
+import {history} from 'app';
 
 
 import injectReducer from 'utils/injectReducer';
@@ -43,7 +42,6 @@ import saga from './saga';
 
 import AboutForm from "./components/AboutForm";
 import * as appActions from "../App/actions";
-
 
 
 class About extends React.PureComponent {

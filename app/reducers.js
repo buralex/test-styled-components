@@ -8,8 +8,8 @@ import {LOCATION_CHANGE} from 'react-router-redux';
 import appReducer from 'containers/App/reducer';
 import userDataReducer from 'containers/App/userDataReducer';
 import userSettingsReducer from 'containers/App/userSettingsReducer';
-import { reducer as signalReducer } from 'redux-signal';
-import { reducer as reduxFormReducer } from 'redux-form';
+import {reducer as signalReducer} from 'redux-signal';
+import {reducer as reduxFormReducer} from 'redux-form';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
 /*

@@ -10,6 +10,8 @@ import {HomePage, mapDispatchToProps} from '../index';
 import {changeUsername} from '../actions';
 import {loadRepos} from '../../App/actions';
 
+const ReposList = <div></div>
+
 describe('<HomePage />', () => {
     it('should render the repos list', () => {
         const renderedComponent = shallow(
@@ -41,8 +43,9 @@ describe('<HomePage />', () => {
         const submitSpy = jest.fn();
         mount(
             <IntlProvider locale="en">
-                <HomePage onChangeUsername={() => {
-                }} onSubmitForm={submitSpy}/>
+                <HomePage
+                    onChangeUsername={() => {
+                    }} onSubmitForm={submitSpy}/>
             </IntlProvider>,
         );
         expect(submitSpy).not.toHaveBeenCalled();

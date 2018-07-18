@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import {Field, reduxForm} from 'redux-form'
 
 
 import TextInput from 'components/Form/TextInput';
@@ -18,8 +18,6 @@ import {trimFields} from 'functions';
 
 //import {FIELDS as db} from '../constants/fields';
 //import validate from './validation';
-
-
 
 
 const submit = (values) => {
@@ -47,11 +45,9 @@ const SearchForm = props => {
             <Button color="success" size="md" type="submit" disabled={submitting || loading} block>
                 search
             </Button>
-            <LoadingBeat loading={loading} />
+            <LoadingBeat loading={loading}/>
         </form>
     )
 }
 
-export default reduxForm({
-
-})(SearchForm)
+export default reduxForm({})(SearchForm)

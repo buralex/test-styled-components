@@ -1,4 +1,3 @@
-
 export const trimFields = (values) => {
     const fields = {};
     let fieldValue = '';

@@ -27,7 +27,7 @@ export const ServerError = ({onClose, footerActions, data, isOpen, destroy}) => 
                         <div>
                             Details:
                             <ul>
-                                {details.map((elem, i) => <div key={`err_ell_${i+1}`}>{elem.description}</div>)}
+                                {details.map((elem, i) => <div key={`err_ell_${i + 1}`}>{elem.description}</div>)}
                             </ul>
                         </div>
                         }

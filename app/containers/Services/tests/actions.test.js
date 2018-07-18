@@ -1,4 +1,5 @@
-import {CHANGE_USERNAME} from '../constants';
+
+import {LOAD_CATEGORIES} from '../constants/types';
 
 import {changeUsername} from '../actions';
 
@@ -7,7 +8,7 @@ describe('Home Actions', () => {
         it('should return the correct type and the passed name', () => {
             const fixture = 'Max';
             const expectedResult = {
-                type: CHANGE_USERNAME,
+                type: LOAD_CATEGORIES,
                 name: fixture,
             };
 

@@ -1,6 +1,3 @@
-/**
- * Tests for HomePage sagas
- */
 
 import {put, takeLatest} from 'redux-saga/effects';
 
@@ -10,6 +7,8 @@ import {reposLoaded, repoLoadingError} from 'containers/App/actions';
 import githubData, {getRepos} from '../saga';
 
 const username = 'mxstbr';
+
+const LOAD_REPOS = 'LOAD_REPOS'
 
 /* eslint-disable redux-saga/yield-effects */
 describe('getRepos Saga', () => {

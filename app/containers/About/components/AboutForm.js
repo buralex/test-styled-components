@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import {Field, reduxForm} from 'redux-form'
 
 
 import TextInput from 'components/Form/TextInput';
@@ -11,13 +11,12 @@ import LoadingBeat from 'components/LoadingBeat';
 import {
     Button,
     Modal, ModalHeader, ModalBody, ModalFooter,
-    Tooltip, UncontrolledTooltip
+    Tooltip, UncontrolledTooltip,
 } from 'reactstrap';
 
 
 import {FIELDS as db} from '../constants/fields';
 import validate from './validation';
-
 
 
 const AboutForm = props => {
@@ -39,11 +38,11 @@ const AboutForm = props => {
             />
 
             {isEnqTypeOther &&
-                <Field
-                    name={db.other_enquiry_type}
-                    component={TextInput}
-                    placeholder="Other"
-                />
+            <Field
+                name={db.other_enquiry_type}
+                component={TextInput}
+                placeholder="Other"
+            />
             }
             <Field
                 name={db.description}
@@ -81,7 +80,7 @@ const AboutForm = props => {
             <Button color="success" size="md" type="submit" disabled={submitting || loading} block>
                 Submit
             </Button>
-            <LoadingBeat loading={loading} />
+            <LoadingBeat loading={loading}/>
         </form>
     )
 }

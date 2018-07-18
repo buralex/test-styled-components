@@ -1,4 +1,3 @@
-
 import * as types from './constants/types';
 
 // The initial state of the App

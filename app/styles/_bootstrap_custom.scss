@@ -1,13 +1,10 @@
-
 @import 'colors_and_variables';
-
 
 //**************************************************************************
 //
 //                   Override bootstrap variables
 //
 //**************************************************************************
-
 
 //**************************
 //       Color system
@@ -22,7 +19,6 @@ $theme-colors: (
   //danger:     $danger,
   //light:      $light,
   //dark:       $dark,
-
   //****** colors of project ******//
         turtle-green: $turtle-green,
         moss-green: $moss-green,
@@ -43,7 +39,6 @@ $theme-colors: (
 //       / Color system
 //**************************
 
-
 //**************************
 //       Buttons
 //**************************
@@ -53,7 +48,6 @@ $btn-focus-box-shadow: none !important;
 //**************************
 //       / Buttons
 //**************************
-
 
 //**************************************************************************
 //
@@ -67,7 +61,6 @@ $btn-focus-box-shadow: none !important;
 *
 */
 @import '~bootstrap/scss/bootstrap.scss';
-
 
 //**************************************************************************
 //
@@ -93,15 +86,13 @@ $btn-focus-box-shadow: none !important;
   &:hover {
     background-color: lighten($turtle-green, 6);
     border-color: lighten($turtle-green, 6);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
 }
 
 //**************************
 //       / Buttons
 //**************************
-
-
 
 //**************************************************************************
 //

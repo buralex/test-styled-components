@@ -1,11 +1,10 @@
-
 import React from 'react'
 import PropTypes from "prop-types";
-import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import {FormGroup, Label, Input, FormFeedback} from 'reactstrap';
 
 const Select = ({
-    input, placeholder, label, type, meta: {touched, error}, meta, showValid, validText, options,
-}) => {
+                    input, placeholder, label, type, meta: {touched, error}, meta, showValid, validText, options,
+                }) => {
 
     const isInvalid = Boolean(touched && error);
     const isValid = Boolean(touched && !error);
@@ -23,7 +22,7 @@ const Select = ({
                 valid={showValid && isValid}
             >
                 {options && options.map((opt, i) =>
-                    <option key={`${opt.label}_${i+1}`} value={opt.value}>{opt.label}</option>)}
+                    <option key={`${opt.label}_${i + 1}`} value={opt.value}>{opt.label}</option>)}
             </Input>
             {isInvalid && <FormFeedback>{error}</FormFeedback>}
             {isValid && showValid && <FormFeedback valid>{validText}</FormFeedback>}

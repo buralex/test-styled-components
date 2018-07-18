@@ -1,10 +1,9 @@
-
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import { userIsAuthenticatedRedir, userIsNotAuthenticatedRedir,
-    userIsAdminRedir,
-    userIsAuthenticated, userIsNotAuthenticated,
-} from 'auth'
+import {
+    userIsAuthenticatedRedir, userIsNotAuthenticatedRedir,
+    // userIsAdminRedir, userIsAuthenticated, userIsNotAuthenticated,
+} from 'auth';
 
 import LoginComponent from 'containers/Login';
 import AboutComponent from 'containers/About/Loadable';
@@ -20,10 +19,6 @@ const NotFoundPage = userIsAuthenticatedRedir(NotFoundPageComponent);
 // const About = AboutComponent;
 // const Services = ServicesComponent;
 // const NotFoundPage = NotFoundPageComponent;
-
-//const Aaa = userIsAuthenticated(({ logout }) => <a href="#" onClick={() => logout()}>Logout</a>)
-//
-// console.log(userIsAuthenticated(<div>aaaaaaaassssssddddddddd</div>));
 
 const Router = () => (
     <Switch>
