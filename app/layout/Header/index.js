@@ -2,6 +2,7 @@ import React from 'react';
 
 import SearchForm from 'components/SearchForm';
 
+import Logo from 'images/logo-img.svg';
 
 import './style.scss';
 
@@ -17,7 +18,7 @@ class Header extends React.PureComponent {
                 <div className="content outline-danger d-flex justify-content-between">
 
                     <section className="logo outline-danger">
-                        <a href="/"> <img src="#" alt="Denteez logo" /> </a>
+                        <a href="/"> <img src={Logo} alt="Denteez logo" /> </a>
                     </section>
 
                     <section className="outline-danger w-100">

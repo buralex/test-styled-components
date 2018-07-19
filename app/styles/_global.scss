@@ -26,45 +26,7 @@ body.fontLoaded {
 }
 
 
-.land-container {
-  margin-left: -15px;
-  margin-right: -15px;
-}
 
-.land-top {
-  background: url(../images/land-top.png) no-repeat top center;
-  background-size: cover;
-  height: 510px;
-}
-
-.land-middle {
-  background: url(../images/land-middle.png) no-repeat top center;
-  background-size: cover;
-  padding-bottom: 15px;
-}
-
-.land-bottom {
-
-  padding: 90px 15px 110px;
-
-  h2 {
-    font-size: 30px;
-    margin-bottom: 36px;
-  }
-
-  section {
-    color: $steel;
-    margin-left: 40px;
-    margin-right: 25px;
-    letter-spacing: -0.1px;
-
-    &.right {
-      margin-left: 25px;
-      margin-right: 30px;
-    }
-  }
-
-}
 
 
 .outline-danger {
@@ -112,6 +74,7 @@ select {
 }
 
 .form-small {
+  position: relative;
   max-width: 760px;
   margin: auto;
 
@@ -119,8 +82,29 @@ select {
     background: $white;
     border: 1px solid $silver-three;
     border-radius: 5px;
-    padding: 20px;
+    padding: 15px 20px 20px 20px;
+
+    select.form-control {
+      height: 52px;
+    }
+
+    label {
+      margin-bottom: 6px;
+    }
   }
+
+  .form-group {
+    margin-bottom: 0px;
+
+    input {
+      height: 52px;
+    }
+
+    textarea {
+      height: 155px;
+    }
+  }
+
 
   .form-footer {
     margin-top: 20px;

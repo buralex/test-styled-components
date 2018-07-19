@@ -28,6 +28,7 @@ const SupportForm = props => {
     return (
         <form onSubmit={handleSubmit} className="form-small">
             <div className="form-body">
+                <h6 className="mb-2 text-pinkish-grey">Fields marked “*” are required</h6>
                 <Field
                     name={db.enquiry_type}
                     component={Select}
@@ -45,38 +46,56 @@ const SupportForm = props => {
                     placeholder="Other"
                 />
                 }
-                <Field
-                    name={db.description}
-                    component={TextArea}
-                    label="Description *"
-                    maxlength={1000}
-                />
-                <Field
-                    name={db.subject}
-                    component={TextInput}
-                    label="Subject *"
-                />
-                <Field
-                    name={db.user_name}
-                    component={TextInput}
-                    label="Username *"
-                />
-                <Field
-                    name={db.email}
-                    component={TextInput}
-                    type="email"
-                    label="Email"
-                />
+                <div className="mt-2">
+                    <div className="row">
+                        <div className="col">
+                            <Field
+                                name={db.user_name}
+                                component={TextInput}
+                                label="Username *"
+                            />
+                        </div>
+                        <div className="col">
+                            <Field
+                                name={db.email}
+                                component={TextInput}
+                                type="email"
+                                label="Email"
+                            />
+                        </div>
+                    </div>
+                </div>
 
-                <Field
-                    name={db.file}
-                    component={FileUpload}
-                    placeholder={{
-                        header: 'Add photo',
-                        text: 'Minimum size of 300x300 jpeg jpg png 5 MB',
-                    }}
-                    validateImgSize={{minWidth: 300, minHeight: 300}}
-                />
+                <div className="mt-2">
+                    <Field
+                        name={db.subject}
+                        component={TextInput}
+                        label="Subject *"
+                    />
+                </div>
+
+                <div className="mt-2 h25">
+                    <Field
+                        name={db.description}
+                        component={TextArea}
+                        label="Description *"
+                        maxlength={1000}
+                    />
+                </div>
+
+
+                <div className="mt-4">
+                    <Field
+                        name={db.file}
+                        component={FileUpload}
+                        placeholder={{
+                            header: 'Add photo',
+                            text: 'Minimum size of 300x300 jpeg jpg png 5 MB',
+                        }}
+                        validateImgSize={{minWidth: 300, minHeight: 300}}
+                    />
+                </div>
+
             </div>
 
             <div className="form-footer">

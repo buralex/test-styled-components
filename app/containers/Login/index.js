@@ -9,7 +9,7 @@ import {createStructuredSelector} from 'reselect';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, UncontrolledTooltip} from 'reactstrap';
 import restApi, {fetchCategories, fetchCategory, fetchFriends, fetchEnquiryTypes} from 'services/api';
 import {Link} from "react-router-dom";
-
+import Logo from 'images/logo-img.svg';
 import uuidv5 from "uuid/v5";
 import withData from "hocs/withData";
 import { history } from 'app';
@@ -71,13 +71,16 @@ class Login extends React.PureComponent {
         // console.log(this.props);
 
         return (
-            <div className="land-container outline-danger">
+            <div className="login-container">
 
                 <section className="land-top">
-                    <Button color="success" size="sm" tag={Link} to="/login/support">support</Button>
-                    {!isLoggedIn &&
-                    <Button color="success" tag={Link} to="/login">login</Button>
+                    <a className="logo" href="/"> <img src={Logo} alt="Denteez logo" /> </a>
+                    {pathname === '/login/support' ?
+                        <Button color="success" size="sm" tag={Link} to="/login">Log In Now</Button>
+                        :
+                        <Button color="success" size="sm" tag={Link} to="/sign-up">Sign up now</Button>
                     }
+
                 </section>
 
                 <section className="land-middle">

@@ -1,11 +1,54 @@
 
 @import '../../styles/colors_and_variables';
 
-.land-container {
+.login-container {
+
+  margin-left: -15px;
+  margin-right: -15px;
+
+  .land-top {
+    background: url(../../images/land-top.png) no-repeat top center;
+    background-size: cover;
+    height: 510px;
+
+    .btn {
+      float: right;
+      margin-right: 30px;
+      margin-top: 45px;
+    }
+
+    .logo {
+
+    }
+  }
+
+  .land-middle {
+    background: url(../../images/land-middle.png) no-repeat top center;
+    background-size: cover;
+  }
+
+  .land-bottom {
+
+    padding: 90px 56px 93px;
+
+    h2 {
+      font-size: 30px;
+      margin-bottom: 36px;
+    }
+
+    p {
+      letter-spacing: -0.1px;
+      margin-right: 40px;
+    }
+
+    .last p {
+      margin-right: 0px;
+      margin-left: 25px;
+    }
+  }
 
   form {
-    position: relative;
-    bottom: 85px;
+    bottom: 100px;
   }
 
 }

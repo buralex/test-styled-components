@@ -1,0 +1,28 @@
+
+@import '../../styles/colors_and_variables';
+
+.footer-component {
+
+  border-top: 1px solid $silver-three;
+  padding: 30px 76px 27px 72px;
+
+  //margin: 35px 85px 30px 80px;
+
+  .copy {
+    color: $cloudy-blue;
+    font-size: 12px;
+  }
+
+  .nav {
+    a {
+      color: $cloudy-blue;
+      font-size: 12px;
+      margin-left: 20px;
+    }
+
+    a:first-child {
+      margin-right: 9px;
+    }
+  }
+
+}
