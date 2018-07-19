@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import TextInput from 'components/Form/TextInput';
 import TextArea from 'components/Form/TextArea';
@@ -38,13 +38,16 @@ const SearchForm = props => {
 
     return (
         <form onSubmit={handleSubmit(beforeSubmit)} className="form-content-small">
-            <Field
-                name="query"
-                component={TextInput}
-                placeholder="Search"
-            />
-            <div className="text-success">
-                <i className="fa fa-search"></i>
+            <div className="position-relative">
+                <Field
+                    name="query"
+                    component={TextInput}
+                    placeholder="Search"
+                />
+                <span className="search-icon">
+                    <FontAwesomeIcon icon="search" />
+                </span>
+
             </div>
 
 

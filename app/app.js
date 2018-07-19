@@ -27,6 +27,7 @@ import LanguageProvider from 'containers/LanguageProvider';
 import 'sanitize.css/sanitize.css';
 import 'styles/index.scss';
 
+
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line import/extensions
@@ -35,6 +36,8 @@ import configureStore from './configureStore';
 
 // Import i18n messages
 import {translationMessages} from './i18n';
+
+import './fontawesome';
 
 
 /* ----------------------- check loading special fonts ------------------------------------------- */
