@@ -17,7 +17,7 @@ import {connect} from "react-redux";
 
 import injectSaga from 'utils/injectSaga';
 
-import withData from "hocs/withData";
+
 
 
 import {
@@ -121,17 +121,8 @@ App.propTypes = {
     isLoggedIn: PropTypes.bool,
 };
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = (dispatch) => ({
     hideAlert: () => dispatch(actions.hideAlert()),
-
-    /* -------------------- withData hoc ---------------------------------- */
-    getData: () => {
-        if (!ownProps.location.pathname.includes('login')) {
-            dispatch(actions.loadSuggestions());
-        }
-    },
-    // clearState: () => dispatch(actions.clearClientState()),
-    /* -------------------- withData hoc ---------------------------------- */
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -152,4 +143,4 @@ export default compose(
     withSaga,
     withSignal,
     withConnect,
-)(withData(App));
+)(App);

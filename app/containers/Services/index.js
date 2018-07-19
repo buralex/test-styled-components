@@ -65,6 +65,14 @@ Services.propTypes = {
 export const mapDispatchToProps = (dispatch) => ({
     onSubmitForm: (values) => dispatch(appActions.login(values)),
     logout: () => dispatch(appActions.logout()),
+
+    /* -------------------- withData hoc ---------------------------------- */
+    getData: () => {
+        dispatch(appActions.loadSuggestions());
+    },
+    // clearState: () => dispatch(actions.clearClientState()),
+    /* -------------------- withData hoc ---------------------------------- */
+
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -85,4 +93,4 @@ export default compose(
     withSaga,
     withSignal,
     withConnect,
-)(Services);
+)(withData(Services));
