@@ -121,12 +121,14 @@ App.propTypes = {
     isLoggedIn: PropTypes.bool,
 };
 
-export const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch, ownProps) => ({
     hideAlert: () => dispatch(actions.hideAlert()),
 
     /* -------------------- withData hoc ---------------------------------- */
     getData: () => {
-        dispatch(actions.loadSuggestions());
+        if (!ownProps.location.pathname.includes('login')) {
+            dispatch(actions.loadSuggestions());
+        }
     },
     // clearState: () => dispatch(actions.clearClientState()),
     /* -------------------- withData hoc ---------------------------------- */

@@ -10,7 +10,7 @@ restApi.interceptors.request.use((config) => {
     // eslint-disable-next-line
     const authKey = window.__global_store__.getState().userData.authKey;
     // eslint-disable-next-line
-    config.headers.Authorization = `${authKey}` || `963be28b713448ddd1660b5f8eed91b45ffcfe48`;
+    config.headers.Authorization = `${authKey}` || `1ed20ebdaeab4508373dbe91a0ee955c6e14be4d`;
     return config;
 }, (error) => Promise.reject(error));
 
@@ -22,7 +22,7 @@ restApi.interceptors.response.use((response) => response, (error) => {
         // eslint-disable-next-line
         window.__global_store__.dispatch(appActions.logout());
     }
-    return Promise.reject(error);
+    return Promise.reject(error.response);
 });
 
 

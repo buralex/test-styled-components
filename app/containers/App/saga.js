@@ -51,57 +51,20 @@ export function* loadSuggestions() {
     try {
         yield put(appActions.showLoader());
 
-        const data = yield fetchCategories().then(res => res.data);
-        //
-        // const [friends, companies] = yield Promise.all([
-        //     fetchSuggestedFriends().then(res => res.data).catch(e => e),
-        //     fetchSuggestedCompanies().then(res => res.data).catch(e => e.response.data),
-        // ]).then((first, second) => console.log('Then', first, second));
-
-        const [friends, companies] = yield Promise.all([
-            fetchSuggestedFriends().then(res => res.data).catch(e => e),
-            fetchSuggestedCompanies().then(res => res.data).catch(e => e.response.data),
-        ])
-            //.then((first, second) => console.log('Then', first, second));
-
-
-        // yield Promise.all([
-        //     fetchSuggestedFriends().catch(e => e),
-        //     fetchSuggestedCompanies().catch(e => e.response.data),
-        // ])
-        //     .then((first, second) => console.log('Then', first, second))
-        //     .catch(err => console.log('Catch', err));
+        const [friends, companies, products] = yield Promise.all([
+            fetchSuggestedFriends().then(res => res.data.data).catch(e => e && e.data),
+            fetchSuggestedCompanies().then(res => res.data.data).catch(e => e && e.data),
+            fetchSuggestedProducts().then(res => res.data.data).catch(e => e && e.data),
+        ]);
 
         yield put({
             type: types.LOAD_SUGGESTIONS_SUCCESS,
             payload: {
                 friends,
                 companies,
+                products,
             },
         });
-
-        // Promise.all([a.catch(e => e), b.catch(e => e)])
-        //     .then((first, second) => console.log('Then', first, second)) // Then ["Resolved!", "Rejected!"]
-        //     .catch(err => console.log('Catch', err));
-
-        // console.log(data);
-        // console.log(friends);
-        // console.log(companies);
-/*-------------------------------------------------------------------*/
-        let a = new Promise((res, rej) => res('Resolved!')),
-            b = new Promise((res, rej) => rej('Rejected!')),
-            c = a.catch(e => { console.log('"a" failed.'); return e; }),
-            d = b.catch(e => { console.log('"b" failed.'); return e; });
-
-        Promise.all([c, d])
-            .then((first, second) => console.log('Then', first, second)) // Then ["Resolved!", "Rejected!"]
-            .catch(err => console.log('Catch', err));
-
-        Promise.all([a.catch(e => e), b.catch(e => e)])
-            .then((first, second) => console.log('Then', first, second)) // Then ["Resolved!", "Rejected!"]
-            .catch(err => console.log('Catch', err));
-/*---------------------------------------------------------------------------*/
-
 
         yield put(appActions.hideLoader());
 

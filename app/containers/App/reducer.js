@@ -7,8 +7,8 @@ import * as types from './constants/types';
 const initialState = {
     loading: false,
     alert: false,
-    //error: false,
-    //success: false,
+    commonData: {},
+    suggestions: {},
 };
 
 function appReducer(state = initialState, action) {
@@ -42,39 +42,13 @@ function appReducer(state = initialState, action) {
                 alert: false,
             };
 
-        // case types.ERROR:
-        //     return {
-        //         ...state,
-        //         loading: false,
-        //         error: {
-        //             type: action.payload.type,
-        //             data: action.payload.data,
-        //         },
-        //     };
-        //
-        // case types.CLEAR_ERROR:
-        //     return {
-        //         ...state,
-        //         loading: false,
-        //         error: false,
-        //     };
-        //
-        // case types.SUCCESS:
-        //     return {
-        //         ...state,
-        //         loading: false,
-        //         success: {
-        //             type: action.payload.type,
-        //             data: action.payload.data,
-        //         },
-        //     };
-        //
-        // case types.CLEAR_SUCCESS:
-        //     return {
-        //         ...state,
-        //         loading: false,
-        //         success: false,
-        //     };
+        case types.LOAD_SUGGESTIONS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                suggestions: action.payload,
+            };
+
 
         default:
             return state;

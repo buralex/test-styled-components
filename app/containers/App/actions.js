@@ -67,7 +67,7 @@ export function hideAlert() {
  * Server error
  */
 export function serverError(error) {
-    return showAlert(modalNames.SERVER_ERROR, (error.response && error.response.data.error) || error);
+    return showAlert(modalNames.SERVER_ERROR, (error && error.data.error) || error);
 }
 
 /**
