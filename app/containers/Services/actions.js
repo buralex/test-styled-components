@@ -8,3 +8,5 @@ export function loadCategories() {
         type: types.LOAD_CATEGORIES,
     };
 }
+
+

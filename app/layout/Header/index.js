@@ -10,21 +10,23 @@ const aaa = (values) => {
 }
 
 /* eslint-disable react/prefer-stateless-function */
-class Header extends React.Component {
+class Header extends React.PureComponent {
     render() {
         return (
             <div className="header-component bg-silver outline-danger">
                 <div className="content outline-danger d-flex justify-content-between">
 
-                    <section className="logo">
+                    <section className="logo outline-danger">
                         <a href="/"> <img src="#" alt="Denteez logo" /> </a>
                     </section>
 
-                    <section className="outline-danger">
+                    <section className="outline-danger w-100">
                         <SearchForm form="header_search_form" onSubmit={aaa} />
                     </section>
 
-                    <section className="outline-danger">aaaaaaaaaaaaaaaaaavvvvvvvvvvvvvvvvvvvvaaaa</section>
+                    <section className="outline-danger">
+                        aaaaaaaaaaaaaaaaaavvvvvvvvvvvvvvvvvvvvaaaa
+                    </section>
                 </div>
             </div>
         );

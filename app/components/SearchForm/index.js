@@ -49,25 +49,6 @@ const SearchForm = props => {
                 </span>
 
             </div>
-
-
-            {/*<div className="row">*/}
-                {/*<div className="col-md-4">*/}
-                    {/*<div className="input-group">*/}
-                        {/**/}
-                        {/*/!*<input className="form-control py-2 border-right-0 border" type="search" value="search"*!/*/}
-                               {/*/!*id="example-search-input">*!/*/}
-                {/*<span className="input-group-append">*/}
-                    {/*<div className="input-group-text bg-transparent"><i className="fa fa-search"></i></div>*/}
-                {/*</span>*/}
-                    {/*</div>*/}
-                {/*</div>*/}
-            {/*</div>*/}
-
-            {/*<Button color="success" size="md" type="submit" disabled={submitting || loading} block>*/}
-                {/*search*/}
-            {/*</Button>*/}
-            <LoadingBeat loading={loading} />
         </form>
     )
 }

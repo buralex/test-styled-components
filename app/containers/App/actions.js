@@ -78,3 +78,12 @@ export function serverSuccess(data) {
 }
 
 /* ------------------------------- / server events --------------------------------- */
+
+/**
+ * Load
+ */
+export function loadSuggestions() {
+    return {
+        type: types.LOAD_SUGGESTIONS,
+    };
+}

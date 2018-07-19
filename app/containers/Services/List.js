@@ -44,10 +44,8 @@ class List extends React.PureComponent {
         console.log(categories);
         return (
             <div>
-                {categories.map((cat) => {
-                    console.log(cat);
-
-                    return <Button color="silver-two" >{cat.title}</Button>
+                {categories.map((cat, i) => {
+                    return <Button key={`cat_${i+1}`} color="silver-two" >{cat.title}</Button>
                 })}
                 {/*<div>*/}
                     {/*<Button*/}

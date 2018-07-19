@@ -8,8 +8,6 @@ export const LOGIN = 'test/App/LOGIN';
 export const LOGOUT = 'test/App/LOGOUT';
 export const LOGIN_SUCCESS = 'test/App/LOGIN_SUCCESS';
 
-export const ERROR = 'test/App/ERROR';
-export const CLEAR_ERROR = 'test/App/CLEAR_ERROR';
+export const LOAD_SUGGESTIONS = 'test/App/LOAD_SUGGESTIONS';
+export const LOAD_SUGGESTIONS_SUCCESS = 'test/App/LOAD_SUGGESTIONS_SUCCESS';
 
-export const SUCCESS = 'test/App/SUCCESS';
-export const CLEAR_SUCCESS = 'test/App/CLEAR_SUCCESS';

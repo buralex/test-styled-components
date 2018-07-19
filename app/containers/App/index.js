@@ -17,6 +17,7 @@ import {connect} from "react-redux";
 
 import injectSaga from 'utils/injectSaga';
 
+import withData from "hocs/withData";
 
 
 import {
@@ -122,6 +123,13 @@ App.propTypes = {
 
 export const mapDispatchToProps = (dispatch) => ({
     hideAlert: () => dispatch(actions.hideAlert()),
+
+    /* -------------------- withData hoc ---------------------------------- */
+    getData: () => {
+        dispatch(actions.loadSuggestions());
+    },
+    // clearState: () => dispatch(actions.clearClientState()),
+    /* -------------------- withData hoc ---------------------------------- */
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -142,4 +150,4 @@ export default compose(
     withSaga,
     withSignal,
     withConnect,
-)(App);
+)(withData(App));
