@@ -77,10 +77,10 @@ module.exports = require('./webpack.base.babel')({
       background_color: '#fafafa',
       theme_color: '#87b448',
       icons: [
-        {
-          src: path.resolve('app/images/icon-48x48.png'),
-          sizes: [48],
-        },
+        // {
+        //   src: path.resolve('app/images/icon-48x48.png'),
+        //   sizes: [48],
+        // },
       ],
     }),
 

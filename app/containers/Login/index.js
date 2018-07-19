@@ -78,7 +78,7 @@ class Login extends React.PureComponent {
                     {pathname === '/login/support' ?
                         <Button color="success" size="sm" tag={Link} to="/login">Log In Now</Button>
                         :
-                        <Button color="success" size="sm" tag={Link} to="/sign-up">Sign up now</Button>
+                        <Button color="success" size="sm" tag={Link} to="/login">Sign up now</Button>
                     }
 
                 </section>
