@@ -29,8 +29,10 @@ const SupportForm = props => {
         <form onSubmit={handleSubmit} className="form-small">
             <div className="form-body">
                 <h6 className="mb-2 text-pinkish-grey">Fields marked “*” are required</h6>
+
                 <Field
                     name={db.enquiry_type}
+                    size="lg"
                     component={Select}
                     options={enquiryTypes.map((elem) => ({label: elem.name, value: elem.name}))}
                     label="Enquiry type *"
@@ -53,6 +55,7 @@ const SupportForm = props => {
                                 name={db.user_name}
                                 component={TextInput}
                                 label="Username *"
+                                size="lg"
                             />
                         </div>
                         <div className="col">

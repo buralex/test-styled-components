@@ -48,7 +48,7 @@ class Login extends React.PureComponent {
 
         this.initValues = {
             department: 1,
-            enquiry_type: 'Other',
+            //enquiry_type: 'Other',
         };
 
         if (props.location.pathname === '/') {
@@ -58,7 +58,7 @@ class Login extends React.PureComponent {
 
     render() {
         const {enquiryTypes, currentEnqType, loading, isLoggedIn, location: {pathname}} = this.props;
-        //
+
         // if (!enquiryTypes.length) {
         //     return null;
         // }

@@ -25,6 +25,7 @@ import LanguageProvider from 'containers/LanguageProvider';
 
 // Import CSS reset and Global Styles
 import 'sanitize.css/sanitize.css';
+import 'react-select/dist/react-select.css';
 import 'styles/index.scss';
 
 
@@ -37,6 +38,7 @@ import configureStore from './configureStore';
 // Import i18n messages
 import {translationMessages} from './i18n';
 
+// library with icons
 import './fontawesome';
 
 

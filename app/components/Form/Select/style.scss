@@ -1,0 +1,19 @@
+
+@import '../../../styles/colors_and_variables';
+
+.select-component {
+  .arrow {
+    position: absolute;
+    color: $pinkish-grey;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  select, option {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: white;
+  }
+
+}

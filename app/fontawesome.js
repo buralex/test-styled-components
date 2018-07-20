@@ -5,6 +5,8 @@ import {
     faCheckSquare,
     faCoffee,
     faSearch,
+    faAngleUp,
+    faAngleDown,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -12,4 +14,6 @@ library.add(
     faCheckSquare,
     faCoffee,
     faSearch,
+    faAngleUp,
+    faAngleDown,
 );

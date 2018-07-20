@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
 const TextInput = ({
-    input, placeholder, label, type, meta: {touched, error}, meta, maxlength, showValid, validText,
+    input, placeholder, label, type, meta: {touched, error}, meta, maxlength, showValid, validText, size,
 }) => {
 
     const isInvalid = Boolean(touched && error);
@@ -18,8 +18,9 @@ const TextInput = ({
                 <span className="textarea-max-length float-right">{`(0/${maxlength - input.value.length})`}</span>
             }
             <Input
-                id={idStr}
                 {...input}
+                id={idStr}
+                size={size}
                 placeholder={placeholder}
                 type={type || "text"}
                 invalid={isInvalid}

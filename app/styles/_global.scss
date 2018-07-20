@@ -20,6 +20,11 @@ body.fontLoaded {
   color: $darkest-blue;
 }
 
+
+//**************************
+//       Layout
+//**************************
+
 .content {
   max-width: $max-content-width;
   margin: auto;
@@ -32,12 +37,6 @@ body.fontLoaded {
 .outline-danger {
   outline: 1px solid $danger;
 }
-
-
-//**************************
-//       Layout
-//**************************
-
 
 //**************************
 //       / Layout
@@ -65,13 +64,7 @@ body.fontLoaded {
 //       Forms
 //**************************
 
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: url(../images/dropdown.png) right / 20px no-repeat #fff;
-  padding-right: 20px;
-}
+
 
 .form-small {
   position: relative;
@@ -97,7 +90,7 @@ select {
     margin-bottom: 0px;
 
     input {
-      height: 52px;
+      //height: 52px;
     }
 
     textarea {
