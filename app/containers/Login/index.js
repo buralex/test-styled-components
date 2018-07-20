@@ -46,10 +46,7 @@ class Login extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.initValues = {
-            department: 1,
-            //enquiry_type: 'Other',
-        };
+        this.initValues = {};
 
         if (props.location.pathname === '/') {
             history.push('/login');
