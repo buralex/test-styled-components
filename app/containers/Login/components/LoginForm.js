@@ -56,7 +56,7 @@ const LoginForm = props => {
 
 
             <div className="position-absolute w-100">
-                <LoadingBeat loading={loading} />
+                <LoadingBeat loading={true} />
             </div>
         </form>
     )

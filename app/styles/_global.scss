@@ -25,6 +25,8 @@ body.fontLoaded {
 //       Layout
 //**************************
 
+
+
 .content {
   max-width: $max-content-width;
   margin: auto;
@@ -64,6 +66,19 @@ body.fontLoaded {
 //       Forms
 //**************************
 
+//--------- errors
+.has-error .Select .Select-control,
+.has-error .Select .Select-control:hover {
+  border-color: $danger !important;
+}
+
+.has-error .Select.is-focused {
+  .Select-control {
+    border-color: $danger !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+  }
+}
+//--------- / errors
 
 
 .form-small {

@@ -21,7 +21,7 @@ const TextArea = ({
             <Input
                 {...input}
                 id={idStr}
-                size={size}
+                bsSize={size}
                 placeholder={placeholder}
                 type={type || "textarea"}
                 invalid={isInvalid}

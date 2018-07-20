@@ -49,7 +49,7 @@ export default function Select ({
     console.log(name);
     return (
         <div>
-            <FormGroup className='select-component' invalid={true}>
+            <FormGroup className={`${isInvalid ? 'has-error' : ''}`} >
                 <Label for={idStr}> {label} </Label>
                 {/*<Input*/}
                     {/*{...input}*/}
@@ -80,12 +80,12 @@ export default function Select ({
                     }
                     onBlur={() => onBlur(value)}
                     onFocus={onFocus}
-                    className={className}
+                    className="select-component"
                     arrowRenderer={arrowRenderer}
                     placeholder={placeholder}
                 />
 
-                {isInvalid && <FormFeedback>{error}</FormFeedback>}
+                {isInvalid && <FormFeedback style={{display: 'block'}}>{error}</FormFeedback>}
                 {isValid && showValid && <FormFeedback valid>{validText}</FormFeedback>}
 
                 <FontAwesomeIcon icon="angle-down" className="arrow"/>
