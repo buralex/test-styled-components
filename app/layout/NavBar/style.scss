@@ -1,0 +1,83 @@
+
+@import '../../styles/colors_and_variables';
+
+.navbar-component {
+
+  border-bottom: 2px solid $moss-green-two;
+  background: $success;
+
+  .logo {
+    padding: 11px 15px 15px 16px;
+  }
+
+  .search {
+    padding: 16px 15px 15px 15px;
+
+     .form-group {
+      margin-bottom: 0;
+
+      .form-control {
+        padding: 5px 37px;
+        color: $white;
+        border: none;
+        background: $moss-green url(./images/search.svg) no-repeat 10px center;
+
+        &::placeholder {
+          color: $white;
+          letter-spacing: -0.5px;
+        }
+
+        &:focus {
+          color: $darkest-blue;
+          background-color: lighten($success, 50);
+          box-shadow: 0 0 0 0.2rem $success;
+        }
+      }
+    }
+  }
+
+  .navigation {
+    width: 745px;
+
+    .msg-btn, .notif-btn {
+
+    }
+
+    .msg {
+      //width: 50px;
+      .msg-btn {
+        background: url(./images/chat.svg) no-repeat center;
+        padding: 15px;
+        margin: 20px 11px 10px 14px;
+        cursor: pointer;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .notif {
+
+      .notif-btn {
+        background: url(./images/notifications.svg) no-repeat center;
+        padding: 15px;
+        margin: 18px 3px 10px 5px;
+        cursor: pointer;
+
+        &:focus {
+          outline: none;
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+
+    }
+
+    .avatar {
+      width: 100%;
+    }
+  }
+
+}

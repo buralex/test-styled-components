@@ -35,7 +35,7 @@ const SupportForm = props => {
                     component={Select}
                     options={enquiryTypes.map((elem) => ({label: elem.name, value: elem.name}))}
                     label="Enquiry Type *"
-                    onChange={(event, value) => {
+                    onChange={() => {
                         change(db.other_enquiry_type, '');
                     }}
                 />
@@ -96,7 +96,7 @@ const SupportForm = props => {
                     />
                 </div>
 
-                <div className="absolute-left w-100">
+                <div className="absolute-left w-100" style={{bottom: 20}}>
                     <LoadingBeat loading={loading} />
                 </div>
             </div>

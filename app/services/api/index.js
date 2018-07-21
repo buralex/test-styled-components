@@ -10,7 +10,7 @@ restApi.interceptors.request.use((config) => {
     // eslint-disable-next-line
     const authKey = window.__global_store__.getState().userData.authKey;
     // eslint-disable-next-line
-    config.headers.Authorization = `${authKey}` || `1ed20ebdaeab4508373dbe91a0ee955c6e14be4d`;
+    config.headers.Authorization = `${authKey}` || `1f9d364c9d2e6b3383b6b684b66e2047d7ef9ea2`;
     return config;
 }, (error) => Promise.reject(error));
 

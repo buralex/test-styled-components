@@ -33,7 +33,7 @@ import {
     eventHandler,
 } from 'redux-signal'
 
-import Header from 'layout/Header';
+import NavBar from 'layout/NavBar';
 import Footer from 'layout/Footer';
 import LeftBar from 'layout/LeftBar';
 import RightBar from 'layout/RightBar';
@@ -87,7 +87,7 @@ class App extends React.PureComponent {
                     <meta name="description" content="Denteez"/>
                 </Helmet>
 
-                {isLoggedIn && !isLoginPage && <Header/>}
+                {isLoggedIn && !isLoginPage && <NavBar/>}
 
                 <div className={isLoginPage ? '' : 'd-flex max-width' }>
                     {isLoggedIn && !isLoginPage && <LeftBar/>}

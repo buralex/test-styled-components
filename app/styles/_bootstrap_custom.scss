@@ -1,6 +1,4 @@
 
-@import 'colors_and_variables';
-
 
 //**************************************************************************
 //
@@ -14,31 +12,25 @@
 //**************************
 
 $theme-colors: (
-  //primary:    $primary,
-  //secondary:  $secondary,
-        success: $turtle-green,
-  //info:       $info,
-  //warning:    $warning,
-  //danger:     $danger,
-  //light:      $light,
-  //dark:       $dark,
 
   //****** colors of project ******//
-        turtle-green: #87b448,
-        moss-green: #73993d,
-        darkest-blue: #1c2534,
-        faded-blue: #65aacd,
-        moss-green-two: #71973c,
-        steel: #7c8695,
-        silver: #c8cdd5,
-        silver-two: #c2c2c4,
-        silver-three: #e0e2e6,
-        cloudy-blue: #b7bfcd,
-        pinkish-grey: #c1c1c1,
-        white-two: #d3d3d3,
-        white-three: #fefefe,
-        white-four: #f7f7f7,
-        pale-grey: #f3f4f6,
+        success: $success,
+        turtle-green-two: $turtle-green-two,
+        moss-green: $moss-green,
+        darkest-blue: $darkest-blue,
+        faded-blue: $faded-blue,
+        moss-green-two: $moss-green-two,
+        steel: $steel,
+        silver: $silver,
+        silver-two: $silver-two,
+        silver-three: $silver-three,
+        cloudy-blue: $cloudy-blue,
+        pinkish-grey: $pinkish-grey,
+        white-two: $white-two,
+        white-three: $white-three,
+        white-four: $white-four,
+        pale-grey: $pale-grey,
+        white: $white,
 );
 
 //**************************
@@ -94,8 +86,8 @@ $btn-focus-box-shadow: none !important;
   }
 
   &:hover {
-    background-color: lighten($turtle-green, 6);
-    border-color: lighten($turtle-green, 6);
+    background-color: lighten($success, 6);
+    border-color: lighten($success, 6);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
 

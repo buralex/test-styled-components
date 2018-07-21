@@ -29,7 +29,7 @@ const submit = (values) => {
 
 const SearchForm = props => {
     const {
-        handleSubmit, pristine, reset, submitting, change, form, enquiryTypes, isEnqTypeOther, loading,
+        handleSubmit, pristine, reset, submitting, change, form, enquiryTypes, isEnqTypeOther, loading, placeholder,
     } = props;
 
     const beforeSubmit = (values) => {
@@ -42,12 +42,8 @@ const SearchForm = props => {
                 <Field
                     name="query"
                     component={TextInput}
-                    placeholder="Search"
+                    placeholder={placeholder}
                 />
-                <span className="search-icon">
-                    <FontAwesomeIcon icon="search" />
-                </span>
-
             </div>
         </form>
     )
