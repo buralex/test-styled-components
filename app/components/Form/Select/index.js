@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactSelect from 'react-select';
 import PropTypes from 'prop-types';
-import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import { FormGroup, Label, FormFeedback } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import './style.scss';
 
 Select.defaultProps = {
     multi: false,
@@ -23,80 +24,52 @@ Select.propTypes = {
     className: PropTypes.string,
 };
 
-// const Select = ({
-//     input, placeholder, label, type, meta: {touched, error}, meta, showValid, validText, options, size,
-// }) => {
 
 export default function Select ({
-    input, placeholder, label, meta: {touched, error}, meta, showValid, validText, options, multi,
-    className,
+    input, placeholder, label, meta: {touched, error}, meta,
+    showValid, validText, options, multi, className,
 }) {
-    // const {
-    //     input, placeholder, label, type,  meta, meta: {touched, error},
-    //     showValid, validText, options, size, multi, className,
-    // } = props;
 
     const { name, value, onBlur, onChange, onFocus } = input;
-    // const { name, value, onBlur, onChange, onFocus } = input;
+
     const transformedValue = transformValue(value, options, multi);
 
-        const isInvalid = Boolean(touched && error);
-        const isValid = Boolean(touched && !error);
-        const idStr = `${meta.form}_${input.name}`;
-    console.log(touched);
-    console.log(error);
-    console.log(isInvalid);
-    console.log(name);
+    const isInvalid = Boolean(touched && error);
+    const isValid = Boolean(touched && !error);
+    const idStr = `${meta.form}_${input.name}`;
+
     return (
-        <div>
-            <FormGroup className={`${isInvalid ? 'has-error' : ''}`} >
-                <Label for={idStr}> {label} </Label>
-                {/*<Input*/}
-                    {/*{...input}*/}
-                    {/*id={idStr}*/}
-                    {/*size={size}*/}
-                    {/*placeholder={placeholder}*/}
-                    {/*type={type || "select"}*/}
-                    {/*invalid={isInvalid}*/}
-                    {/*valid={showValid && isValid}*/}
-                {/*>*/}
-                    {/*{options && options.map((opt, i) =>*/}
-                        {/*<option key={`${opt.label}_${i+1}`} value={opt.value}>*/}
-                            {/*<div>{opt.label}</div>*/}
+        <FormGroup className={`select-component ${isInvalid ? 'has-error' : ''}`} >
+            {label && <Label for={idStr}> {label} </Label>}
 
-                        {/*</option>)}*/}
-                {/*</Input>*/}
+            <ReactSelect
+                id={idStr}
+                valueKey="value"
+                name={name}
+                value={transformedValue}
+                multi={multi}
+                options={options}
+                onChange={multi
+                    ? multiChangeHandler(onChange)
+                    : singleChangeHandler(onChange)
+                }
+                onBlur={() => onBlur(value)}
+                onFocus={onFocus}
+                className={className}
+                arrowRenderer={arrowRenderer}
+                placeholder={placeholder}
+            />
 
-                <ReactSelect
-                    id={idStr}
-                    valueKey="value"
-                    name={name}
-                    value={transformedValue}
-                    multi={multi}
-                    options={options}
-                    onChange={multi
-                        ? multiChangeHandler(onChange)
-                        : singleChangeHandler(onChange)
-                    }
-                    onBlur={() => onBlur(value)}
-                    onFocus={onFocus}
-                    className="select-component"
-                    arrowRenderer={arrowRenderer}
-                    placeholder={placeholder}
-                />
+            {isInvalid && <FormFeedback style={{display: 'block'}}>{error}</FormFeedback>}
+            {isValid && showValid && <FormFeedback valid>{validText}</FormFeedback>}
 
-                {isInvalid && <FormFeedback style={{display: 'block'}}>{error}</FormFeedback>}
-                {isValid && showValid && <FormFeedback valid>{validText}</FormFeedback>}
-
-                <FontAwesomeIcon icon="angle-down" className="arrow"/>
-            </FormGroup>
-        </div>
+        </FormGroup>
     );
 }
 
 function arrowRenderer () {
     return (
-        <FontAwesomeIcon icon="angle-down" color="#c1c1c1" className="arrow"/>
+        <FontAwesomeIcon icon="angle-down"/>
     );
 }
 
@@ -136,62 +109,3 @@ function transformValue(value, options, multi) {
 
     return multi ? filteredOptions : filteredOptions[0];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-//
-// import React from 'react'
-// import PropTypes from "prop-types";
-// import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//
-// import './style.scss';
-//
-// const Select = ({
-//     input, placeholder, label, type, meta: {touched, error}, meta, showValid, validText, options, size,
-// }) => {
-//
-//     const isInvalid = Boolean(touched && error);
-//     const isValid = Boolean(touched && !error);
-//     const idStr = `${meta.form}_${input.name}`;
-//
-//     return (
-        {/*<FormGroup className='select-component'>*/}
-            {/*<Label for={idStr}> {label} </Label>*/}
-            {/*<Input*/}
-                {/*{...input}*/}
-                {/*id={idStr}*/}
-                {/*size={size}*/}
-                {/*placeholder={placeholder}*/}
-                {/*type={type || "select"}*/}
-                {/*invalid={isInvalid}*/}
-                {/*valid={showValid && isValid}*/}
-            {/*>*/}
-                {/*{options && options.map((opt, i) =>*/}
-                    {/*<option key={`${opt.label}_${i+1}`} value={opt.value}>*/}
-                        {/*<div>{opt.label}</div>*/}
-
-                        {/*</option>)}*/}
-            {/*</Input>*/}
-            {/*{isInvalid && <FormFeedback>{error}</FormFeedback>}*/}
-            {/*{isValid && showValid && <FormFeedback valid>{validText}</FormFeedback>}*/}
-
-            {/*<FontAwesomeIcon icon="angle-down" className="arrow"/>*/}
-        {/*</FormGroup>*/}
-//     )
-// };
-//
-// Select.propTypes = {
-//     input: PropTypes.object.isRequired,
-// };
-//
-// export default Select;

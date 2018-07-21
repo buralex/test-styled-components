@@ -55,8 +55,8 @@ const LoginForm = props => {
             </div>
 
 
-            <div className="position-absolute w-100">
-                <LoadingBeat loading={true} />
+            <div className="absolute-left w-100">
+                <LoadingBeat loading={loading} />
             </div>
         </form>
     )

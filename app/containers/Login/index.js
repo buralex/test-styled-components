@@ -27,7 +27,7 @@ import {
     eventHandler,
 } from 'redux-signal'
 
-
+import * as modalNames from 'components/modals/names';
 import * as appActions from "containers/App/actions";
 import * as actions from './actions';
 import {makeSelectEnquiryTypes, makeSelectCurrentEnqType} from './selectors';
@@ -42,16 +42,28 @@ import LoginForm from "./components/LoginForm";
 
 import "./style.scss";
 
+
 class Login extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.initValues = {};
+        this.initValues = {
+            enquiry_type: 'Other',
+        };
 
         if (props.location.pathname === '/') {
             history.push('/login');
         }
     }
+
+    // showAlertModal = (alert) => {
+    //     this.props.createSignal({
+    //         type: SignalTypes.OK,
+    //         eventHandler: AlertModalEvents,
+    //         modalData: alert.data,
+    //         modalName: alert.modalName,
+    //     })
+    // };
 
     render() {
         const {enquiryTypes, currentEnqType, loading, isLoggedIn, location: {pathname}} = this.props;
@@ -64,24 +76,41 @@ class Login extends React.PureComponent {
         console.log(pathname);
         // console.log(enquiryTypes);
         //
-        // console.log(this.props);
+        console.log(this.props);
+
+        const signup = {message:'This page is in development', description:'...'};
 
         return (
             <div className="login-container">
-
                 <section className="land-top">
-                    <a className="logo" href="/"> <img src={Logo} alt="Denteez logo" /> </a>
-                    {pathname === '/login/support' ?
-                        <Button color="success" size="sm" tag={Link} to="/login">Log In Now</Button>
-                        :
-                        <Button color="success" size="sm" tag={Link} to="/login">Sign up now</Button>
-                    }
+                    <div className="max-width outline-danger">
+                        <div className="content navbar">
+                            <a className="logo" href="/"> <img src={Logo} alt="Denteez logo" /> </a>
+                            {pathname === '/login/support' ?
+                                <Button color="success" size="sm" tag={Link} to="/login">Log In Now</Button>
+                                :
+                                <Button
+                                    color="success"
+                                    size="sm"
+                                    onClick={() => this.props.showAlert(modalNames.INFO_MODAL, signup)}
+                                >
+                                    Sign up now
+                                </Button>
+                            }
+                        </div>
+
+                        <h1 className="text-truncate">Home of Dentistry</h1>
+                        <h6>
+                            Denteez was created by dentists for dentistry in order to
+                            make the life of everyone involved in dentistry easier.
+                        </h6>
+                    </div>
 
                 </section>
 
                 <section className="land-middle">
-
-                    {pathname.includes('support') &&
+                    <div className="max-width outline-danger">
+                        {pathname.includes('support') &&
                         <SupportForm
                             loading={loading}
                             initialValues={this.initValues}
@@ -89,33 +118,38 @@ class Login extends React.PureComponent {
                             enquiryTypes={enquiryTypes}
                             isEnqTypeOther={currentEnqType === 'Other'}
                         />
-                    }
+                        }
 
-                    {!pathname.includes('support') &&
+                        {!pathname.includes('support') &&
                         <LoginForm loading={loading} onSubmit={this.props.login} />
-                    }
-
-                </section>
-
-                <section className="land-bottom text-center">
-                    <h2 className="text-truncate">About Denteez</h2>
-
-                    <div className="d-flex justify-content-between">
-                        <p>
-                            Why is it always so difficult to find what you are looking for in dentistry? Whether it is
-                            the latest advancement in technology or techniques or simply a review or
-                            understanding of the vast amount of products? Perhaps finding someone to just fix
-                            your broken equipment or simply hiring new staff or looking for that new job?
-                        </p>
-                        <p>
-                            Our mission is to give every dental professional the possibility to discuss and share all
-                            aspects of their profession, their practice and their business. We aim to make the world
-                            of dentistry easy and accessible, so every dental professional can find what they are
-                            looking for quickly and easily all in one place.
-                        </p>
+                        }
                     </div>
                 </section>
 
+                <section className="land-bottom">
+                    <div className="max-width outline-danger">
+                        <h2 className="text-truncate">About Denteez</h2>
+
+                        <div className="row no-gutters text-left">
+                            <div className="col-6">
+                                <p>
+                                    Why is it always so difficult to find what you are looking for in dentistry? Whether it is
+                                    the latest advancement in technology or techniques or simply a review or
+                                    understanding of the vast amount of products? Perhaps finding someone to just fix
+                                    your broken equipment or simply hiring new staff or looking for that new job?
+                                </p>
+                            </div>
+                            <div className="col-6">
+                                <p>
+                                    Our mission is to give every dental professional the possibility to discuss and share all
+                                    aspects of their profession, their practice and their business. We aim to make the world
+                                    of dentistry easy and accessible, so every dental professional can find what they are
+                                    looking for quickly and easily all in one place.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         );
     }
@@ -133,6 +167,7 @@ Login.propTypes = {
 export const mapDispatchToProps = (dispatch) => ({
     postEnquiry: (values) => dispatch(actions.postEnquiry(values)),
     login: (values) => dispatch(appActions.login(values)),
+    showAlert: (modalName, data) => dispatch(appActions.showAlert(modalName, data)),
 
     /* -------------------- withData hoc ---------------------------------- */
     getData: () => {

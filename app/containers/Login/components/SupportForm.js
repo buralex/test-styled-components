@@ -32,10 +32,9 @@ const SupportForm = props => {
 
                 <Field
                     name={db.enquiry_type}
-                    size="lg"
                     component={Select}
                     options={enquiryTypes.map((elem) => ({label: elem.name, value: elem.name}))}
-                    label="Enquiry type *"
+                    label="Enquiry Type *"
                     onChange={(event, value) => {
                         change(db.other_enquiry_type, '');
                     }}
@@ -46,48 +45,46 @@ const SupportForm = props => {
                     name={db.other_enquiry_type}
                     component={TextInput}
                     placeholder="Other"
+                    className="other-enquiry"
                 />
                 }
-                <div className="mt-2">
-                    <div className="row">
-                        <div className="col">
-                            <Field
-                                name={db.user_name}
-                                component={TextInput}
-                                label="Username *"
-                                size="lg"
-                            />
-                        </div>
-                        <div className="col">
-                            <Field
-                                name={db.email}
-                                component={TextInput}
-                                type="email"
-                                label="Email"
-                            />
-                        </div>
+
+                <div className="row">
+                    <div className="col-6">
+                        <Field
+                            name={db.user_name}
+                            component={TextInput}
+                            label="Name *"
+                        />
+                    </div>
+                    <div className="col-6">
+                        <Field
+                            name={db.email}
+                            component={TextInput}
+                            type="email"
+                            label="Email"
+                        />
                     </div>
                 </div>
 
-                <div className="mt-2">
-                    <Field
-                        name={db.subject}
-                        component={TextInput}
-                        label="Subject *"
-                    />
-                </div>
+                <Field
+                    name={db.subject}
+                    component={TextInput}
+                    label="Subject *"
+                />
 
-                <div className="mt-2 h25">
+                <div >
                     <Field
                         name={db.description}
                         component={TextArea}
                         label="Description *"
                         maxlength={1000}
+                        className="description"
                     />
                 </div>
 
 
-                <div className="mt-4">
+                <div className="">
                     <Field
                         name={db.file}
                         component={FileUpload}
@@ -99,6 +96,9 @@ const SupportForm = props => {
                     />
                 </div>
 
+                <div className="absolute-left w-100">
+                    <LoadingBeat loading={loading} />
+                </div>
             </div>
 
             <div className="form-footer">
@@ -107,10 +107,6 @@ const SupportForm = props => {
                 </Button>
             </div>
 
-
-            <div className="position-absolute w-100">
-                <LoadingBeat loading={loading} />
-            </div>
         </form>
     )
 }

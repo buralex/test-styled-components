@@ -7,48 +7,79 @@
   margin-right: -15px;
 
   .land-top {
-    //background: url(../../images/land-top.png) no-repeat top center;
+    font-family: "Proxima Nova Light";
+    font-weight: 300;
+    color: $pale-grey;
+    text-align: center;
+
+    background: url(../../images/land-top.png) no-repeat top center;
     background-size: cover;
     height: 510px;
 
-    .btn {
-      float: right;
-      margin-right: 30px;
-      margin-top: 45px;
+    .navbar {
+
+      .btn {
+        float: right;
+        margin-right: 24px;
+        margin-top: 2px;
+      }
+
+      .logo {
+        display: inline-block;
+        margin: 32px 34px;
+      }
     }
 
-    .logo {
+    h1 {
+      font-size: 48px;
+      margin-top: 61px;
+      margin-left: -5px;
+      margin-bottom: 6px;
+    }
 
+    h6 {
+      font-size: 20px;
+      line-height: 1.5;
+      margin:auto;
+      max-width: 490px;
     }
   }
 
   .land-middle {
-    //background: url(../../images/land-middle.png) no-repeat top center;
+    background: url(../../images/land-middle.png) no-repeat top center;
     background-size: cover;
   }
 
   .land-bottom {
-
-    padding: 90px 56px 93px;
+    letter-spacing: -0.1px;
+    padding: 90px 15px 93px;
+    text-align: center;
 
     h2 {
       font-size: 30px;
       margin-bottom: 36px;
     }
 
-    p {
-      letter-spacing: -0.1px;
-      margin-right: 40px;
+    .col-6 {
+      padding: 0 40px 0 80px;
+
+      &:last-child {
+        padding: 0 70px 0 40px;
+      }
     }
 
-    .last p {
-      margin-right: 0px;
-      margin-left: 25px;
-    }
   }
 
   form {
     bottom: 100px;
+
+    .other-enquiry {
+      margin-top: 20px;
+    }
+    .description {
+      height: 152px;
+      margin-bottom: 20px;
+    }
   }
 
 }

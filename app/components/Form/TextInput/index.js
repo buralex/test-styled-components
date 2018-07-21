@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
 const TextInput = ({
-    input, placeholder, label, type, meta: {touched, error}, meta, showValid, validText, size,
+    input, placeholder, label, type, meta: {touched, error}, meta,
+    showValid, validText, size, className,
 }) => {
 
     const isInvalid = Boolean(touched && error);
@@ -13,12 +14,13 @@ const TextInput = ({
 
     return (
         <FormGroup>
-            <Label for={idStr}> {label} </Label>
+            {label && <Label for={idStr}> {label} </Label>}
 
             <Input
                 {...input}
                 id={idStr}
                 bsSize={size}
+                className={className}
                 placeholder={placeholder}
                 type={type || "text"}
                 invalid={isInvalid}

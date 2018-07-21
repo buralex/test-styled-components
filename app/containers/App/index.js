@@ -89,7 +89,7 @@ class App extends React.PureComponent {
 
                 {isLoggedIn && !isLoginPage && <Header/>}
 
-                <div className={isLoginPage ? '' : 'd-flex content' }>
+                <div className={isLoginPage ? '' : 'd-flex max-width' }>
                     {isLoggedIn && !isLoginPage && <LeftBar/>}
 
                     <div className="container-fluid ">
@@ -99,7 +99,7 @@ class App extends React.PureComponent {
                     {isLoggedIn && !isLoginPage && <RightBar/>}
                 </div>
 
-                {isLoginPage && <Footer showModal={this.showAlertModal} />}
+                {isLoginPage && <Footer showAlert={this.props.showAlert} />}
 
                 <AlertModalEvents
                     onOk={this.props.hideAlert}
@@ -123,6 +123,7 @@ App.propTypes = {
 
 export const mapDispatchToProps = (dispatch) => ({
     hideAlert: () => dispatch(actions.hideAlert()),
+    showAlert: (modalName, data) => dispatch(actions.showAlert(modalName, data)),
 });
 
 const mapStateToProps = createStructuredSelector({
