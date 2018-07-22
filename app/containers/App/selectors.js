@@ -18,6 +18,7 @@ export const makeSelectAlert = () => createSelector(selectApp, app => app.alert)
 export const makeSelectAction = () => createSelector(selectRouteParams, params => params.action);
 
 export const makeSelectIsLoggedIn = () => createSelector(selectUserData, userData => userData.authKey !== null);
+export const makeSelectUser = () => createSelector(selectUserData, userData => userData.user);
 
 export const makeSelectLocation = () => createSelector(selectRoute, routeState => routeState.location);
 

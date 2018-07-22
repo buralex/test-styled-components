@@ -1,4 +1,7 @@
 
 .left-bar-component {
-  width: 200px;
+  flex:0 0 auto; // Forces side columns to stay same width
+
+  width: 212px;
+  padding: 0;
 }

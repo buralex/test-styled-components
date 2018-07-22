@@ -9,6 +9,8 @@ import {createStructuredSelector} from 'reselect';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, UncontrolledTooltip} from 'reactstrap';
 import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/api';
 
+import defaultCategory from 'images/no-service-category-icon.png';
+
 import {
     makeSelectLoading,
 } from 'containers/App/selectors';
@@ -44,31 +46,33 @@ class List extends React.PureComponent {
         console.log(categories);
         return (
             <div>
-                {categories.map((cat, i) => {
-                    return <Button key={`cat_${i+1}`} color="silver-two" >{cat.title}</Button>
-                })}
-                {/*<div>*/}
-                    {/*<Button*/}
-                        {/*color="success" onClick={async () => {*/}
-                        {/*// const aaa = await fetchCategories().then(res => res.data).catch(e => e.response.data);*/}
-                        {/*// const aaa = await fetchCategory(1).then(res => res.data).catch(e => e.response.data);*/}
-                        {/*const aaa = await fetchFriends({*/}
-                            {/*per_page: 10,*/}
-                        {/*}).then(res => res.data).catch(e => e.response.data);*/}
+                <div className="d-flex justify-content-between">
+                    <h2>Service Directory</h2>
+                    <Button color="success" size="sm" >Add New Service</Button>
+                </div>
 
-                        {/*console.log(aaa);*/}
+                <div className="list-container">
+                    {categories.map((cat, i) => {
 
-                    {/*}}>Add New Service</Button>*/}
+                        if (i < 20) {
+                            const icon = cat.icon || defaultCategory;
 
-                    {/*<Button color="success" onClick={this.props.logout}>logout</Button>*/}
+                            return (
+                                <div className="tile-wrap outline-danger">
+                                    <div key={`cat_${i+1}`} className="tile text-truncate">
+                                        {i}
+                                        {/*<img src={icon} width="32" height="32" alt="user avatar" />*/}
 
-                    {/*<div className="p-3 mb-3 swatch-indigo">Indigo</div>*/}
+                                        {cat.title}
+                                    </div>
+                                </div>
 
-                    {/*<div className="col-2 text-truncate">*/}
-                        {/*Praeterea iter est quasdam res quas ex communi.*/}
-                    {/*</div>*/}
+                            );
+                        }
 
-                {/*</div>*/}
+
+                    })}
+                </div>
             </div>
         );
     }

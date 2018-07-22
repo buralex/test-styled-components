@@ -39,11 +39,11 @@ const LoginForm = props => {
                 <div className="row">
                     <div className="col-6">
                         email:
-                        <h5 className="text-danger">test@abz.agency</h5>
+                        <h2 className="text-danger">test@abz.agency</h2>
                     </div>
                     <div className="col-6">
                         password:
-                        <h5 className="text-danger">123456</h5>
+                        <h2 className="text-danger">123456</h2>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@
   background: $success;
 
   .logo {
-    padding: 11px 15px 15px 16px;
+    padding: 11px 15px 15px 1px;
   }
 
   .search {
@@ -37,22 +37,30 @@
   }
 
   .navigation {
-    width: 745px;
 
-    .msg-btn, .notif-btn {
+    .msg-btn,
+    .notif-btn,
+    .avatar-btn {
+      cursor: pointer;
 
+      &:focus {
+        outline: none;
+      }
     }
 
-    .msg {
-      //width: 50px;
-      .msg-btn {
-        background: url(./images/chat.svg) no-repeat center;
-        padding: 15px;
-        margin: 20px 11px 10px 14px;
-        cursor: pointer;
+     .msg {
 
-        &:focus {
-          outline: none;
+      .msg-btn {
+        margin: 20px 4px 10px 10px;
+
+        svg {
+          fill: $white;
+        }
+
+        &:hover {
+          svg {
+            fill: $light-green;
+          }
         }
       }
     }
@@ -60,36 +68,36 @@
     .notif {
 
       .notif-btn {
-        background: url(./images/notifications.svg) no-repeat center;
-        padding: 15px;
         margin: 18px 3px 10px 5px;
-        cursor: pointer;
 
-        &:focus {
-          outline: none;
+        svg {
+          fill: $white;
         }
-        &:focus {
-          outline: none;
+
+        &:hover {
+          svg {
+            fill: $light-green;
+          }
         }
       }
 
     }
 
     .avatar {
-      //width: 100%;
+      color: $white-three;
+      max-width: 250px;
+      margin-right: 11px;
+      cursor: pointer;
+
+      .avatar-btn {
+        margin: 17px 3px 10px 16px;
+
+        img {
+          border-radius: 5px;
+        }
+      }
+
     }
-  }
-
-  // --------- tooltip
-
-  #tooltip-top > .tooltip-inner {
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #062e56;
-  }
-
-  #tooltip-top > .tooltip-arrow {
-    border-top: 5px solid #062e56;
   }
 
 }

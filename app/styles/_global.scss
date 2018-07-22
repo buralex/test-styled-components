@@ -33,9 +33,14 @@ body.fontLoaded {
 
 .max-width {
   max-width: $max-content-width;
+  padding-left: 15px;
+  padding-right: 15px;
   margin: auto;
 }
 
+.center-column {
+  flex:1 1 auto; // Lets middle column shrink/grow to available width
+}
 
 
 
@@ -61,19 +66,49 @@ body.fontLoaded {
   color: $success;
 }
 
+// --------- navbar-tooltip
 div.navbar-tooltip {
-  .navbar-tooltip__inner {
-    background-color: #fff !important;
-    color: #000;
-    border: 1px solid #062e56;
+  &.show {
+    //opacity: 1;
   }
 
-  .navbar-tooltip__arrow::before {
+  margin-top: 10px;
+
+  .tooltip-inner {
+    background-color: $light-green;
+    color: $darkest-blue;
+    font-size: 16px;
+  }
+
+  .arrow::before {
     bottom: 0;
     border-width: 0 0.4rem 0.4rem;
-    border-bottom-color: red;
+    border-bottom-color: $light-green;
   }
 }
+
+div.top-navbar-menu {
+  &.show {
+    opacity: 1;
+  }
+
+  padding-top: 0;
+
+  .tooltip-inner {
+    background-color: $white-three;
+    color: $darkest-blue;
+    font-size: 16px;
+    width: 200px;
+  }
+
+  .arrow::before {
+    border: none;
+    //bottom: 0;
+    //border-width: 0 0.4rem 0.4rem;
+    //border-bottom-color: $light-green;
+  }
+}
+
 
 //**************************
 //       / Modals

@@ -23,6 +23,8 @@ import routeActions from "containers/App/constants/routeActions";
 
 import {withSignal} from "redux-signal";
 
+import './style.scss';
+
 import reducer from './reducer';
 import saga from './saga';
 
@@ -42,7 +44,7 @@ class Services extends React.PureComponent {
         console.log('RENDER SERVICES >>>>>>>>>>>>>>>>>', this.props);
 
         return (
-            <div className="outline-danger">
+            <div className="services-container">
                 {!action &&
                     <List />
                 }

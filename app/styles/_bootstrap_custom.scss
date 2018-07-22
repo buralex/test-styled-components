@@ -16,6 +16,7 @@ $theme-colors: (
   //****** colors of project ******//
         success: $success,
         turtle-green-two: $turtle-green-two,
+        $light-green: $light-green,
         moss-green: $moss-green,
         darkest-blue: $darkest-blue,
         faded-blue: $faded-blue,
@@ -74,7 +75,9 @@ $btn-focus-box-shadow: none !important;
 //**************************
 
 [class*=btn-sm] {
-  padding: 5px 19px;
+  padding: 0px 19px;
+  height: 30px;
+  line-height: 30px;
   border-radius: 5px;
 }
 

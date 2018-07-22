@@ -89,12 +89,15 @@ class App extends React.PureComponent {
 
                 {isLoggedIn && !isLoginPage && <NavBar/>}
 
-                <div className={isLoginPage ? '' : 'd-flex max-width' }>
+                <div className={isLoginPage ? '' : 'd-flex max-width justify-content-between' }>
                     {isLoggedIn && !isLoginPage && <LeftBar/>}
 
-                    <div className="container-fluid ">
-                        <Router />
+                    <div className="center-column">
+                        <div className="container-fluid ">
+                            <Router />
+                        </div>
                     </div>
+
 
                     {isLoggedIn && !isLoginPage && <RightBar/>}
                 </div>
