@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as appActions from 'containers/App/actions';
 
 const restApi = axios.create({
-    baseURL: 'http://504080.com/api/v1',
+    baseURL: '//504080.com/api/v1',
 });
 
 restApi.interceptors.request.use((config) => {

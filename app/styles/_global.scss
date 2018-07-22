@@ -61,6 +61,20 @@ body.fontLoaded {
   color: $success;
 }
 
+div.navbar-tooltip {
+  .navbar-tooltip__inner {
+    background-color: #fff !important;
+    color: #000;
+    border: 1px solid #062e56;
+  }
+
+  .navbar-tooltip__arrow::before {
+    bottom: 0;
+    border-width: 0 0.4rem 0.4rem;
+    border-bottom-color: red;
+  }
+}
+
 //**************************
 //       / Modals
 //**************************

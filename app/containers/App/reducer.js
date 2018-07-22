@@ -31,7 +31,7 @@ function appReducer(state = initialState, action) {
                 loading: false,
                 alert: {
                     modalName: action.payload.modalName,
-                    data: action.payload.data,
+                    data: action.payload.data || {},
                 },
             };
 

@@ -31,6 +31,7 @@ import * as appActions from "../../containers/App/actions";
 
 import reducer from './reducer';
 import saga from './saga';
+import * as modalNames from "../../components/modals/names";
 
 const aaa = (values) => {
     console.log(values);
@@ -38,6 +39,19 @@ const aaa = (values) => {
 
 /* eslint-disable react/prefer-stateless-function */
 class NavBar extends React.PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            tooltipOpen: false
+        };
+    }
+    toggle() {
+        this.setState({
+            tooltipOpen: !this.state.tooltipOpen
+        });
+    }
     render() {
         return (
             <div className="navbar-component outline-danger">
@@ -57,7 +71,25 @@ class NavBar extends React.PureComponent {
 
                     <section className="navigation d-flex outline-danger ">
                         <div className="msg outline-danger">
-                            <button className="msg-btn"></button>
+
+                            <button onClick={this.toggle} className="msg-btn" id="navbarTooltip"></button>
+                            <UncontrolledTooltip
+                                autohide={false}
+                                className="navbar-tooltip"
+                                innerClassName="navbar-tooltip__inner"
+                                arrowClassName="navbar-tooltip__arrow"
+                                placement="bottom"
+                                target="navbarTooltip"
+                            >
+                                <Button
+                                    color="success"
+                                    size="sm"
+                                    onClick={() => {
+                                        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeeeeeee');}}
+                                >
+                                    Sign up now
+                                </Button>
+                            </UncontrolledTooltip>
                         </div>
                         <div className="notif outline-danger">
                             <button className="notif-btn"></button>

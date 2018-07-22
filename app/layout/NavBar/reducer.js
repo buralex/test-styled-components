@@ -5,7 +5,7 @@ export const initialState = {
     enquiryTypes: [],
 };
 
-export default function loginReducer(state = initialState, action) {
+export default function navbarReducer(state = initialState, action) {
     switch (action.type) {
 
         case types.LOAD_ENQUIRY_TYPES_SUCCESS: {
@@ -16,12 +16,6 @@ export default function loginReducer(state = initialState, action) {
                 enquiryTypes: enqTypes,
             };
         }
-
-        // case types.POST_ENQUIRY: {
-        //     const enqTypes = action.payload.data || [];
-        //
-        //     return state.set('enquiryTypes', enqTypes);
-        // }
 
         default:
             return state;
