@@ -19,13 +19,13 @@ const Footer = (props) => {
                 <div className="nav">
                     <Link to="/login/support">Support</Link>
                     <a
-                        href=""
+                        href="#"
                         onClick={(e) => {e.preventDefault(); props.showAlert(modalNames.INFO_MODAL, privacy)}}
                     >
                         Privacy Policy
                     </a>
                     <a
-                        href=""
+                        href="#"
                         onClick={(e) => {e.preventDefault(); props.showAlert(modalNames.INFO_MODAL, terms)}}
                     >
                         Terms of use

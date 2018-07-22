@@ -24,6 +24,7 @@ import {
     makeSelectIsLoggedIn,
     makeSelectIsLogin,
     makeSelectAlert,
+    makeSelectSuggestions,
 } from "containers/App/selectors";
 
 import {
@@ -72,7 +73,7 @@ class App extends React.PureComponent {
 
 
     render() {
-        const {isLoggedIn, isLoginPage, loading} = this.props;
+        const {isLoggedIn, isLoginPage, loading, suggestions} = this.props;
         console.log('---------------- RENDER APP -------------------', this.props);
 
 
@@ -90,7 +91,10 @@ class App extends React.PureComponent {
                 {isLoggedIn && !isLoginPage && <NavBar/>}
 
                 <div className={isLoginPage ? '' : 'd-flex max-width justify-content-between' }>
-                    {isLoggedIn && !isLoginPage && <LeftBar/>}
+
+                    {isLoggedIn && !isLoginPage &&
+                        <LeftBar suggestions={suggestions} showAlert={this.props.showAlert} />
+                    }
 
                     <div className="center-column">
                         <div className="container-fluid ">
@@ -99,7 +103,9 @@ class App extends React.PureComponent {
                     </div>
 
 
-                    {isLoggedIn && !isLoginPage && <RightBar/>}
+                    {isLoggedIn && !isLoginPage &&
+                        <RightBar/>
+                    }
                 </div>
 
                 {isLoginPage && <Footer showAlert={this.props.showAlert} />}
@@ -133,6 +139,7 @@ const mapStateToProps = createStructuredSelector({
     isLoggedIn: makeSelectIsLoggedIn(),
     isLoginPage: makeSelectIsLogin(),
     alert: makeSelectAlert(),
+    suggestions: makeSelectSuggestions(),
 });
 
 const withConnect = connect(

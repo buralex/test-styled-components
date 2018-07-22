@@ -52,9 +52,9 @@ export function* loadSuggestions() {
         yield put(appActions.showLoader());
 
         const [friends, companies, products] = yield Promise.all([
-            fetchSuggestedFriends().then(res => res.data.data).catch(e => e && e.data),
-            fetchSuggestedCompanies().then(res => res.data.data).catch(e => e && e.data),
-            fetchSuggestedProducts().then(res => res.data.data).catch(e => e && e.data),
+            fetchSuggestedFriends({per_page:"3"}).then(res => res.data.data).catch(e => e && e.data),
+            fetchSuggestedCompanies({per_page:"3"}).then(res => res.data.data).catch(e => e && e.data),
+            fetchSuggestedProducts({per_page:"2"}).then(res => res.data.data).catch(e => e && e.data),
         ]);
 
         yield put({

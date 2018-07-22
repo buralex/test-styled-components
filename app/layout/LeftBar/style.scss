@@ -1,7 +1,124 @@
 
+@import '../../styles/colors_and_variables';
+
 .left-bar-component {
   flex:0 0 auto; // Forces side columns to stay same width
 
   width: 212px;
   padding: 0;
+
+  .navbar {
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav-item {
+    padding: 0;
+    border-bottom: 1px solid $silver-three;
+
+    &:hover {
+      .nav-link {
+        color: $moss-green-two;
+      }
+    }
+  }
+
+  .nav-link {
+    color: $slate-grey;
+    padding: 13px 0 13px 50px;
+    background-position: 1px 13px;
+
+    &.feed {
+      background-image: url(./images/feed.svg);
+      background-size: 25px 24px;
+
+      &:hover {
+        background-image: url(./images/feed-hover.svg);
+      }
+    }
+
+    &.ask {
+      background-image: url(./images/ask.svg);
+      background-size: 25px 24px;
+
+      &:hover {
+        background-image: url(./images/ask-hover.svg);
+      }
+    }
+
+    &.comp {
+      background-image: url(./images/companies.svg);
+      background-size: 25px 24px;
+
+      &:hover {
+        background-image: url(./images/companies-hover.svg);
+      }
+    }
+
+    &.serv {
+      background-image: url(./images/services.svg);
+      background-size: 25px 24px;
+
+      &:hover {
+        background-image: url(./images/services-hover.svg);
+      }
+    }
+  }
+
+  .see-all {
+    color: $darkest-blue;
+    text-decoration: none;
+  }
+
+  .company-card {
+    margin-bottom: 17px;
+
+    .name {
+      font-size: 16px;
+      color: $darkest-blue;
+    }
+
+    caption {
+      padding-right: 8px;
+      padding-top: 0;
+      margin-top: -7px;
+    }
+
+    p {
+      margin-bottom: 0;
+      line-height: 1.4;
+    }
+  }
+
+  .footer {
+    .copy {
+      color: $cloudy-blue;
+      font-size: 12px;
+    }
+
+    .nav {
+      margin-top: 10px;
+
+      a {
+        color: $cloudy-blue;
+        font-size: 12px;
+        margin-right: 21px;
+      }
+
+    }
+  }
+
+
+  p {
+    color: $steel;
+    font-size: 14px;
+  }
+
+  p.small {
+    font-size: 12px;
+  }
+
+  hr {
+    margin-bottom: 13px;
+  }
 }

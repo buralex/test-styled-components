@@ -58,13 +58,12 @@ class List extends React.PureComponent {
                             const icon = cat.icon || defaultCategory;
 
                             return (
-                                <div className="tile-wrap ">
-                                    <div key={`cat_${i+1}`} className="tile text-truncate">
-                                        {i}
-                                        {/*<img src={icon} width="32" height="32" alt="user avatar" />*/}
-
-                                        {cat.title}
+                                <div className="tile text-center">
+                                    <div key={`cat_${i+1}`} className="tile-icon">
+                                        <img src={icon} width="120" height="120" alt="category icon" />
                                     </div>
+
+                                    <p>{cat.title}</p>
                                 </div>
 
                             );

@@ -14,6 +14,7 @@ export const makeSelectCurrentUser = () => createSelector(selectApp, app => app.
 export const makeSelectLoading = () => createSelector(selectApp, app => app.loading);
 
 export const makeSelectAlert = () => createSelector(selectApp, app => app.alert);
+export const makeSelectSuggestions = () => createSelector(selectApp, app => app.suggestions);
 
 export const makeSelectAction = () => createSelector(selectRouteParams, params => params.action);
 

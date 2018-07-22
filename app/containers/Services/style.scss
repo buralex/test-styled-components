@@ -19,17 +19,32 @@
     flex-wrap: wrap;
     min-width: 486px;
 
-    .tile-wrap {
-      padding: 6px;
-    }
-
     .tile {
+      margin: 5px 6px;
       width: 140px;
-      height: 140px;
-      border: 1px solid $silver-three;
-      //padding: 15px;
-      //flex:0 0 auto;
-      //margin: 15px 8px;
+      cursor: pointer;
+
+      .tile-icon {
+        width: 140px;
+        height: 140px;
+        border: 1px solid $silver-three;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      p {
+        font-size: 14px;
+        margin-bottom: 0;
+        line-height: 1.2;
+      }
+
+      &:hover {
+        color: $moss-green-two;
+        .tile-icon {
+          background-color: $pale-grey-two;
+        }
+      }
     }
   }
 }
