@@ -13,19 +13,20 @@
   .list-container {
     border: 1px solid $silver-three;
     border-radius: 5px;
-    padding: 15px;
-    //text-align: center;
+    padding: 10px 10px;
     display: flex;
-    justify-content: space-between;
-    //align-content: space-around;
+    justify-content: space-around;
     flex-wrap: wrap;
     min-width: 486px;
 
+    .tile-wrap {
+      padding: 6px;
+    }
+
     .tile {
-      //display: inline-block;
       width: 140px;
       height: 140px;
-      border: 5px solid $silver-three;
+      border: 1px solid $silver-three;
       //padding: 15px;
       //flex:0 0 auto;
       //margin: 15px 8px;
