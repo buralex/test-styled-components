@@ -84,7 +84,7 @@ List.propTypes = {
 
 export const mapDispatchToProps = (dispatch) => ({
     onSubmitForm: (values) => dispatch(appActions.login(values)),
-    logout: () => dispatch(appActions.logout()),
+
 
     /* -------------------- withData hoc ---------------------------------- */
     getData: () => {

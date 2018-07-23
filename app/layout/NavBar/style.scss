@@ -102,3 +102,28 @@
 
 }
 
+.top-navbar-menu {
+  .navbar {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .nav-item {
+    padding: 0;
+    border-bottom: 1px solid $silver-three;
+    width: 100%;
+
+    &:hover {
+      .nav-link {
+        color: $moss-green-two;
+      }
+    }
+  }
+
+  .nav-link {
+    color: $slate-grey;
+    padding: 10px;
+    background-position: 1px 13px;
+  }
+}

@@ -1,6 +1,68 @@
 
+@import '../../styles/colors_and_variables';
+
 .right-bar-component {
   flex:0 0 auto; // Forces side columns to stay same width
 
   width: 213px;
+  margin-top: 14px;
+
+  p {
+    color: $steel;
+    font-size: 14px;
+  }
+
+  p.small {
+    font-size: 12px;
+  }
+
+  p.tip {
+    margin-bottom: 6px;
+  }
+
+  hr {
+    margin-bottom: 4px;
+  }
+
+  .action {
+    font-size: 12px;
+    color: $darkest-blue;
+    text-decoration: none;
+  }
+
+  .see-all {
+    color: $darkest-blue;
+    text-decoration: none;
+  }
+
+  .item-card {
+    margin-bottom: 17px;
+
+    .name {
+      font-size: 16px;
+      color: $darkest-blue;
+      margin-bottom: 4px;
+    }
+
+    caption {
+      padding-top: 0;
+      padding-bottom: 0;
+      width: 120px;
+    }
+
+    p {
+      margin-bottom: 0;
+      line-height: 1.4;
+    }
+  }
+
+  .products {
+    margin-top: 19px;
+
+    .item-card {
+      margin-bottom: 0;
+    }
+
+  }
+
 }

@@ -45,39 +45,41 @@ export default function LeftBar(props) {
 
             <hr/>
 
-            <div className="d-flex justify-content-between align-items-baseline">
-                <p>Featured Companies</p>
-                <Link className="see-all" to="#">See All</Link>
-            </div>
+            <div className="companies">
+                <div className="d-flex justify-content-between align-items-baseline">
+                    <p>Featured Companies</p>
+                    <Link className="see-all" to="#">See All</Link>
+                </div>
 
-            <div className="company-card clearfix">
-                <img src={Img9} alt="company" />
-                <caption className="float-right">
-                    <p className="name">Company Name</p>
-                    <p>Manufacturer</p>
-                    <p>Belgrade, Serbia</p>
-                    <p className="small text-darkest-blue">Follow Now</p>
-                </caption>
-            </div>
+                <div className="item-card clearfix">
+                    <img src={Img9} alt="company" />
+                    <caption className="float-right">
+                        <p className="name text-truncate">Company Name</p>
+                        <p className="text-truncate">Manufacturer</p>
+                        <p className="text-truncate">Belgrade, Serbia</p>
+                        <Link className="action" to="#">Follow Now</Link>
+                    </caption>
+                </div>
 
-            <div className="company-card clearfix">
-                <img src={Img10} alt="company" />
-                <caption className="float-right">
-                    <p className="name">Company Name</p>
-                    <p>Service Provider</p>
-                    <p>New York, USA</p>
-                    <p className="small text-darkest-blue">Follow Now</p>
-                </caption>
-            </div>
+                <div className="item-card clearfix">
+                    <img src={Img10} alt="company" />
+                    <caption className="float-right">
+                        <p className="name text-truncate">Company Name</p>
+                        <p className="text-truncate">Service Provider</p>
+                        <p className="text-truncate">New York, USA</p>
+                        <Link className="action" to="#">Follow Now</Link>
+                    </caption>
+                </div>
 
-            <div className="company-card clearfix">
-                <img src={Img11} alt="company" />
-                <caption className="float-right">
-                    <p className="name">Company Name</p>
-                    <p>Supplier</p>
-                    <p>London, England</p>
-                    <p className="small text-darkest-blue">Follow Now</p>
-                </caption>
+                <div className="item-card clearfix">
+                    <img src={Img11} alt="company" />
+                    <caption className="float-right">
+                        <p className="name text-truncate">Company Name</p>
+                        <p className="text-truncate">Supplier</p>
+                        <p className="text-truncate">London, England</p>
+                        <Link className="action" to="#">Follow Now</Link>
+                    </caption>
+                </div>
             </div>
 
             <hr/>

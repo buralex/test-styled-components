@@ -7,6 +7,25 @@
   width: 212px;
   padding: 0;
 
+  p {
+    color: $steel;
+    font-size: 14px;
+  }
+
+  .small {
+    font-size: 12px;
+  }
+
+  .action {
+    font-size: 12px;
+    color: $darkest-blue;
+    text-decoration: none;
+  }
+
+  hr {
+    margin-bottom: 13px;
+  }
+
   .navbar {
     padding: 0;
     list-style: none;
@@ -15,6 +34,7 @@
   .nav-item {
     padding: 0;
     border-bottom: 1px solid $silver-three;
+    width: 100%;
 
     &:hover {
       .nav-link {
@@ -70,7 +90,7 @@
     text-decoration: none;
   }
 
-  .company-card {
+  .item-card {
     margin-bottom: 17px;
 
     .name {
@@ -79,9 +99,9 @@
     }
 
     caption {
-      padding-right: 8px;
       padding-top: 0;
       margin-top: -7px;
+      width: 120px;
     }
 
     p {
@@ -108,17 +128,4 @@
     }
   }
 
-
-  p {
-    color: $steel;
-    font-size: 14px;
-  }
-
-  p.small {
-    font-size: 12px;
-  }
-
-  hr {
-    margin-bottom: 13px;
-  }
 }

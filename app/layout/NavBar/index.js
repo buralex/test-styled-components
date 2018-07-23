@@ -121,7 +121,7 @@ class NavBar extends React.PureComponent {
                             </UncontrolledTooltip>
                         </div>
                         <div id="avatarArea" className="avatar outline-danger text-nowrap text-truncate" >
-                            <button className="avatar-btn">
+                            <button onClick={this.toggle} className="avatar-btn">
                                 <img src={avatar} width="32" height="32" alt="user avatar" />
                             </button>
 
@@ -139,15 +139,20 @@ class NavBar extends React.PureComponent {
                                 placement="bottom"
                                 target="avatarArea"
                             >
-                                <ul className="navbar-nav">
+                                <ul className="navbar">
                                     <li className="nav-item">
-                                        <a className="nav-link" href="#">Link 1</a>
+                                        <a className="nav-link" href="#">Link1</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="#">Link 2</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="#">Link 3</a>
+                                        <a
+                                            className="nav-link"
+                                            href="#"
+                                            onClick={(e) => {
+                                                e.preventDefault(); this.props.logout();
+                                            }}
+                                        >
+                                            Log out
+                                        </a>
                                     </li>
                                 </ul>
 
@@ -163,6 +168,7 @@ class NavBar extends React.PureComponent {
 export const mapDispatchToProps = (dispatch) => ({
     postEnquiry: (values) => dispatch(actions.postEnquiry(values)),
     login: (values) => dispatch(appActions.login(values)),
+    logout: () => dispatch(appActions.logout()),
     showAlert: (modalName, data) => dispatch(appActions.showAlert(modalName, data)),
 
     /* -------------------- withData hoc ---------------------------------- */
