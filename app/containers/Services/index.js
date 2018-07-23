@@ -41,8 +41,6 @@ class Services extends React.PureComponent {
     render() {
         const {loading, action} = this.props;
 
-        console.log('RENDER SERVICES >>>>>>>>>>>>>>>>>', this.props);
-
         return (
             <div className="services-container">
                 {!action &&

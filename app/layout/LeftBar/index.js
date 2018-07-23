@@ -18,7 +18,7 @@ export default function LeftBar(props) {
     const terms = {message:'Terms of use', description:'Terms of use'};
 
     return (
-        <div className="left-bar-component outline-danger">
+        <div className="left-bar-component">
 
             <ul className="navbar">
                 <li className="nav-item">
@@ -53,32 +53,32 @@ export default function LeftBar(props) {
 
                 <div className="item-card clearfix">
                     <img src={Img9} alt="company" />
-                    <caption className="float-right">
+                    <div className="float-right item-text">
                         <p className="name text-truncate">Company Name</p>
                         <p className="text-truncate">Manufacturer</p>
                         <p className="text-truncate">Belgrade, Serbia</p>
                         <Link className="action" to="#">Follow Now</Link>
-                    </caption>
+                    </div>
                 </div>
 
                 <div className="item-card clearfix">
                     <img src={Img10} alt="company" />
-                    <caption className="float-right">
+                    <div className="float-right item-text">
                         <p className="name text-truncate">Company Name</p>
                         <p className="text-truncate">Service Provider</p>
                         <p className="text-truncate">New York, USA</p>
                         <Link className="action" to="#">Follow Now</Link>
-                    </caption>
+                    </div>
                 </div>
 
                 <div className="item-card clearfix">
                     <img src={Img11} alt="company" />
-                    <caption className="float-right">
+                    <div className="float-right item-text">
                         <p className="name text-truncate">Company Name</p>
                         <p className="text-truncate">Supplier</p>
                         <p className="text-truncate">London, England</p>
                         <Link className="action" to="#">Follow Now</Link>
-                    </caption>
+                    </div>
                 </div>
             </div>
 

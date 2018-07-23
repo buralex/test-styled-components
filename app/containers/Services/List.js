@@ -41,9 +41,6 @@ class List extends React.PureComponent {
     render() {
         const {loading, categories} = this.props;
 
-        console.log('<<<<<<<<<<<<<<<<<  RENDER LIST >>>>>>>>>>>>>>>>>', this.props);
-
-        console.log(categories);
         return (
             <div>
                 <div className="d-flex justify-content-between">
@@ -58,8 +55,8 @@ class List extends React.PureComponent {
                             const icon = cat.icon || defaultCategory;
 
                             return (
-                                <div className="tile text-center">
-                                    <div key={`cat_${i+1}`} className="tile-icon">
+                                <div key={`cat_${i+1}`} className="tile text-center">
+                                    <div className="tile-icon">
                                         <img src={icon} width="120" height="120" alt="category icon" />
                                     </div>
 

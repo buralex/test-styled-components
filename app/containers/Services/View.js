@@ -39,9 +39,6 @@ class View extends React.PureComponent {
     render() {
         const {loading, categories} = this.props;
 
-        console.log('<<<<<<<<<<<<<<<<<  RENDER VIEW >>>>>>>>>>>>>>>>>', this.props);
-
-        console.log(categories);
         return (
             <article>
                 <Helmet>

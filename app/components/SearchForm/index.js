@@ -16,20 +16,10 @@ import {
 
 import {trimFields} from 'functions';
 
-//import {FIELDS as db} from '../constants/fields';
-//import validate from './validation';
-
-
-
-
-const submit = (values) => {
-    console.log(values);
-    return () => values;
-}
 
 const SearchForm = props => {
     const {
-        handleSubmit, pristine, reset, submitting, change, form, enquiryTypes, isEnqTypeOther, loading, placeholder,
+        handleSubmit, form, placeholder,
     } = props;
 
     const beforeSubmit = (values) => {

@@ -74,11 +74,7 @@ class App extends React.PureComponent {
 
     render() {
         const {isLoggedIn, isLoginPage, loading, suggestions} = this.props;
-        console.log('---------------- RENDER APP -------------------', this.props);
 
-
-        console.log(loading);
-        console.log(isLoginPage);
         return (
             <div className="app-wrapper">
                 <Helmet

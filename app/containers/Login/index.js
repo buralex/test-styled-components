@@ -1,16 +1,14 @@
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import {Helmet} from 'react-helmet';
-import {FormattedMessage} from 'react-intl';
+
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {createStructuredSelector} from 'reselect';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, UncontrolledTooltip} from 'reactstrap';
-import restApi, {fetchCategories, fetchCategory, fetchFriends, fetchEnquiryTypes} from 'services/api';
+import {Button} from 'reactstrap';
+
 import {Link} from "react-router-dom";
 import Logo from 'images/logo-img.svg';
-import uuidv5 from "uuid/v5";
+
 import withData from "hocs/withData";
 import { history } from 'app';
 
@@ -22,9 +20,6 @@ import injectSaga from 'utils/injectSaga';
 
 import {
     withSignal,
-    // withSignalPropTypes,
-    SignalTypes,
-    eventHandler,
 } from 'redux-signal'
 
 import * as modalNames from 'components/modals/names';
@@ -56,34 +51,17 @@ class Login extends React.PureComponent {
         }
     }
 
-    // showAlertModal = (alert) => {
-    //     this.props.createSignal({
-    //         type: SignalTypes.OK,
-    //         eventHandler: AlertModalEvents,
-    //         modalData: alert.data,
-    //         modalName: alert.modalName,
-    //     })
-    // };
 
     render() {
         const {enquiryTypes, currentEnqType, loading, isLoggedIn, location: {pathname}} = this.props;
 
-        // if (!enquiryTypes.length) {
-        //     return null;
-        // }
-
-        console.log('RENDER ABccccccccccccOUT >>>');
-        console.log(pathname);
-        // console.log(enquiryTypes);
-        //
-        console.log(this.props);
 
         const signup = {message:'This page is in development', description:'...'};
 
         return (
             <div className="login-container">
                 <section className="land-top">
-                    <div className="max-width outline-danger">
+                    <div className="max-width">
                         <div className="content navbar">
                             <a className="logo" href="/"> <img src={Logo} alt="Denteez logo" /> </a>
                             {pathname === '/login/support' ?
@@ -109,7 +87,7 @@ class Login extends React.PureComponent {
                 </section>
 
                 <section className="land-middle">
-                    <div className="max-width outline-danger">
+                    <div className="max-width">
                         {pathname.includes('support') &&
                         <SupportForm
                             loading={loading}
@@ -127,7 +105,7 @@ class Login extends React.PureComponent {
                 </section>
 
                 <section className="land-bottom">
-                    <div className="max-width outline-danger">
+                    <div className="max-width">
                         <h2 className="text-truncate">About Denteez</h2>
 
                         <div className="row no-gutters text-left">
@@ -156,11 +134,7 @@ class Login extends React.PureComponent {
 }
 
 Login.propTypes = {
-    // loading: PropTypes.bool,
-    // error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-    // repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-    // onSubmitForm: PropTypes.func,
-    // username: PropTypes.string,
+
 };
 
 

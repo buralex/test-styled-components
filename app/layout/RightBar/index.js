@@ -13,7 +13,7 @@ import './style.scss';
 
 export default function RightBar() {
     return (
-        <div className="right-bar-component outline-danger">
+        <div className="right-bar-component ">
 
             <div className="friends">
                 <div className="d-flex justify-content-between align-items-baseline">
@@ -24,31 +24,31 @@ export default function RightBar() {
                 <div className="item-card clearfix">
                     <p className="name text-truncate">Dennis Adams</p>
                     <img src={Img1} alt="friend" />
-                    <caption className="float-right">
+                    <div className="float-right item-text">
                         <p className="text-truncate">Dentist (Practice Owner)</p>
                         <p className="text-truncate">London, England</p>
                         <Link className="action" to="#">Add Friend</Link>
-                    </caption>
+                    </div>
                 </div>
 
                 <div className="item-card clearfix">
                     <p className="name text-truncate">Mary Carpenter</p>
                     <img src={Img2} alt="friend" />
-                    <caption className="float-right">
+                    <div className="float-right item-text">
                         <p className="text-truncate">Dentist (Practice Owner)</p>
                         <p className="text-truncate">London, England</p>
                         <Link className="action" to="#">Add Friend</Link>
-                    </caption>
+                    </div>
                 </div>
 
                 <div className="item-card clearfix">
                     <p className="name text-truncate">Danielle Salazar</p>
                     <img src={Img3} alt="friend" />
-                    <caption className="float-right">
+                    <div className="float-right item-text">
                         <p className="text-truncate">Dentist (Practice Owner)</p>
                         <p className="text-truncate">Paris, France</p>
                         <Link className="action" to="#">Add Friend</Link>
-                    </caption>
+                    </div>
                 </div>
             </div>
 
@@ -63,27 +63,27 @@ export default function RightBar() {
                 <div className="item-card clearfix">
                     <p className="name text-truncate">Product Name</p>
                     <img src={Img4} alt="friend" />
-                    <caption className="float-right">
+                    <div className="float-right item-text">
                         <p>
                             Product Short
                             Description. The quick brown
                             fox jumps over the
                             lazy dog.
                         </p>
-                    </caption>
+                    </div>
                 </div>
 
                 <div className="item-card clearfix">
                     <p className="name text-truncate">Product Name</p>
                     <img src={Img5} alt="friend" />
-                    <caption className="float-right">
+                    <div className="float-right item-text">
                         <p>
                             Product Short
                             Description. The quick brown
                             fox jumps over the
                             lazy dog.
                         </p>
-                    </caption>
+                    </div>
                 </div>
             </div>
 
