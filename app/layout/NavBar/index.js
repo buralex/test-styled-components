@@ -112,8 +112,8 @@ class NavBar extends React.PureComponent {
 
                             </UncontrolledTooltip>
                         </div>
-                        <div id="avatarArea" className="avatar text-nowrap text-truncate" >
-                            <button onClick={this.toggle} className="avatar-btn">
+                        <div id="avatarArea" onClick={this.toggle} className="avatar text-nowrap text-truncate" >
+                            <button className="avatar-btn">
                                 <img src={avatar} width="32" height="32" alt="user avatar" />
                             </button>
 
@@ -126,7 +126,6 @@ class NavBar extends React.PureComponent {
                             <Tooltip
                                 className="top-navbar-menu"
                                 isOpen={this.state.tooltipOpen}
-                                toggle={this.toggle}
                                 autohide={false}
                                 placement="bottom"
                                 target="avatarArea"

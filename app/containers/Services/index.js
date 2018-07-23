@@ -1,13 +1,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Helmet} from 'react-helmet';
-import {FormattedMessage} from 'react-intl';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {createStructuredSelector} from 'reselect';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Tooltip, UncontrolledTooltip} from 'reactstrap';
-import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/api';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
@@ -30,10 +26,6 @@ import saga from './saga';
 
 import List from './List';
 import View from './View';
-
-import * as actions from "./actions";
-import {makeSelectCategories} from './selectors';
-
 
 
 class Services extends React.PureComponent {

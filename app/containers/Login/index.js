@@ -53,7 +53,7 @@ class Login extends React.PureComponent {
 
 
     render() {
-        const {enquiryTypes, currentEnqType, loading, isLoggedIn, location: {pathname}} = this.props;
+        const {enquiryTypes, currentEnqType, loading, location: {pathname}} = this.props;
 
 
         const signup = {message:'This page is in development', description:'...'};
