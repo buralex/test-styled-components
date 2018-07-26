@@ -1,6 +1,6 @@
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {createStructuredSelector} from 'reselect';
@@ -21,7 +21,7 @@ import {withSignal} from "redux-signal";
 
 import './style.scss';
 
-import reducer from './reducer';
+import reducer from './reducers';
 import saga from './saga';
 
 import List from './List';
@@ -31,7 +31,7 @@ import View from './View';
 class Services extends React.PureComponent {
 
     render() {
-        const {loading, action} = this.props;
+        const {action} = this.props;
 
         return (
             <div className="services-container">
@@ -49,7 +49,7 @@ class Services extends React.PureComponent {
 }
 
 Services.propTypes = {
-    loading: PropTypes.bool,
+    // loading: PropTypes.bool,
 };
 
 
