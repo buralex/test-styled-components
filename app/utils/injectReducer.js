@@ -11,28 +11,30 @@ import getInjectors from './reducerInjectors';
  * @param {function} reducer A reducer that will be injected
  *
  */
-export default ({ key, reducer }) => WrappedComponent => {
-  class ReducerInjector extends React.Component {
-    static WrappedComponent = WrappedComponent;
-    static contextTypes = {
-      store: PropTypes.object.isRequired,
-    };
-    static displayName = `withReducer(${WrappedComponent.displayName ||
-      WrappedComponent.name ||
-      'Component'})`;
+export default ({key, reducer}) => WrappedComponent => {
+    class ReducerInjector extends React.Component {
+        constructor(props, context) {
+            super(props, context)
 
-    componentWillMount() {
-      const { injectReducer } = this.injectors;
+            const {injectReducer} = this.injectors;
 
-      injectReducer(key, reducer);
+            injectReducer(key, reducer);
+        }
+
+        static WrappedComponent = WrappedComponent;
+        static contextTypes = {
+            store: PropTypes.object.isRequired,
+        };
+        static displayName = `withReducer(${WrappedComponent.displayName ||
+        WrappedComponent.name ||
+        'Component'})`;
+
+        injectors = getInjectors(this.context.store);
+
+        render() {
+            return <WrappedComponent {...this.props} />;
+        }
     }
 
-    injectors = getInjectors(this.context.store);
-
-    render() {
-      return <WrappedComponent {...this.props} />;
-    }
-  }
-
-  return hoistNonReactStatics(ReducerInjector, WrappedComponent);
+    return hoistNonReactStatics(ReducerInjector, WrappedComponent);
 };
