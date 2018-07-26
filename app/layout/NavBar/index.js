@@ -1,43 +1,36 @@
 import React from 'react';
 import {compose} from "redux";
 import {withSignal} from "redux-signal";
-
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {createStructuredSelector} from "reselect";
 
 import SearchForm from 'components/SearchForm';
 import Logo from 'images/logo-img.svg';
-import avatarDefault from './images/avatar-user-default.png';
+
 
 import {
-    Button,
-    Modal, ModalHeader, ModalBody, ModalFooter,
-    Tooltip, UncontrolledTooltip
+    Tooltip, UncontrolledTooltip,
 } from 'reactstrap';
+
+import * as appActions from "containers/App/actions";
 
 import withData from "hocs/withData";
 import injectSaga from "utils/injectSaga";
 import injectReducer from "utils/injectReducer";
+import {makeSelectIsLoggedIn, makeSelectLoading, makeSelectLocation, makeSelectUser} from "containers/App/selectors";
 
 import './style.scss';
 
-
-
-import {makeSelectIsLoggedIn, makeSelectLoading, makeSelectLocation, makeSelectUser} from "containers/App/selectors";
-
-
 import {makeSelectEnquiryTypes} from "./selectors";
-
-
-
 import * as actions from "./actions";
-import * as appActions from "../../containers/App/actions";
+
+import avatarDefault from './images/avatar-user-default.png';
 
 import reducer from './reducer';
 import saga from './saga';
-import * as modalNames from "../../components/modals/names";
 
-const aaa = (values) => {
+const showValues = (values) => {
     console.log(values);
 }
 
@@ -46,41 +39,41 @@ class NavBar extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.toggle = this.toggle.bind(this);
         this.state = {
-            tooltipOpen: false,
+            topMenuOpen: false,
         };
     }
-    toggle() {
+
+    toggle = () => {
         this.setState({
-            tooltipOpen: !this.state.tooltipOpen
+            topMenuOpen: !this.state.topMenuOpen,
         });
     }
+
     render() {
 
         const {user} = this.props;
 
         const avatar = user && user.image || avatarDefault;
-        console.log(user);
-        console.log(avatar);
-        return (
-            <div className="navbar-component outline-danger">
-                <div className="max-width outline-danger d-flex justify-content-between">
 
-                    <section className="logo outline-danger">
+        return (
+            <div className="navbar-component">
+                <div className="max-width d-flex justify-content-between">
+
+                    <section className="logo">
                         <a href="/"> <img src={Logo} alt="Denteez logo" /> </a>
                     </section>
 
-                    <section className="search outline-danger w-100">
+                    <section className="search w-100">
                         <SearchForm
                             form="header_search_form"
-                            onSubmit={aaa}
+                            onSubmit={showValues}
                             placeholder="Company Name"
                         />
                     </section>
 
-                    <section className="navigation d-flex justify-content-end outline-danger ">
-                        <div className="msg outline-danger">
+                    <section className="navigation d-flex justify-content-end">
+                        <div className="msg">
 
                             <button className="msg-btn" id="msgBtn">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="22" viewBox="0 0 26 22">
@@ -101,7 +94,7 @@ class NavBar extends React.PureComponent {
                             </UncontrolledTooltip>
                         </div>
 
-                        <div className="notif outline-danger">
+                        <div className="notif">
                             <button className="notif-btn" id="notifBtn">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                     <path
@@ -120,8 +113,15 @@ class NavBar extends React.PureComponent {
 
                             </UncontrolledTooltip>
                         </div>
-                        <div id="avatarArea" className="avatar outline-danger text-nowrap text-truncate" >
-                            <button onClick={this.toggle} className="avatar-btn">
+                        <div
+                            role="button"
+                            onKeyDown={() => {}}
+                            onMouseEnter={this.toggle}
+                            onMouseLeave={this.toggle}
+                            tabIndex={0}
+                            className="avatar text-nowrap"
+                        >
+                            <button className="avatar-btn">
                                 <img src={avatar} width="32" height="32" alt="user avatar" />
                             </button>
 
@@ -131,17 +131,11 @@ class NavBar extends React.PureComponent {
                                 </span>
                             }
 
-                            <Tooltip
-                                className="top-navbar-menu"
-                                isOpen={this.state.tooltipOpen}
-                                toggle={this.toggle}
-                                autohide={false}
-                                placement="bottom"
-                                target="avatarArea"
-                            >
+                            {this.state.topMenuOpen &&
+                            <div className="top-navbar-menu">
                                 <ul className="navbar">
                                     <li className="nav-item">
-                                        <a className="nav-link" href="#">Link1</a>
+                                        <Link className="nav-link" to="/support">Support</Link>
                                     </li>
                                     <li className="nav-item">
                                         <a
@@ -155,8 +149,9 @@ class NavBar extends React.PureComponent {
                                         </a>
                                     </li>
                                 </ul>
+                            </div>
+                            }
 
-                            </Tooltip>
                         </div>
                     </section>
                 </div>

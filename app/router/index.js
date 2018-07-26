@@ -8,11 +8,13 @@ import { userIsAuthenticatedRedir, userIsNotAuthenticatedRedir,
 
 import LoginComponent from 'containers/Login/Loadable';
 import ServicesComponent from 'containers/Services/Loadable';
+import SupportComponent from 'containers/Support/Loadable';
 import NotFoundPageComponent from 'containers/NotFoundPage';
 
 const Login = userIsNotAuthenticatedRedir(LoginComponent);
 
 const Services = userIsAuthenticatedRedir(ServicesComponent);
+const Support = userIsAuthenticatedRedir(SupportComponent);
 const NotFoundPage = userIsAuthenticatedRedir(NotFoundPageComponent);
 
 const Router = () => (
@@ -21,6 +23,7 @@ const Router = () => (
         <Route exact path="/login" component={Login}/>
         <Route exact path="/login/support" component={Login}/>
         <Route exact path="/services/:action?/:id?" component={Services}/>
+        <Route exact path="/support" component={Support}/>
         <Route path="" component={NotFoundPage}/>
     </Switch>
 );

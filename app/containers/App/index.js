@@ -9,16 +9,12 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
 import {withRouter} from 'react-router-dom';
-import styled from 'styled-components';
 import {createStructuredSelector} from 'reselect';
 import PropTypes from "prop-types";
 import {compose} from "redux";
 import {connect} from "react-redux";
 
 import injectSaga from 'utils/injectSaga';
-
-
-
 
 import {
     makeSelectIsLoggedIn,
@@ -74,11 +70,7 @@ class App extends React.PureComponent {
 
     render() {
         const {isLoggedIn, isLoginPage, loading, suggestions} = this.props;
-        console.log('---------------- RENDER APP -------------------', this.props);
 
-
-        console.log(loading);
-        console.log(isLoginPage);
         return (
             <div className="app-wrapper">
                 <Helmet
@@ -121,12 +113,6 @@ class App extends React.PureComponent {
 }
 
 App.propTypes = {
-    // loading: PropTypes.bool,
-    error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-    // repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-    // onSubmitForm: PropTypes.func,
-    // username: PropTypes.string,
-    // onChangeUsername: PropTypes.func,
     isLoggedIn: PropTypes.bool,
 };
 

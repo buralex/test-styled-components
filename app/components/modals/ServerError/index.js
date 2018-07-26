@@ -37,7 +37,7 @@ const ServerError = ({onClose, footerActions, data, isOpen, destroy}) => {
 
                 <ModalFooter>
                     <Button
-                        key='no'
+                        key='ok'
                         color="primary"
                         onClick={footerActions.BTN_OK}
                     >

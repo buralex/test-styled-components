@@ -3,6 +3,7 @@
 
 .navbar-component {
 
+  position: relative;
   border-bottom: 2px solid $moss-green-two;
   background: $success;
 
@@ -40,7 +41,10 @@
 
     .msg-btn,
     .notif-btn,
-    .avatar-btn {
+    .avatar-btn,
+    .msg,
+    .notif,
+    .avatar {
       cursor: pointer;
 
       &:focus {
@@ -84,6 +88,7 @@
     }
 
     .avatar {
+      position: relative;
       color: $white-three;
       max-width: 250px;
       margin-right: 11px;
@@ -97,33 +102,52 @@
         }
       }
 
+      &:hover {
+        img {
+          border-radius: 20px;
+          transition: .5s ease;
+        }
+      }
+
     }
   }
 
-}
-
-.top-navbar-menu {
-  .navbar {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-
-  .nav-item {
-    padding: 0;
-    border-bottom: 1px solid $silver-three;
+  .top-navbar-menu {
+    position: absolute;
+    top: 100%;
+    border-radius: 5px;
     width: 100%;
+    border: 1px solid $silver-three;
+    background-color: $white;
 
-    &:hover {
-      .nav-link {
-        color: $moss-green-two;
+    .navbar {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .nav-item {
+      padding: 0;
+      border-bottom: 1px solid $silver-three;
+      width: 100%;
+
+      &:hover {
+        .nav-link {
+          color: $moss-green-two;
+          background-color: $pale-grey-two;
+        }
+      }
+
+      &:last-child {
+        border-bottom: none;
       }
     }
+
+    .nav-link {
+      color: $slate-grey;
+      padding: 10px;
+      background-position: 1px 13px;
+    }
   }
 
-  .nav-link {
-    color: $slate-grey;
-    padding: 10px;
-    background-position: 1px 13px;
-  }
 }

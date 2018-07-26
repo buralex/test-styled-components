@@ -5,9 +5,8 @@ import * as modalNames from "components/modals/names";
 import './style.scss';
 
 import Add1 from './images/add1.png';
-import Img9 from './images/9.png';
-import Img10 from './images/10.png';
-import Img11 from './images/11.png';
+
+import Companies from './Companies';
 
 
 export default function LeftBar(props) {
@@ -18,7 +17,7 @@ export default function LeftBar(props) {
     const terms = {message:'Terms of use', description:'Terms of use'};
 
     return (
-        <div className="left-bar-component outline-danger">
+        <div className="left-bar-component">
 
             <ul className="navbar">
                 <li className="nav-item">
@@ -31,7 +30,7 @@ export default function LeftBar(props) {
                     <a className="nav-link comp" href="#">Companies</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link serv" href="#">Service Directory</a>
+                    <Link className="nav-link serv" to="/services">Service Directory</Link>
                 </li>
             </ul>
 
@@ -45,42 +44,7 @@ export default function LeftBar(props) {
 
             <hr/>
 
-            <div className="companies">
-                <div className="d-flex justify-content-between align-items-baseline">
-                    <p>Featured Companies</p>
-                    <Link className="see-all" to="#">See All</Link>
-                </div>
-
-                <div className="item-card clearfix">
-                    <img src={Img9} alt="company" />
-                    <caption className="float-right">
-                        <p className="name text-truncate">Company Name</p>
-                        <p className="text-truncate">Manufacturer</p>
-                        <p className="text-truncate">Belgrade, Serbia</p>
-                        <Link className="action" to="#">Follow Now</Link>
-                    </caption>
-                </div>
-
-                <div className="item-card clearfix">
-                    <img src={Img10} alt="company" />
-                    <caption className="float-right">
-                        <p className="name text-truncate">Company Name</p>
-                        <p className="text-truncate">Service Provider</p>
-                        <p className="text-truncate">New York, USA</p>
-                        <Link className="action" to="#">Follow Now</Link>
-                    </caption>
-                </div>
-
-                <div className="item-card clearfix">
-                    <img src={Img11} alt="company" />
-                    <caption className="float-right">
-                        <p className="name text-truncate">Company Name</p>
-                        <p className="text-truncate">Supplier</p>
-                        <p className="text-truncate">London, England</p>
-                        <Link className="action" to="#">Follow Now</Link>
-                    </caption>
-                </div>
-            </div>
+            <Companies />
 
             <hr/>
 

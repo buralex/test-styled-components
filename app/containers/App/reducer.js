@@ -9,6 +9,7 @@ const initialState = {
     alert: false,
     commonData: {},
     suggestions: {},
+    enquiryTypes: [],
 };
 
 function appReducer(state = initialState, action) {
@@ -48,6 +49,15 @@ function appReducer(state = initialState, action) {
                 loading: false,
                 suggestions: action.payload,
             };
+
+        case types.LOAD_ENQUIRY_TYPES_SUCCESS: {
+            const enqTypes = action.payload.data || [];
+
+            return {
+                ...state,
+                enquiryTypes: enqTypes,
+            };
+        }
 
 
         default:

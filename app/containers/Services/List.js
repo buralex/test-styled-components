@@ -11,6 +11,8 @@ import restApi, {fetchCategories, fetchCategory, fetchFriends} from 'services/ap
 
 import defaultCategory from 'images/no-service-category-icon.png';
 
+import LoadingBeat from 'components/LoadingBeat';
+
 import {
     makeSelectLoading,
 } from 'containers/App/selectors';
@@ -28,22 +30,10 @@ import {makeSelectCategories} from './selectors';
 
 
 class List extends React.PureComponent {
-    constructor(props) {
-        super(props);
-
-    }
-
-    componentDidUpdate(prevProps) {
-
-    }
-
 
     render() {
         const {loading, categories} = this.props;
 
-        console.log('<<<<<<<<<<<<<<<<<  RENDER LIST >>>>>>>>>>>>>>>>>', this.props);
-
-        console.log(categories);
         return (
             <div>
                 <div className="d-flex justify-content-between">
@@ -52,14 +42,18 @@ class List extends React.PureComponent {
                 </div>
 
                 <div className="list-container">
+                    <div className="absolute-left w-100">
+                        <LoadingBeat loading={loading} />
+                    </div>
+
                     {categories.map((cat, i) => {
 
                         if (i < 20) {
                             const icon = cat.icon || defaultCategory;
 
                             return (
-                                <div className="tile text-center">
-                                    <div key={`cat_${i+1}`} className="tile-icon">
+                                <div key={`cat_${i+1}`} className="tile text-center">
+                                    <div className="tile-icon">
                                         <img src={icon} width="120" height="120" alt="category icon" />
                                     </div>
 
@@ -71,6 +65,7 @@ class List extends React.PureComponent {
 
 
                     })}
+
                 </div>
             </div>
         );

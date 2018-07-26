@@ -1,5 +1,0 @@
-export const LOAD_ENQUIRY_TYPES = 'test/Login/LOAD_ENQUIRY_TYPES';
-export const LOAD_ENQUIRY_TYPES_SUCCESS = 'test/Login/LOAD_ENQUIRY_TYPES_SUCCESS';
-
-export const POST_ENQUIRY = 'test/Login/POST_ENQUIRY';
-export const POST_ENQUIRY_SUCCESS = 'test/Login/POST_ENQUIRY_SUCCESS';

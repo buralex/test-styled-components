@@ -53,9 +53,14 @@ export default class FileUpload extends React.PureComponent {
             const {minWidth, minHeight} = this.props.validateImgSize;
 
             if ( width < minWidth || height < minHeight ) {
+
+                const error = `Image is too small, minimum 300x300 px! (your image is ${width}x${height} px)`;
+
                 this.setState({
-                    error: `Image is too small, minimum 300x300 px! (your image is ${width}x${height} px)`,
+                    error,
                 });
+
+                this.props.input.onChange({error});
             } else {
                 this.setState({
                     error: false,

@@ -24,7 +24,7 @@ const ServerSuccess = ({onClose, footerActions, data, isOpen, destroy}) => {
 
                 <ModalFooter>
                     <Button
-                        key='no'
+                        key='ok'
                         color="success"
                         onClick={footerActions.BTN_OK}
                     >

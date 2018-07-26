@@ -12,7 +12,7 @@ const Footer = (props) => {
 
     return (
         <footer className="footer-component">
-            <div className="d-flex justify-content-between max-width outline-danger">
+            <div className="d-flex justify-content-between max-width">
                 <div className="copy">
                     Denteez Copyright 2015
                 </div>

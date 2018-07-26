@@ -87,28 +87,6 @@ div.navbar-tooltip {
   }
 }
 
-div.top-navbar-menu {
-  &.show {
-    opacity: 1;
-  }
-
-  padding-top: 0;
-
-  .tooltip-inner {
-    background-color: $white-three;
-    color: $darkest-blue;
-    font-size: 16px;
-    width: 200px;
-  }
-
-  .arrow::before {
-    border: none;
-    //bottom: 0;
-    //border-width: 0 0.4rem 0.4rem;
-    //border-bottom-color: $light-green;
-  }
-}
-
 
 //**************************
 //       / Modals

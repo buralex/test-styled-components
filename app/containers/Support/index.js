@@ -8,58 +8,52 @@ import {createStructuredSelector} from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
-import { makeSelectLoading, makeSelectAction } from 'containers/App/selectors';
+import SupportForm from "components/SupportForm/index";
+
+import { makeSelectLoading, makeSelectAction,
+    makeSelectCurrentEnqType, makeSelectEnquiryTypes,
+} from 'containers/App/selectors';
 
 import withData from "hocs/withData";
-
+import LoadingBeat from 'components/LoadingBeat';
 
 import * as appActions from "containers/App/actions";
 
-import routeActions from "containers/App/constants/routeActions";
-
 import {withSignal} from "redux-signal";
 
-import './style.scss';
 
-import reducer from './reducer';
-import saga from './saga';
-
-import List from './List';
-import View from './View';
-
-
-class Services extends React.PureComponent {
+class Support extends React.PureComponent {
 
     render() {
-        const {loading, action} = this.props;
+        const {loading, enquiryTypes, currentEnqType} = this.props;
 
         return (
             <div className="services-container">
-                {!action &&
-                    <List />
-                }
+                <SupportForm
+                    loading={loading}
+                    initialValues={this.initValues}
+                    onSubmit={this.props.postEnquiry}
+                    enquiryTypes={enquiryTypes}
+                    isEnqTypeOther={currentEnqType === 'Other'}
+                />
 
-                {action === routeActions.view &&
-                    <View />
-                }
-
+                {loading && <LoadingBeat />}
             </div>
         );
     }
 }
 
-Services.propTypes = {
+Support.propTypes = {
     loading: PropTypes.bool,
 };
 
 
 export const mapDispatchToProps = (dispatch) => ({
-    onSubmitForm: (values) => dispatch(appActions.login(values)),
-    logout: () => dispatch(appActions.logout()),
+    postEnquiry: (values) => dispatch(appActions.postEnquiry(values)),
 
     /* -------------------- withData hoc ---------------------------------- */
     getData: () => {
-        dispatch(appActions.loadSuggestions());
+        dispatch(appActions.loadEnquiryTypes());
     },
     // clearState: () => dispatch(actions.clearClientState()),
     /* -------------------- withData hoc ---------------------------------- */
@@ -69,6 +63,8 @@ export const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = createStructuredSelector({
     loading: makeSelectLoading(),
     action: makeSelectAction(),
+    enquiryTypes: makeSelectEnquiryTypes(),
+    currentEnqType: makeSelectCurrentEnqType(),
 });
 
 const withConnect = connect(
@@ -76,12 +72,8 @@ const withConnect = connect(
     mapDispatchToProps,
 );
 
-const withReducer = injectReducer({key: 'services', reducer});
-const withSaga = injectSaga({key: 'services', saga});
 
 export default compose(
-    withReducer,
-    withSaga,
     withSignal,
     withConnect,
-)(withData(Services));
+)(withData(Support));
